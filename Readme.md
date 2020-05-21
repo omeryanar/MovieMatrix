@@ -4,10 +4,6 @@ Movie Matrix is a windows application which helps you create your personal movie
 
 You can also find new movies & tv shows by looking at online lists such as **COMING SOON**, **NOW IN THEATERS**, **OSCAR WINNERS** or **IMDB TOP 250**. More than 500.000 movies and 100.000 tv shows are waiting for you to discover.
 
-Download and run Setup.exe: https://github.com/omeryanar/MovieMatrix/releases/download/v1.04/Setup.exe
-
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png)
-
 ## Features
 
 ### General
