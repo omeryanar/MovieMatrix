@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="MovieMatrix.Controls.RatingsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:controls="clr-namespace:MovieMatrix.Controls"
+             xmlns:resources="clr-namespace:MovieMatrix.Resources">
+
+    <UserControl.Resources>
+        <Style TargetType="controls:RadialProgressBar">
+            <Setter Property="LowValueBrush" Value="{StaticResource Red}" />
+            <Setter Property="MidValueBrush" Value="{StaticResource Yellow}" />
+            <Setter Property="HighValueBrush" Value="{StaticResource Green}" />
+        </Style>               
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Horizontal" resources:MarginAssist.Margin="0,0,30,0">
+        <StackPanel Orientation="Horizontal">
+            <Button Command="{Binding OpenExternalApplicationCommand}" CommandParameter="{Binding Parameter.ImdbLink}"
+                    Style="{StaticResource IconButton}">
+                <Image Margin="0,0,10,0" Height="32" Source="/Assets/Icon/IMDb.png">
+                    <Image.ToolTip>
+                        <TextBlock Text="{Binding Votes, Source={StaticResource ResourceProvider}}">
+                            <Run Text="{Binding Parameter.Votes, StringFormat=': {0:#,#}'}" />
+                        </TextBlock>
+                    </Image.ToolTip>
+                </Image>
+            </Button>
+            <controls:RadialProgressBar Width="50" Height="50" Max="10" Value="{Binding Parameter.ImdbRating}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Command="{Binding OpenExternalApplicationCommand}" CommandParameter="{Binding Parameter.TmdbLink}"
+                    Style="{StaticResource IconButton}">
+                <Image Margin="0,0,10,0" Height="32" Source="/Assets/Icon/TMDb.png">
+                    <Image.ToolTip>
+                        <TextBlock Text="{Binding Votes, Source={StaticResource ResourceProvider}}">
+                            <Run Text="{Binding Parameter.Item.VoteCount, StringFormat=': {0:#,#}'}" />
+                        </TextBlock>
+                    </Image.ToolTip>
+                </Image>
+            </Button>
+            <controls:RadialProgressBar Width="50" Height="50" Max="10" Value="{Binding Parameter.Item.VoteAverage}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Command="{DXCommand CanExecute='CanUpdateRepository()', Execute='@e(Flyout).IsOpen=true'}" ToolTipService.ShowOnDisabled="True"
+                    Style="{StaticResource IconButton}">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock Text="{Binding PersonalRating, Source={StaticResource ResourceProvider}}" />
+                            <TextBlock Text="{Binding AddYourListToChange, Source={StaticResource ResourceProvider}, StringFormat='({0})'}"
+                                       Visibility="{Binding PlacementTarget.IsEnabled, RelativeSource={RelativeSource AncestorType=ToolTip}, Converter={dxmvvm:BooleanToVisibilityConverter Inverse=True}}" />
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+                <StackPanel>
+                    <Image x:Name="PersonalRating" Margin="0,0,5,0" Height="36" Source="/Assets/Icon/User.png" />
+                    <dxe:FlyoutControl x:Name="Flyout" PlacementTarget="{Binding ElementName=PersonalRating}">
+                        <dxe:FlyoutControl.Settings>
+                            <dxe:FlyoutSettings ShowIndicator="True" />
+                        </dxe:FlyoutControl.Settings>
+                        <dxe:RatingEdit ItemsCount="10" Precision="Half" Value="{Binding Parameter.PersonalRating, Mode=TwoWay}" />
+                    </dxe:FlyoutControl>
+                </StackPanel>
+            </Button>
+            <controls:RadialProgressBar Width="50" Height="50" Max="10" Value="{Binding Parameter.PersonalRating}"
+                                        ValueChangedCommand="{Binding UpdateRepositoryCommand}" />
+        </StackPanel>
+    </StackPanel>
+
+</UserControl>

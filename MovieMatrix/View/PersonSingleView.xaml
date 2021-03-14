@@ -1,0 +1,201 @@
+﻿<UserControl x:Class="MovieMatrix.View.PersonSingleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+             xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:helper="clr-namespace:MovieMatrix.Helper"
+             xmlns:editors="clr-namespace:MovieMatrix.Editors"
+             xmlns:controls="clr-namespace:MovieMatrix.Controls"
+             xmlns:settings="clr-namespace:MovieMatrix.Properties"
+             xmlns:resources="clr-namespace:MovieMatrix.Resources">
+
+    <dx:LoadingDecorator>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel HorizontalAlignment="Center" Width="850" DataContext="{Binding Parameter}">
+                <DockPanel>
+                    <dxe:ImageEdit DockPanel.Dock="Left" VerticalAlignment="Top" Width="300" Height="450"
+                                   Tag="{Binding Item}" resources:ImageAssist.Source="{DXBinding '`w300` + Item.ProfilePath'}" />
+                    <StackPanel DockPanel.Dock="Right" resources:MarginAssist.BottomLeftMargin="15">
+                        <StackPanel Orientation="Horizontal" resources:MarginAssist.Margin="0,0,10,0">
+                            <TextBlock MaxWidth="450" Text="{Binding Item.Name}" Style="{StaticResource HeadlineTextBlock}" />
+                            <controls:SocialIconsControl DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" resources:MarginAssist.Margin="0,0,20,0">
+                            <StackPanel Visibility="{Binding Item.PlaceOfBirth, Converter={dxmvvm:StringToVisibilityConverter}}">
+                                <TextBlock Text="{Binding PlaceOfBirth, Source={StaticResource ResourceProvider}}" Style="{StaticResource SubheadingTextBlock}" />
+                                <TextBlock Text="{Binding Item.PlaceOfBirth}" Style="{StaticResource Body2TextBlock}" />
+                            </StackPanel>
+                            <StackPanel Visibility="{Binding Item.Birthday, Converter={resources:ObjectToVisibilityConverter}}">
+                                <TextBlock Text="{Binding Birthday, Source={StaticResource ResourceProvider}}" Style="{StaticResource SubheadingTextBlock}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Item.Birthday, Converter={dxmvvm:FormatStringConverter FormatString='{}{0:dd MMMM, yyyy}'}}" Style="{StaticResource Body2TextBlock}" />
+                                    <TextBlock Margin="5,0" Style="{StaticResource Body2TextBlock}">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="({0})" Converter="{resources:BirthDateToSignConverter}">
+                                                <Binding Path="Item.Birthday" />
+                                                <Binding Path="Language" Source="{x:Static settings:Settings.Default}" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Visibility="{Binding Item.Deathday, Converter={resources:ObjectToVisibilityConverter}}">
+                                <TextBlock Text="{Binding Deathday, Source={StaticResource ResourceProvider}}" Style="{StaticResource SubheadingTextBlock}" />
+                                <TextBlock Text="{Binding Item.Deathday, Converter={dxmvvm:FormatStringConverter FormatString='{}{0:dd MMMM, yyyy}'}}" Style="{StaticResource Body2TextBlock}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <controls:FlagsControl DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                        <StackPanel>
+                            <TextBlock Text="{Binding Biography, Source={StaticResource ResourceProvider}}" Style="{StaticResource TitleTextBlock}" />
+                            <TextBlock Style="{StaticResource Body2TextBlock}">
+                                <dxmvvm:Interaction.Behaviors>
+                                    <dxmvvm:FunctionBindingBehavior Function="GetBiography" Property="Text" Arg1="{Binding Language, Source={x:Static settings:Settings.Default}}" />
+                                </dxmvvm:Interaction.Behaviors>
+                            </TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </DockPanel>
+                <controls:ExpanderControl Header="{Binding KnownFor, Source={StaticResource ResourceProvider}}" IsChecked="True">
+                    <ListBox ItemsSource="{Binding KnownFor}" Style="{StaticResource HorizontalItems}">
+                        <ListBox.Resources>
+                            <Style x:Key="RoleText" TargetType="TextBlock" BasedOn="{StaticResource Body1TextBlock}">
+                                <Setter Property="Text">
+                                    <Setter.Value>
+                                        <PriorityBinding>
+                                            <Binding Path="Character" />
+                                            <Binding Path="Job" />
+                                        </PriorityBinding>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.Resources>
+                        <ListBox.ItemTemplateSelector>
+                            <DXDataTemplateSelector>
+                                <DXDataTemplateTrigger Binding="{Binding MediaType}" Value="Movie">
+                                    <DXDataTemplateTrigger.Template>
+                                        <DataTemplate>
+                                            <Border Width="185" Height="360" BorderThickness="1" BorderBrush="{dxi:ThemeResource {dxt:PaletteBrushThemeKey ResourceKey=Border}}">
+                                                <StackPanel>
+                                                    <dxe:ImageEdit Width="185" Height="278" Stretch="UniformToFill" VerticalAlignment="Top"
+                                                                   Tag="{Binding}" resources:ImageAssist.Source="{DXBinding '`w185` + PosterPath'}" />
+                                                    <StackPanel Margin="5,5,0,0">
+                                                        <dxe:HyperlinkEdit FontSize="15" Text="{Binding Title}" CommandParameter="{Binding Id}"
+                                                                           Command="{DXBinding '@a($Window).DataContext.CreateMovieViewCommand'}" />
+                                                        <TextBlock Style="{StaticResource RoleText}" />
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </DXDataTemplateTrigger.Template>
+                                </DXDataTemplateTrigger>
+                                <DXDataTemplateTrigger Binding="{Binding MediaType}" Value="Tv">
+                                    <DXDataTemplateTrigger.Template>
+                                        <DataTemplate>
+                                            <Border Width="185" Height="360" BorderThickness="1" BorderBrush="{dxi:ThemeResource {dxt:PaletteBrushThemeKey ResourceKey=Border}}">
+                                                <StackPanel>
+                                                    <dxe:ImageEdit Width="185" Height="278" Stretch="UniformToFill" VerticalAlignment="Top"
+                                                                   Tag="{Binding}" resources:ImageAssist.Source="{DXBinding '`w185` + PosterPath'}" />
+                                                    <StackPanel Margin="5,5,0,0">
+                                                        <dxe:HyperlinkEdit FontSize="15" Text="{Binding Name}" CommandParameter="{Binding Id}"
+                                                                           Command="{DXBinding '@a($Window).DataContext.CreateTvShowViewCommand'}" />
+                                                        <TextBlock Style="{StaticResource RoleText}" />
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </DXDataTemplateTrigger.Template>
+                                </DXDataTemplateTrigger>
+                            </DXDataTemplateSelector>
+                        </ListBox.ItemTemplateSelector>
+                    </ListBox>
+                </controls:ExpanderControl>
+                <controls:ExpanderControl Header="{Binding Movies, Source={StaticResource ResourceProvider}}">
+                    <dxg:GridControl Margin="0,5,0,0" Height="300" AutoExpandAllGroups="True" ItemsSource="{Binding MovieCredits}">
+                        <dxmvvm:Interaction.Behaviors>
+                            <resources:DepartmentGroupBehavior />
+                        </dxmvvm:Interaction.Behaviors>
+                        <dxg:GridControl.View>
+                            <dxg:TableView AllowEditing="False" NavigationStyle="Row" AutoWidth="True"
+                                           ShowIndicator="False" ShowVerticalLines="False" ShowColumnHeaders="False" ShowGroupPanel="False" ShowSearchPanelMode="Always" />
+                        </dxg:GridControl.View>
+                        <dxg:GridControl.GroupSummary>
+                            <dxg:GridSummaryItem FieldName="Department" SummaryType="Count" DisplayFormat="{Binding Total, Source={StaticResource ResourceProvider}}" />
+                        </dxg:GridControl.GroupSummary>
+                        <dxg:GridControl.Columns>
+                            <dxg:GridColumn FieldName="Department" GroupIndex="0" SortMode="Custom" />
+                            <dxg:GridColumn FieldName="Title" Width="300">
+                                <dxg:GridColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <dxe:HyperlinkEdit Text="{Binding Row.Title}" CommandParameter="{Binding Row.Id}" Command="{DXBinding '@a($Window).DataContext.CreateMovieViewCommand'}" />
+                                    </DataTemplate>
+                                </dxg:GridColumn.CellTemplate>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn FieldName="Job" Width="300">
+                                <dxg:GridColumn.CellDisplayTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding RowData.Row.Job, StringFormat=as {0}}" Style="{StaticResource Body2TextBlock}" />
+                                    </DataTemplate>
+                                </dxg:GridColumn.CellDisplayTemplate>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn FieldName="ReleaseDate" SortOrder="Descending" />
+                        </dxg:GridControl.Columns>
+                    </dxg:GridControl>
+                </controls:ExpanderControl>
+                <controls:ExpanderControl Header="{Binding TVShows, Source={StaticResource ResourceProvider}}">
+                    <dxg:GridControl Margin="0,5,0,0" Height="300" AutoExpandAllGroups="True" ItemsSource="{Binding TvCredits}">
+                        <dxmvvm:Interaction.Behaviors>
+                            <resources:DepartmentGroupBehavior />
+                        </dxmvvm:Interaction.Behaviors>
+                        <dxg:GridControl.View>
+                            <dxg:TableView AllowEditing="False" NavigationStyle="Row" AutoWidth="True"
+                                           ShowIndicator="False" ShowVerticalLines="False" ShowColumnHeaders="False" ShowGroupPanel="False" ShowSearchPanelMode="Always" />
+                        </dxg:GridControl.View>
+                        <dxg:GridControl.GroupSummary>
+                            <dxg:GridSummaryItem FieldName="Department" SummaryType="Count" DisplayFormat="{Binding Total, Source={StaticResource ResourceProvider}}" />
+                        </dxg:GridControl.GroupSummary>
+                        <dxg:GridControl.Columns>
+                            <dxg:GridColumn FieldName="Department" GroupIndex="0" SortMode="Custom" />
+                            <dxg:GridColumn FieldName="Name" Width="250">
+                                <dxg:GridColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <dxe:HyperlinkEdit Text="{Binding Row.Name}" CommandParameter="{Binding Row.Id}" Command="{DXBinding '@a($Window).DataContext.CreateTvShowViewCommand'}" />
+                                    </DataTemplate>
+                                </dxg:GridColumn.CellTemplate>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn FieldName="Job" Width="250">
+                                <dxg:GridColumn.CellDisplayTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding RowData.Row.Job, StringFormat=as {0}}" Style="{StaticResource Body2TextBlock}" />
+                                    </DataTemplate>
+                                </dxg:GridColumn.CellDisplayTemplate>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn FieldName="EpisodeCount">
+                                <dxg:GridColumn.CellDisplayTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding RowData.Row.EpisodeCount, StringFormat={}{0} Episodes}" Style="{StaticResource Body2TextBlock}" />
+                                    </DataTemplate>
+                                </dxg:GridColumn.CellDisplayTemplate>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn FieldName="FirstAirDate" SortOrder="Descending" />
+                        </dxg:GridControl.Columns>
+                    </dxg:GridControl>
+                </controls:ExpanderControl>
+                <controls:ExpanderControl Header="{Binding Profiles, Source={StaticResource ResourceProvider}}">
+                    <ListBox ItemsSource="{Binding Item.Images.Profiles}" ItemTemplate="{StaticResource PosterTemplate}" Style="{StaticResource HorizontalItems}" />
+                </controls:ExpanderControl>
+                <controls:ExpanderControl Header="{Binding LocalFiles, Source={StaticResource ResourceProvider}}">
+                    <StackPanel resources:MarginAssist.TopLeftMargin="10">
+                        <editors:OpenFolderDialogEdit EditValue="{Binding LocalPath, UpdateSourceTrigger=PropertyChanged}"
+                                                      FileOKCommand="{Binding DataContext.UpdateRepositoryCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                        <controls:FileBrowserControl Height="200" ItemsSource="{Binding LocalPath, Converter={resources:PathToFileListConverter FileFilter={x:Static helper:FileHelper.ImageFiles}}}" />
+                    </StackPanel>
+                </controls:ExpanderControl>
+            </StackPanel>
+        </ScrollViewer>
+    </dx:LoadingDecorator>
+
+</UserControl>

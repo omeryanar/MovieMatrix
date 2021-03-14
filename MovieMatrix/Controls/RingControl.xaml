@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="MovieMatrix.Controls.RingControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+             xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+             xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+
+    <ed:Arc StartAngle="0" EndAngle="0.01" Fill="{dxi:ThemeResource {dxt:PaletteBrushThemeKey ResourceKey=Control.Background}}" ArcThickness="3" ArcThicknessUnit="Pixel" Stretch="None">
+        <ed:Arc.Style>
+            <Style TargetType="ed:Arc">
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="True">
+                        <Trigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="StartAngle" From="0" To="360" Duration="0:0:2" RepeatBehavior="Forever" />
+                                    <DoubleAnimation Storyboard.TargetProperty="EndAngle" From="0.01" To="360" Duration="0:0:1" RepeatBehavior="Forever" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.EnterActions>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ed:Arc.Style>
+    </ed:Arc>
+
+</UserControl>

@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="Setup.View.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:viewModel="clr-namespace:Setup.ViewModel"
+             xmlns:resources="clr-namespace:Setup.Resources"
+             DataContext="{dxmvvm:ViewModelSource viewModel:MainViewModel}">
+
+    <dxmvvm:Interaction.Behaviors>       
+        <resources:ModernDialogService />        
+        <dxmvvm:CurrentWindowService />
+        <dxmvvm:TaskbarButtonService />
+        <dxmvvm:FolderBrowserDialogService />
+    </dxmvvm:Interaction.Behaviors>
+
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+            <StackPanel.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+                    <Setter Property="Width" Value="90" />
+                    <Setter Property="Height" Value="30" />
+                    <Setter Property="Margin" Value="10,0,0,0" />
+                </Style>
+            </StackPanel.Resources>
+            <Button Content="Back" Command="{Binding GoBackCommand}"
+                    Visibility="{Binding Pages.CurrentItem.AllowBack, Converter={dxmvvm:BooleanToVisibilityConverter}}" />
+            <Button Content="Next" Command="{Binding GoNextCommand}"
+                    Visibility="{Binding Pages.CurrentItem.AllowNext, Converter={dxmvvm:BooleanToVisibilityConverter}}" />
+            <Button Content="Cancel" Command="{Binding CancelCommand}"
+                    Visibility="{Binding Pages.CurrentItem.AllowCancel, Converter={dxmvvm:BooleanToVisibilityConverter}}" />
+            <Button Content="Finish" Command="{Binding FinishCommand}"
+                    Visibility="{Binding Pages.CurrentItem.AllowFinish, Converter={dxmvvm:BooleanToVisibilityConverter}}" />
+        </StackPanel>
+        <mui:ModernFrame Source="{Binding Pages.CurrentItem.Source}" />
+    </DockPanel>
+</UserControl>

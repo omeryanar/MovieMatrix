@@ -1,0 +1,45 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <Style x:Key="IconText" TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontFamily" Value="/Assets/Font/#Material Design Icons" />
+    </Style>
+    <sys:String x:Key="Search">&#xF349;</sys:String>
+    <sys:String x:Key="Close">&#xF5AD;</sys:String>
+    <sys:String x:Key="Movies">&#xFFEF;</sys:String>
+    <sys:String x:Key="TVShows">&#xF7F3;</sys:String>
+    <sys:String x:Key="People">&#xFCBF;</sys:String>
+    <sys:String x:Key="Theme">&#xF301;</sys:String>
+    <sys:String x:Key="Translate">&#xF5CA;</sys:String>
+    <sys:String x:Key="Watchlist">&#xF0C0;</sys:String>
+    <sys:String x:Key="Favorite">&#xF2D1;</sys:String>
+    <sys:String x:Key="Seen">&#xF208;</sys:String>
+    <sys:String x:Key="Plus">&#xF0217;</sys:String>
+    <sys:String x:Key="Check">&#xFE6E;</sys:String>
+    <sys:String x:Key="Play">&#xF40A;</sys:String>
+    <sys:String x:Key="More">&#xF37B;</sys:String>
+    <sys:String x:Key="Refresh">&#xF450;</sys:String>
+    <sys:String x:Key="Remove">&#xF15A;</sys:String>
+    <sys:String x:Key="Clear">&#xF1FE;</sys:String>
+    <sys:String x:Key="Right">&#xF35F;</sys:String>
+    <sys:String x:Key="Download">&#xF1DA;</sys:String>
+
+    <sys:String x:Key="Error">&#xF159;</sys:String>
+    <sys:String x:Key="Warning">&#xF026;</sys:String>
+    <sys:String x:Key="Information">&#xF2FC;</sys:String>
+
+    <sys:String x:Key="Facebook">&#xF20D;</sys:String>
+    <sys:String x:Key="Twitter">&#xF545;</sys:String>
+    <sys:String x:Key="Instagram">&#xF100;</sys:String>
+
+    <sys:String x:Key="List">&#xF572;</sys:String>
+    <sys:String x:Key="Card">&#xF573;</sys:String>
+    <sys:String x:Key="Print">&#xF42A;</sys:String>
+    <sys:String x:Key="Filter">&#xF232;</sys:String>
+    <sys:String x:Key="Columns">&#xFDAC;</sys:String>
+    <sys:String x:Key="Summary">&#xF4A0;</sys:String>
+
+</ResourceDictionary>

@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="MovieMatrix.View.TvShowGenreView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+             xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:common="clr-namespace:MovieMatrix"
+             xmlns:helper="clr-namespace:MovieMatrix.Helper"
+             xmlns:controls="clr-namespace:MovieMatrix.Controls"
+             xmlns:model="clr-namespace:TMDbLib.Objects.General;assembly=TMDbLib">
+
+    <UserControl.Resources>
+        <Style TargetType="dxlc:Tile" BasedOn="{StaticResource GenreTile}">
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Image Width="250" Height="187.5" VerticalAlignment="Top" Source="{DXBinding '`pack://application:,,,/Assets/Genre/Tv/` + Name +`.jpg`'}" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="MaximizedContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <StackPanel Margin="0,0,10,0">
+                            <Image Width="460" Height="345" Source="{DXBinding '`pack://application:,,,/Assets/Genre/Tv/`+ Name +`.jpg`'}" />
+                            <TextBlock HorizontalAlignment="Center" Foreground="{dxi:ThemeResource {dxt:PaletteBrushThemeKey ResourceKey=Focused}}"
+                                       Style="{StaticResource HeadlineTextBlock}" Text="{Binding DisplayName}" />
+                            <dxlc:LayoutControl Orientation="Vertical" DataContext="{DXBinding '@a($UserControl).DataContext'}">
+                                <dxlc:LayoutItem Label="{Binding Keywords, Source={StaticResource ResourceProvider}}">
+                                    <dxlc:LayoutGroup>
+                                        <controls:TokenComboBoxEdit Mode="Keyword" SelectedItem="{Binding Parameters.Keyword, Mode=TwoWay}" Command="{DXCommand 'Parameter.IncludeWithAllOfKeyword(@parameter)'}" />
+                                    </dxlc:LayoutGroup>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="{Binding Networks, Source={StaticResource ResourceProvider}}">
+                                    <dxlc:LayoutGroup>
+                                        <controls:TokenComboBoxEdit Mode="Network" SelectedItem="{Binding Parameters.Network, Mode=TwoWay}" Command="{DXCommand 'Parameter.IncludeWithAllOfNetwork(@parameter)'}" />
+                                    </dxlc:LayoutGroup>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="{Binding Companies, Source={StaticResource ResourceProvider}}">
+                                    <dxlc:LayoutGroup>
+                                        <controls:TokenComboBoxEdit Mode="Company" SelectedItem="{Binding Parameters.Company, Mode=TwoWay}" Command="{DXCommand 'Parameter.IncludeWithAllOfCompany(@parameter)'}" />
+                                    </dxlc:LayoutGroup>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="{Binding MinimumVotes, Source={StaticResource ResourceProvider}}">
+                                    <dxe:TrackBarEdit TickItemDisplayMode="TickAndText" TickFrequency="250" Minimum="0" Maximum="1000" Margin="15,0,15,0"
+                                                      Value="{Binding Parameters.VoteCount, Mode=TwoWay}" EditValueChanged="{DXEvent 'Parameter.WhereVoteCountIsAtLeast((int)@args.NewValue)'}">
+                                    </dxe:TrackBarEdit>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup Width="300" HorizontalAlignment="Right">
+                                    <dxlc:LayoutItem Label="{Binding SortBy, Source={StaticResource ResourceProvider}}">
+                                        <dxe:ComboBoxEdit Height="30" FontSize="15" IsTextEditable="False" ApplyItemTemplateToSelectedItem="True" EditValue="{Binding Parameters.SortBy}"
+                                                          ItemTemplate="{StaticResource EnumItemTemplate}" EditValueChanged="{DXEvent 'Parameter.OrderBy(@s.EditValue.ToString())'}">
+                                            <dxmvvm:Interaction.Behaviors>
+                                                <dxmvvm:EnumItemsSourceBehavior EnumType="{x:Type common:TvShowSort}" />
+                                            </dxmvvm:Interaction.Behaviors>
+                                        </dxe:ComboBoxEdit>
+                                    </dxlc:LayoutItem>
+                                    <Button Width="120" Command="{Binding RefreshCommand}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock FontSize="18" VerticalAlignment="Center" Margin="0,0,5,0" Text="{StaticResource Search}" Style="{StaticResource IconText}" />
+                                            <TextBlock FontSize="15" VerticalAlignment="Center" Text="{Binding Search, Source={StaticResource ResourceProvider}}" />
+                                        </StackPanel>
+                                    </Button>
+                                </dxlc:LayoutGroup>
+                            </dxlc:LayoutControl>
+                        </StackPanel>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <dx:LoadingDecorator>
+        <DockPanel>
+            <controls:TileSelectorControl x:Name="GenreSelector" Padding="0" AllowItemMoving="False" Orientation="Horizontal" MaximizedElementPosition="Right"
+                                          SelectedItem="{Binding Parameters.Genre, Mode=TwoWay}" ItemsSource="{x:Static helper:GenreHelper.TvShowGenres}"
+                                          SelectedItemChanged="{DXEvent 'Parameter.WhereGenreIs(@args.SelectedItem.Id);Refresh()'}" />
+            <ContentControl Margin="10,0" Content="{Binding SelectedItem, ElementName=GenreSelector}">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type model:Genre}">
+                        <controls:CardViewControl ItemsSource="{Binding DataContext.PageSource, Source={x:Reference GenreSelector}}" />
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+        </DockPanel>
+    </dx:LoadingDecorator>
+
+</UserControl>

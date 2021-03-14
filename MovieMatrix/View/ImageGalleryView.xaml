@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="MovieMatrix.View.ImageGalleryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:resources="clr-namespace:MovieMatrix.Resources"
+             MinWidth="200" MinHeight="70">
+
+    <dxe:ImageEdit RenderOptions.BitmapScalingMode="HighQuality" EditValueChanged="{DXEvent '@a($UserControl).SetWindowSize(@s.EditValue)'}">
+        <resources:ImageAssist.Source>
+            <PriorityBinding>
+                <Binding Path="Parameter.FilePath" />
+                <Binding Path="Parameter.PosterPath" />
+                <Binding Path="Parameter.ProfilePath" />
+                <Binding Path="Parameter.StillPath" />
+            </PriorityBinding>
+        </resources:ImageAssist.Source>
+        <dxe:ImageEdit.MenuTemplate>
+            <ControlTemplate>
+                <StackPanel Orientation="Horizontal">
+                    <dxe:ImageEditCopyToolButton ToolTip="{Binding Copy, Source={StaticResource ResourceProvider}}" />
+                    <dxe:ImageEditSaveToolButton ToolTip="{Binding Save, Source={StaticResource ResourceProvider}}" />
+                    <dxe:ImageEditToolButton ImageSource="/Assets/Icon/Close16.png" ToolTip="{Binding Close, Source={StaticResource ResourceProvider}}"
+                                             Command="{DXCommand Execute='@a($Window).Close()'}" />
+                </StackPanel>
+            </ControlTemplate>
+        </dxe:ImageEdit.MenuTemplate>
+        <dxe:ImageEdit.EmptyContentTemplate>
+            <ControlTemplate>
+                <dx:WaitIndicator DeferedVisibility="True" Content="{Binding Loading, Source={StaticResource ResourceProvider}}" />
+            </ControlTemplate>
+        </dxe:ImageEdit.EmptyContentTemplate>
+    </dxe:ImageEdit>
+
+</UserControl>

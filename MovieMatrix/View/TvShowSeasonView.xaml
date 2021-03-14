@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="MovieMatrix.View.TvShowSeasonView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:controls="clr-namespace:MovieMatrix.Controls"
+             xmlns:resources="clr-namespace:MovieMatrix.Resources">
+
+    <dx:LoadingDecorator>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel HorizontalAlignment="Center" Width="850" DataContext="{Binding Parameter}">
+                <DockPanel>
+                    <dxe:ImageEdit DockPanel.Dock="Left" VerticalAlignment="Top" Width="300" Height="450"
+                                   Tag="{Binding}" resources:ImageAssist.Source="{DXBinding '`w300` + PosterPath'}" />
+                    <StackPanel DockPanel.Dock="Right" resources:MarginAssist.BottomLeftMargin="15">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="450" Text="{Binding Name}" Style="{StaticResource HeadlineTextBlock}" />
+                            <TextBlock Margin="10,0" Text="{Binding AirDate, StringFormat=({0:yyyy})}" Style="{StaticResource HeadlineTextBlock}" Foreground="{StaticResource SecondaryText}" />
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Overview, Source={StaticResource ResourceProvider}}" Style="{StaticResource TitleTextBlock}" />
+                            <TextBlock Text="{Binding Overview}" Style="{StaticResource Body2TextBlock}" />
+                        </StackPanel>
+                    </StackPanel>
+                </DockPanel>
+                <controls:ExpanderControl Header="{Binding Starring, Source={StaticResource ResourceProvider}}" IsChecked="True">
+                    <ListBox ItemsSource="{Binding Credits.Cast}" ItemTemplate="{StaticResource MovieCreditsTemplate}" Style="{StaticResource HorizontalItems}" />
+                </controls:ExpanderControl>
+                <controls:ExpanderControl Header="{Binding Episodes, Source={StaticResource ResourceProvider}}">
+                    <ListBox ItemsSource="{Binding Episodes}" ItemTemplate="{StaticResource TvShowEpisodesTemplate}" Style="{StaticResource VerticalItems}" />
+                </controls:ExpanderControl>
+                <controls:ExpanderControl Header="{Binding Posters, Source={StaticResource ResourceProvider}}">
+                    <ListBox ItemsSource="{Binding Images.Posters}" ItemTemplate="{StaticResource PosterTemplate}" Style="{StaticResource HorizontalItems}" />
+                </controls:ExpanderControl>
+                <controls:ExpanderControl Header="{Binding Videos, Source={StaticResource ResourceProvider}}">
+                    <ListBox ItemsSource="{Binding Videos.Results}" ItemTemplate="{StaticResource VideoTemplate}" Style="{StaticResource HorizontalItems}" />
+                </controls:ExpanderControl>
+            </StackPanel>
+        </ScrollViewer>        
+    </dx:LoadingDecorator>
+
+</UserControl>

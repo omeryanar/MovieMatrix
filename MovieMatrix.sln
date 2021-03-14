@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieMatrix", "MovieMatrix\MovieMatrix.csproj", "{AF4DD3AF-FA8D-4A4D-A92E-6959C51CFC88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieStore", "MovieStore\MovieStore.csproj", "{CE361AC6-F510-4624-BB14-8A5ACF1B9FF9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{BC1DAFBA-A692-4158-82CC-07723859BE29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Setup", "Setup\Setup.csproj", "{282CC2E2-D5E9-496E-A2F8-0C639AA74FBB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{3F78786A-0DD6-4D02-AC59-EF0019413324}"
+	ProjectSection(SolutionItems) = preProject
+		Library\DevExpress.Mvvm.dll = Library\DevExpress.Mvvm.dll
+		Library\DevExpress.Mvvm.UI.dll = Library\DevExpress.Mvvm.UI.dll
+		Library\ExcelDataReader.DataSet.dll = Library\ExcelDataReader.DataSet.dll
+		Library\ExcelDataReader.dll = Library\ExcelDataReader.dll
+		Library\FirstFloor.ModernUI.dll = Library\FirstFloor.ModernUI.dll
+		Library\LiteDB.dll = Library\LiteDB.dll
+		Library\Microsoft.Expression.Drawing.dll = Library\Microsoft.Expression.Drawing.dll
+		Library\Mono.Cecil.dll = Library\Mono.Cecil.dll
+		Library\Newtonsoft.Json.dll = Library\Newtonsoft.Json.dll
+		Library\NLog.dll = Library\NLog.dll
+		Library\SubtitleDownloader.dll = Library\SubtitleDownloader.dll
+		Library\System.Windows.Interactivity.dll = Library\System.Windows.Interactivity.dll
+		Library\TMDbLib.dll = Library\TMDbLib.dll
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF4DD3AF-FA8D-4A4D-A92E-6959C51CFC88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF4DD3AF-FA8D-4A4D-A92E-6959C51CFC88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF4DD3AF-FA8D-4A4D-A92E-6959C51CFC88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF4DD3AF-FA8D-4A4D-A92E-6959C51CFC88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE361AC6-F510-4624-BB14-8A5ACF1B9FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE361AC6-F510-4624-BB14-8A5ACF1B9FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE361AC6-F510-4624-BB14-8A5ACF1B9FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE361AC6-F510-4624-BB14-8A5ACF1B9FF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{282CC2E2-D5E9-496E-A2F8-0C639AA74FBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{282CC2E2-D5E9-496E-A2F8-0C639AA74FBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{282CC2E2-D5E9-496E-A2F8-0C639AA74FBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{282CC2E2-D5E9-496E-A2F8-0C639AA74FBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D4194442-A11F-43B2-8791-4917B73978E9}
+	EndGlobalSection
+EndGlobal

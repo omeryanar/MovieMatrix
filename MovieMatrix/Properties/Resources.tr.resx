@@ -1,0 +1,1057 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Acting" xml:space="preserve">
+    <value>Oyunculuk</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Aksiyon</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Action_Adventure" xml:space="preserve">
+    <value>Aksiyon &amp; Macera</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="AddWatchlist" xml:space="preserve">
+    <value>İzleme Listesine Ekle</value>
+  </data>
+  <data name="AddYourList" xml:space="preserve">
+    <value>Listene Ekle</value>
+  </data>
+  <data name="AddYourListToChange" xml:space="preserve">
+    <value>Değiştirmek için önce listenize ekleyin!</value>
+  </data>
+  <data name="Adventure" xml:space="preserve">
+    <value>Macera</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>Yaş</value>
+  </data>
+  <data name="AiringThisWeek" xml:space="preserve">
+    <value>Bu Hafta Yayında</value>
+  </data>
+  <data name="AiringToday" xml:space="preserve">
+    <value>Bugün Yayında</value>
+  </data>
+  <data name="AllGenres" xml:space="preserve">
+    <value>Tüm Türler</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="AllOf" xml:space="preserve">
+    <value>Hepsi</value>
+  </data>
+  <data name="Animation" xml:space="preserve">
+    <value>Animasyon</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="AnyOf" xml:space="preserve">
+    <value>Herhangi biri</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Uygula</value>
+  </data>
+  <data name="Aquarius" xml:space="preserve">
+    <value>Kova</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Aries" xml:space="preserve">
+    <value>Koç</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Art" xml:space="preserve">
+    <value>Sanat</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Awards" xml:space="preserve">
+    <value>Ödüller</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Geri</value>
+  </data>
+  <data name="Backdrops" xml:space="preserve">
+    <value>Sahneler</value>
+  </data>
+  <data name="Biography" xml:space="preserve">
+    <value>Biyografi</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>Doğum Günü</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Mavi</value>
+    <comment>Themes</comment>
+  </data>
+  <data name="Budget" xml:space="preserve">
+    <value>Bütçe</value>
+  </data>
+  <data name="Camera" xml:space="preserve">
+    <value>Kamera</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>İptal Et</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>İptal Edildi</value>
+    <comment>ProductionStatus</comment>
+  </data>
+  <data name="Cancer" xml:space="preserve">
+    <value>Yengeç</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Capricorn" xml:space="preserve">
+    <value>Oğlak</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="CardView" xml:space="preserve">
+    <value>Kart Görünümü</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Kategoriler</value>
+  </data>
+  <data name="Certification" xml:space="preserve">
+    <value>Yaş Sınırı</value>
+  </data>
+  <data name="Characters" xml:space="preserve">
+    <value>Karakterler</value>
+    <comment>Job</comment>
+  </data>
+  <data name="CheckNames" xml:space="preserve">
+    <value>İsim Denetimi</value>
+  </data>
+  <data name="CheckNamesHelp" xml:space="preserve">
+    <value>Klasörde bulunan dosya ve dizin adları aşağıda listelenmektedir. İsim sütunu aramada kullanılacaktır, hatalı olanları düzeltebilirsiniz.</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Temizle</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Kapat</value>
+  </data>
+  <data name="Collection" xml:space="preserve">
+    <value>Seri</value>
+  </data>
+  <data name="ColumnChooser" xml:space="preserve">
+    <value>Sütun Seçici</value>
+  </data>
+  <data name="Comedy" xml:space="preserve">
+    <value>Komedi</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Companies" xml:space="preserve">
+    <value>Şirketler</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Şirket</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Kopyala</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Ülke</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Yaratıcı</value>
+    <comment>Job</comment>
+  </data>
+  <data name="Crew" xml:space="preserve">
+    <value>Ekip</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Crime" xml:space="preserve">
+    <value>Suç</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Cyan" xml:space="preserve">
+    <value>Camgöbeği</value>
+    <comment>Themes</comment>
+  </data>
+  <data name="DataType" xml:space="preserve">
+    <value>Veri Tipi</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Tarih</value>
+  </data>
+  <data name="DateAdded" xml:space="preserve">
+    <value>Ekleme Tarihi</value>
+  </data>
+  <data name="DateUpdated" xml:space="preserve">
+    <value>Güncelleme Tarihi</value>
+  </data>
+  <data name="Deathday" xml:space="preserve">
+    <value>Ölüm Günü</value>
+  </data>
+  <data name="DeepPurple" xml:space="preserve">
+    <value>Koyu Mor</value>
+    <comment>Themes</comment>
+  </data>
+  <data name="DefaultView" xml:space="preserve">
+    <value>Varsayılan Görünüm</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Detaylar</value>
+  </data>
+  <data name="Directing" xml:space="preserve">
+    <value>Yönetmenlik</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Director" xml:space="preserve">
+    <value>Yönetmen</value>
+    <comment>Job</comment>
+  </data>
+  <data name="Discover" xml:space="preserve">
+    <value>Keşfet</value>
+  </data>
+  <data name="DiscoverMovies" xml:space="preserve">
+    <value>Filmleri Keşfet</value>
+  </data>
+  <data name="DiscoverTvShows" xml:space="preserve">
+    <value>Dizileri Keşfet</value>
+  </data>
+  <data name="Documentary" xml:space="preserve">
+    <value>Belgesel</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>İndir</value>
+  </data>
+  <data name="Drama" xml:space="preserve">
+    <value>Dram</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Editing" xml:space="preserve">
+    <value>Kurgu</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Ended" xml:space="preserve">
+    <value>Bitti</value>
+    <comment>ProductionStatus</comment>
+  </data>
+  <data name="EnglishName" xml:space="preserve">
+    <value>İngilizce Adı</value>
+  </data>
+  <data name="Episode" xml:space="preserve">
+    <value>Bölüm</value>
+  </data>
+  <data name="Episodes" xml:space="preserve">
+    <value>Bölümler</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Hata</value>
+  </data>
+  <data name="ErrorOccured" xml:space="preserve">
+    <value>Uygulama hatası oluştu !</value>
+  </data>
+  <data name="ExcelFile" xml:space="preserve">
+    <value>Excel Dosyası</value>
+  </data>
+  <data name="Exclude" xml:space="preserve">
+    <value>Hariç</value>
+  </data>
+  <data name="ExportOptions" xml:space="preserve">
+    <value>Dışa Aktarma Seçenekleri</value>
+  </data>
+  <data name="Family" xml:space="preserve">
+    <value>Aile</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Fantasy" xml:space="preserve">
+    <value>Fantastik</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Favorite" xml:space="preserve">
+    <value>Favori</value>
+  </data>
+  <data name="FeaturedCast" xml:space="preserve">
+    <value>Öne Çıkan Oyuncular</value>
+  </data>
+  <data name="FeaturedCrew" xml:space="preserve">
+    <value>Öne Çıkan Ekip</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Kadın</value>
+    <comment>Gender</comment>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Dosya</value>
+  </data>
+  <data name="FilePath" xml:space="preserve">
+    <value>Dosya Yolu</value>
+  </data>
+  <data name="FilterEditor" xml:space="preserve">
+    <value>Filtre Düzenleyici</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Bitir</value>
+  </data>
+  <data name="FirstAirDate" xml:space="preserve">
+    <value>İlk Yayın Tarihi</value>
+  </data>
+  <data name="FirstAirDateAsc" xml:space="preserve">
+    <value>İlk Yayın Tarihi 🠅</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="FirstAirDateDesc" xml:space="preserve">
+    <value>İlk Yayın Tarihi 🠇</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Klasör</value>
+  </data>
+  <data name="FullCast" xml:space="preserve">
+    <value>Tüm Oyuncular</value>
+  </data>
+  <data name="FullCrew" xml:space="preserve">
+    <value>Tüm Ekip</value>
+  </data>
+  <data name="Gemini" xml:space="preserve">
+    <value>İkizler</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Cinsiyet</value>
+  </data>
+  <data name="Genre" xml:space="preserve">
+    <value>Tür</value>
+  </data>
+  <data name="Genres" xml:space="preserve">
+    <value>Türler</value>
+  </data>
+  <data name="GreaterThan" xml:space="preserve">
+    <value>Daha büyük</value>
+  </data>
+  <data name="GroupPanelDragText" xml:space="preserve">
+    <value>Bu sütuna göre gruplamak için bir sütun başlığını buraya sürükleyin</value>
+  </data>
+  <data name="GuestStars" xml:space="preserve">
+    <value>Konuk Oyuncular</value>
+  </data>
+  <data name="HideColumnChooser" xml:space="preserve">
+    <value>Sütun Seçiciyi Gizle</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Tarih</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Horror" xml:space="preserve">
+    <value>Korku</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>sa.</value>
+  </data>
+  <data name="ImageGallery" xml:space="preserve">
+    <value>Resim Galerisi</value>
+  </data>
+  <data name="IMDb" xml:space="preserve">
+    <value>IMDb</value>
+  </data>
+  <data name="IMDbRating" xml:space="preserve">
+    <value>IMDb Puanı</value>
+  </data>
+  <data name="IMDbTop250" xml:space="preserve">
+    <value>IMDb Top 250</value>
+  </data>
+  <data name="IMDbTop250Movies" xml:space="preserve">
+    <value>IMDb Top 250 Filmleri</value>
+  </data>
+  <data name="IMDbTop250TVShows" xml:space="preserve">
+    <value>IMDb Top 250 Dizileri</value>
+  </data>
+  <data name="IMDbTopRating" xml:space="preserve">
+    <value>IMDb En Yüksek Puan</value>
+  </data>
+  <data name="IMDbVotes" xml:space="preserve">
+    <value>IMDb Oyları</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>İçeri Aktar</value>
+  </data>
+  <data name="ImportWizard" xml:space="preserve">
+    <value>Aktarma Sihirbazı</value>
+  </data>
+  <data name="ImportWizardHelp" xml:space="preserve">
+    <value>Bu sihirbaz bir klasör veya Excel dosyasından film, dizi veya kişileri aktarmak için gerekli adımlarda size yardımcı olacaktır. Devam etmek için veri tipini ve kaynak klasör/dosya yolunu seçerek İleri'yi tıklayın</value>
+  </data>
+  <data name="Include" xml:space="preserve">
+    <value>Dahil</value>
+  </data>
+  <data name="Indigo" xml:space="preserve">
+    <value>Çivit</value>
+    <comment>Themes</comment>
+  </data>
+  <data name="InProduction" xml:space="preserve">
+    <value>Yapım Aşamasında</value>
+    <comment>ProductionStatus</comment>
+  </data>
+  <data name="InYourList" xml:space="preserve">
+    <value>Listenizde</value>
+  </data>
+  <data name="IsBetween" xml:space="preserve">
+    <value>Arasında</value>
+  </data>
+  <data name="IsInYear" xml:space="preserve">
+    <value>Yıl içinde</value>
+  </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>Anahtar Kelimeler</value>
+  </data>
+  <data name="Kids" xml:space="preserve">
+    <value>Çocuk</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="KnownFor" xml:space="preserve">
+    <value>Bilinen İşi</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Dil</value>
+  </data>
+  <data name="LastAirDate" xml:space="preserve">
+    <value>Son Yayın Tarihi</value>
+  </data>
+  <data name="Leo" xml:space="preserve">
+    <value>Aslan</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="LessThan" xml:space="preserve">
+    <value>Daha az</value>
+  </data>
+  <data name="Libra" xml:space="preserve">
+    <value>Terazi</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="LightBlue" xml:space="preserve">
+    <value>Açık Mavi</value>
+    <comment>Themes</comment>
+  </data>
+  <data name="Lighting" xml:space="preserve">
+    <value>Işıklandırma</value>
+    <comment>Department</comment>
+  </data>
+  <data name="ListView" xml:space="preserve">
+    <value>Liste görünümü</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Yükleniyor...</value>
+  </data>
+  <data name="LoadingOperations" xml:space="preserve">
+    <value>Yükleme İşlemleri</value>
+  </data>
+  <data name="LocalFiles" xml:space="preserve">
+    <value>Yerel Dosyalar</value>
+  </data>
+  <data name="LocalFolder" xml:space="preserve">
+    <value>Yerel Klasör</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Erkek</value>
+    <comment>Gender</comment>
+  </data>
+  <data name="MarkFavorite" xml:space="preserve">
+    <value>Favori Olarak İşaretle</value>
+  </data>
+  <data name="MarkSeen" xml:space="preserve">
+    <value>İzlendi Olarak İşaretle</value>
+  </data>
+  <data name="MinimumRating" xml:space="preserve">
+    <value>Minimum Puan</value>
+  </data>
+  <data name="MinimumVotes" xml:space="preserve">
+    <value>Minimum Oy</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>dk.</value>
+  </data>
+  <data name="MoreInfo" xml:space="preserve">
+    <value>Daha Fazla</value>
+  </data>
+  <data name="MovieGenres" xml:space="preserve">
+    <value>Film Türleri</value>
+  </data>
+  <data name="Movies" xml:space="preserve">
+    <value>Filmler</value>
+  </data>
+  <data name="MultiSearch" xml:space="preserve">
+    <value>Ara: Filmler &amp; Diziler &amp; Kişiler</value>
+  </data>
+  <data name="Music" xml:space="preserve">
+    <value>Müzik</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="MyList" xml:space="preserve">
+    <value>Listem</value>
+  </data>
+  <data name="MyMovieList" xml:space="preserve">
+    <value>Film Listem</value>
+  </data>
+  <data name="MyPeopleList" xml:space="preserve">
+    <value>Kişi Listem</value>
+  </data>
+  <data name="Mystery" xml:space="preserve">
+    <value>Gizem</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="MyTVShowList" xml:space="preserve">
+    <value>Dizi Listem</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>İsim</value>
+  </data>
+  <data name="NativeName" xml:space="preserve">
+    <value>Yerel Adı</value>
+  </data>
+  <data name="Network" xml:space="preserve">
+    <value>Kanal</value>
+  </data>
+  <data name="Networks" xml:space="preserve">
+    <value>Kanallar</value>
+  </data>
+  <data name="NetworksCompanies" xml:space="preserve">
+    <value>Kanallar ve Şirketler</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>Haber</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>İleri</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Hayır</value>
+  </data>
+  <data name="Novel" xml:space="preserve">
+    <value>Roman</value>
+    <comment>Job</comment>
+  </data>
+  <data name="NowPlaying" xml:space="preserve">
+    <value>Gösterimdekiler</value>
+  </data>
+  <data name="NowPlayingMovies" xml:space="preserve">
+    <value>Gösterimdeki Filmler</value>
+  </data>
+  <data name="NumberOfEpisodes" xml:space="preserve">
+    <value>Bölüm Sayısı</value>
+  </data>
+  <data name="NumberOfSeasons" xml:space="preserve">
+    <value>Sezon Sayısı</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>Tamam</value>
+  </data>
+  <data name="Orange" xml:space="preserve">
+    <value>Turuncu</value>
+    <comment>Themes</comment>
+  </data>
+  <data name="OriginalLanguage" xml:space="preserve">
+    <value>Orijinal Dil</value>
+  </data>
+  <data name="OriginalName" xml:space="preserve">
+    <value>Orijinal isim</value>
+  </data>
+  <data name="OriginalSize" xml:space="preserve">
+    <value>Orijinal Boyut</value>
+  </data>
+  <data name="OriginalTitle" xml:space="preserve">
+    <value>Orijinal isim</value>
+  </data>
+  <data name="OscarWinners" xml:space="preserve">
+    <value>Oscar Kazananlar</value>
+  </data>
+  <data name="OscarWinningMovies" xml:space="preserve">
+    <value>Oscar Kazanan Filmler</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Diğer</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Genel Bakış</value>
+  </data>
+  <data name="ParentFolder" xml:space="preserve">
+    <value>Üst Klasör</value>
+  </data>
+  <data name="Partof" xml:space="preserve">
+    <value>Seri</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>Kişiler</value>
+  </data>
+  <data name="PeopleCompanies" xml:space="preserve">
+    <value>Kişiler ve Şirketler</value>
+  </data>
+  <data name="PersonalRating" xml:space="preserve">
+    <value>Kişisel Puan</value>
+  </data>
+  <data name="Pilot" xml:space="preserve">
+    <value>Pilot</value>
+    <comment>ProductionStatus</comment>
+  </data>
+  <data name="Pink" xml:space="preserve">
+    <value>Pembe</value>
+    <comment>Themes</comment>
+  </data>
+  <data name="Pisces" xml:space="preserve">
+    <value>Balık</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="PlaceOfBirth" xml:space="preserve">
+    <value>Doğum Yeri</value>
+  </data>
+  <data name="Planned" xml:space="preserve">
+    <value>Planlandı</value>
+    <comment>ProductionStatus</comment>
+  </data>
+  <data name="PlayTrailer" xml:space="preserve">
+    <value>Fragmanı Oynat</value>
+  </data>
+  <data name="Popular" xml:space="preserve">
+    <value>Popüler</value>
+  </data>
+  <data name="Popularity" xml:space="preserve">
+    <value>Popülerlik</value>
+  </data>
+  <data name="PopularityAsc" xml:space="preserve">
+    <value>Popülerlik 🠅</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="PopularityDesc" xml:space="preserve">
+    <value>Popülerlik 🠇</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="PopularMovies" xml:space="preserve">
+    <value>Popüler Filmler</value>
+  </data>
+  <data name="PopularPeople" xml:space="preserve">
+    <value>Popüler Kişiler</value>
+  </data>
+  <data name="PopularTVShows" xml:space="preserve">
+    <value>Popüler Diziler</value>
+  </data>
+  <data name="Posters" xml:space="preserve">
+    <value>Posterler</value>
+  </data>
+  <data name="PostProduction" xml:space="preserve">
+    <value>Yapım Sonrası</value>
+    <comment>ProductionStatus</comment>
+  </data>
+  <data name="PrintPreview" xml:space="preserve">
+    <value>Baskı Önizleme</value>
+  </data>
+  <data name="Production" xml:space="preserve">
+    <value>Prodüksiyon</value>
+    <comment>Department</comment>
+  </data>
+  <data name="ProductionCompanies" xml:space="preserve">
+    <value>Yapımcı Şirketler</value>
+  </data>
+  <data name="ProductionCountries" xml:space="preserve">
+    <value>Yapımcı Ülkeler</value>
+  </data>
+  <data name="Profiles" xml:space="preserve">
+    <value>Profiller</value>
+  </data>
+  <data name="Purple" xml:space="preserve">
+    <value>Mor</value>
+    <comment>Themes</comment>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Puan</value>
+  </data>
+  <data name="Reality" xml:space="preserve">
+    <value>Reality Şov</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Yenile</value>
+  </data>
+  <data name="RefreshAll" xml:space="preserve">
+    <value>Hepsini Yenile</value>
+  </data>
+  <data name="RefreshAllConfirm" xml:space="preserve">
+    <value>Listenizdekilerin hepsini yenilemek istiyor musunuz?</value>
+  </data>
+  <data name="RefreshSelectedConfirm" xml:space="preserve">
+    <value>Listenizden seçili olanları yenilemek istiyor musunuz?</value>
+  </data>
+  <data name="Released" xml:space="preserve">
+    <value>Yayınlandı</value>
+    <comment>ProductionStatus</comment>
+  </data>
+  <data name="ReleaseDate" xml:space="preserve">
+    <value>Yayın Tarihi</value>
+  </data>
+  <data name="ReleaseDateAsc" xml:space="preserve">
+    <value>Çıkış Tarihi 🠅</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="ReleaseDateDesc" xml:space="preserve">
+    <value>Çıkış Tarihi 🠇</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="RemoveConfirm" xml:space="preserve">
+    <value>Listenizden kaldırmak istiyor musunuz?</value>
+  </data>
+  <data name="RemoveMyList" xml:space="preserve">
+    <value>Listemden Kaldır</value>
+  </data>
+  <data name="RemoveSelectedConfirm" xml:space="preserve">
+    <value>Listenizden seçili olanları kaldırmak istiyor musunuz?</value>
+  </data>
+  <data name="ReturningSeries" xml:space="preserve">
+    <value>Devam Ediyor</value>
+    <comment>ProductionStatus</comment>
+  </data>
+  <data name="Revenue" xml:space="preserve">
+    <value>Gelir</value>
+  </data>
+  <data name="RevenueAsc" xml:space="preserve">
+    <value>Gelir 🠅</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="RevenueDesc" xml:space="preserve">
+    <value>Gelir 🠇</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="Romance" xml:space="preserve">
+    <value>Romantik</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Rumored" xml:space="preserve">
+    <value>Söylenti</value>
+    <comment>ProductionStatus</comment>
+  </data>
+  <data name="Runtime" xml:space="preserve">
+    <value>Süre</value>
+  </data>
+  <data name="Sagittarius" xml:space="preserve">
+    <value>Yay</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="Science_Fiction" xml:space="preserve">
+    <value>Bilim-Kurgu</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Sci_Fi_Fantasy" xml:space="preserve">
+    <value>Bilim Kurgu &amp; Fantastik</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Scorpio" xml:space="preserve">
+    <value>Akrep</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Screenplay" xml:space="preserve">
+    <value>Senarist</value>
+    <comment>Job</comment>
+  </data>
+  <data name="Screenstory" xml:space="preserve">
+    <value>Senarist</value>
+    <comment>Job</comment>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Ara</value>
+  </data>
+  <data name="SearchByFile" xml:space="preserve">
+    <value>Dosyaya Göre Ara</value>
+  </data>
+  <data name="SearchByImdbId" xml:space="preserve">
+    <value>IMDb Numarasına Göre Ara</value>
+  </data>
+  <data name="SearchByName" xml:space="preserve">
+    <value>İsme Göre Ara</value>
+  </data>
+  <data name="SearchResults" xml:space="preserve">
+    <value>Arama Sonuçları</value>
+  </data>
+  <data name="SearchSubtitles" xml:space="preserve">
+    <value>Altyazı Arama</value>
+  </data>
+  <data name="Season" xml:space="preserve">
+    <value>Sezon</value>
+  </data>
+  <data name="Seasons" xml:space="preserve">
+    <value>Sezonlar</value>
+  </data>
+  <data name="Seen" xml:space="preserve">
+    <value>İzlendi</value>
+  </data>
+  <data name="SelectColumns" xml:space="preserve">
+    <value>Sütun Seçimi</value>
+  </data>
+  <data name="SelectColumnsHelp" xml:space="preserve">
+    <value>Dosyadaki hangi sütunun hangi bilgiye karşılık geldiğini seçin ver İleri'yi tıklayın. İsim sütunu aramada kullanılacaktır ve seçilmesi zorunludur. Adları (örn: The Godfather, Marlon Brando) veya IMDb numaralarını (örn: tt0068646, nm0000008) içerebilir.</value>
+  </data>
+  <data name="SelectYouWantToAdd" xml:space="preserve">
+    <value>Eklemek istediklerinizi seçin</value>
+  </data>
+  <data name="SelectYouWantToAddHelp" xml:space="preserve">
+    <value>Arama sonuçları en sağda gösterilmektedir. Listenize eklemek istediklerinizi seçin ve İleri'yi tıklayın. Birden fazla sonuç varsa seçilenleri değiştirebilirsiniz.</value>
+  </data>
+  <data name="ShowColumnChooser" xml:space="preserve">
+    <value>Sütun Seçiciyi Göster</value>
+  </data>
+  <data name="Sign" xml:space="preserve">
+    <value>Burç</value>
+  </data>
+  <data name="Soap" xml:space="preserve">
+    <value>Pembe Dizi</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="SortBy" xml:space="preserve">
+    <value>Sırala</value>
+  </data>
+  <data name="Sound" xml:space="preserve">
+    <value>Ses</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Starring" xml:space="preserve">
+    <value>Baş Roller</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Durum</value>
+  </data>
+  <data name="Story" xml:space="preserve">
+    <value>Hikaye</value>
+    <comment>Job</comment>
+  </data>
+  <data name="Tagline" xml:space="preserve">
+    <value>Slogan</value>
+  </data>
+  <data name="Talk" xml:space="preserve">
+    <value>Talk Şov</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Taurus" xml:space="preserve">
+    <value>Boğa</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Thriller" xml:space="preserve">
+    <value>Gerilim</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Başlık</value>
+  </data>
+  <data name="TMDB" xml:space="preserve">
+    <value>TMDB</value>
+  </data>
+  <data name="TMDBRating" xml:space="preserve">
+    <value>TMDB Puanı</value>
+  </data>
+  <data name="TMDBVotes" xml:space="preserve">
+    <value>TMDB Oyları</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Toplam: {0}</value>
+  </data>
+  <data name="TvShowGenres" xml:space="preserve">
+    <value>Dizi Türleri</value>
+  </data>
+  <data name="TVShows" xml:space="preserve">
+    <value>Diziler</value>
+  </data>
+  <data name="TVShowsAiringThisWeek" xml:space="preserve">
+    <value>Bu Hafta Yayınlanacak Diziler</value>
+  </data>
+  <data name="TVShowsAiringToday" xml:space="preserve">
+    <value>Bugün Yayınlanacak Diziler</value>
+  </data>
+  <data name="TV_Movie" xml:space="preserve">
+    <value>TV Filmi</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Tür</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Tanımsız</value>
+    <comment>Gender</comment>
+  </data>
+  <data name="Upcoming" xml:space="preserve">
+    <value>Yakında</value>
+  </data>
+  <data name="UpcomingMovies" xml:space="preserve">
+    <value>Gelecek Filmler</value>
+  </data>
+  <data name="UseFileNames" xml:space="preserve">
+    <value>Video / Resim Dosyası Adlarını Kullan</value>
+  </data>
+  <data name="UseParentFolderNames" xml:space="preserve">
+    <value>Üst Klasör Adlarını Kullan</value>
+  </data>
+  <data name="Videos" xml:space="preserve">
+    <value>Videolar</value>
+  </data>
+  <data name="ViewTotals" xml:space="preserve">
+    <value>Toplamları Görüntüle</value>
+  </data>
+  <data name="Virgo" xml:space="preserve">
+    <value>Başak</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="VoteAverageAsc" xml:space="preserve">
+    <value>TMDB Puanı 🠅</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="VoteAverageDesc" xml:space="preserve">
+    <value>TMDB Puanı 🠇</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="Votes" xml:space="preserve">
+    <value>Oy</value>
+  </data>
+  <data name="War" xml:space="preserve">
+    <value>Savaş</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="War_Politics" xml:space="preserve">
+    <value>Savaş &amp; Politika</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Watchlist" xml:space="preserve">
+    <value>İzlenecekler Listesi</value>
+  </data>
+  <data name="Western" xml:space="preserve">
+    <value>Vahşi Batı</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="WizardComplete" xml:space="preserve">
+    <value>Sihirbaz Tamamlanıyor</value>
+  </data>
+  <data name="WizardCompleteHelp" xml:space="preserve">
+    <value>Sihirbazı başarıyla tamamladınız. Aşağıdaki nesneleri listenize eklemek için 'Bitir'i tıklayın.</value>
+  </data>
+  <data name="Writer" xml:space="preserve">
+    <value>Senarist</value>
+    <comment>Job</comment>
+  </data>
+  <data name="Writing" xml:space="preserve">
+    <value>Senaryo</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Evet</value>
+  </data>
+</root>

@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="MovieMatrix.Controls.RadialProgressBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+             xmlns:resources="clr-namespace:MovieMatrix.Resources"
+             FontSize="20" FontWeight="Medium" x:Name="CodeBehind">
+
+    <Grid>
+
+        <!-- BACKGROUND ARC -->
+        <Ellipse StrokeThickness="5" Stroke="#757575" />
+
+        <!-- BLUR ARC -->
+        <ed:Arc ArcThickness="5" ArcThicknessUnit="Pixel" Stretch="None" Fill="{Binding ValueBrush, ElementName=CodeBehind}"
+                StartAngle="0" EndAngle="{Binding Angle, ElementName=CodeBehind, Mode=OneWay}">
+            <ed:Arc.Effect>
+                <BlurEffect KernelType="Gaussian" Radius="7" RenderingBias="Performance"  />
+            </ed:Arc.Effect>
+        </ed:Arc>
+
+        <!-- VALUE ARC -->
+        <ed:Arc ArcThickness="5" ArcThicknessUnit="Pixel" Stretch="None" Fill="{Binding ValueBrush, ElementName=CodeBehind}"
+                StartAngle="0" EndAngle="{Binding Angle, ElementName=CodeBehind, Mode=OneWay}" />
+
+        <!-- VALUE TEXT -->
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-2,0,0"
+                   Foreground="{Binding ValueBrush, ElementName=CodeBehind}" 
+                   Text="{Binding Value, ElementName=CodeBehind, Converter={resources:RatingConverter}}" />
+
+    </Grid>
+
+</UserControl>

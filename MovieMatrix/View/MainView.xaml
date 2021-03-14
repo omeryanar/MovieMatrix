@@ -1,0 +1,254 @@
+﻿<dx:ThemedWindow x:Class="MovieMatrix.View.MainView"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                 xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+                 xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                 xmlns:dxnav="http://schemas.devexpress.com/winfx/2008/xaml/navigation"
+                 xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"                 
+                 xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                 xmlns:dxnavi="http://schemas.devexpress.com/winfx/2008/xaml/navigation/internal"
+                 xmlns:common="clr-namespace:MovieMatrix"
+                 xmlns:view="clr-namespace:MovieMatrix.View"
+                 xmlns:viewmodel="clr-namespace:MovieMatrix.ViewModel"
+                 xmlns:controls="clr-namespace:MovieMatrix.Controls"
+                 xmlns:settings="clr-namespace:MovieMatrix.Properties"
+                 xmlns:resources="clr-namespace:MovieMatrix.Resources"
+                 Title="Movie Matrix" TitleAlignment="Center" WindowState="Maximized"
+                 Initialized="{DXEvent 'Initialize()'}" Closing="{DXEvent 'CloseAllDocuments()'}" 
+                 DataContext="{dxmvvm:ViewModelSource Type={x:Type viewmodel:MainViewModel}}" dx:ScrollBarExtensions.ScrollBarMode="TouchOverlap">
+
+    <dxmvvm:Interaction.Behaviors>
+        <dx:DXMessageBoxService  />
+        <dxmvvm:TaskbarButtonService />
+        <dxmvvm:SaveFileDialogService />
+        <dxmvvm:OpenFileDialogService />        
+        <common:OpenFolderDialogService />
+        <dx:DialogService DialogStyle="{StaticResource DialogWindowStyle}" />        
+    </dxmvvm:Interaction.Behaviors>
+
+    <DockPanel>
+        <dxnav:TileNavPane DockPanel.Dock="Top">
+            <dxnav:TileNavPane.Resources>
+                <DataTemplate x:Key="TileContentTemplate">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Margin="0,0,5,0" Style="{StaticResource IconText}"
+                                   Text="{Binding Tag, RelativeSource={RelativeSource AncestorType=dxnav:NavButton}}" />
+                        <TextBlock FontWeight="Bold" Text="{Binding}" />
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate x:Key="ThemeButtonTemplate">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Margin="0,0,5,0" Style="{StaticResource IconText}"
+                                   Text="{Binding Tag, RelativeSource={RelativeSource AncestorType=dxnav:NavButton}}" />
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding Converter="{resources:ResourceStringConverter}">
+                                    <Binding Path="FullName" />
+                                    <Binding Path="Language" Source="{x:Static settings:Settings.Default}" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+                <Style TargetType="dxnav:NavButton">
+                    <Setter Property="Cursor" Value="Hand" />
+                    <Setter Property="Margin" Value="0,0,-4,0" />
+                    <Setter Property="ContentTemplate" Value="{StaticResource TileContentTemplate}" />
+                </Style>
+                <Style TargetType="dxnavi:TileNavPaneBar">
+                    <Setter Property="Padding" Value="0,10" />
+                    <Setter Property="HorizontalAlignment" Value="{Binding RelativeSource={RelativeSource Self}, Converter={resources:TileNavPaneAlignmentConverter}}" />
+                </Style>
+                <Style TargetType="dxnav:TileNavItem">
+                    <Setter Property="Height" Value="50" />
+                    <Setter Property="Cursor" Value="Hand" />
+                    <Setter Property="FontSize" Value="13" />
+                </Style>
+                <Style TargetType="dxnav:TileNavSubItem">
+                    <Setter Property="Height" Value="45" />
+                    <Setter Property="Cursor" Value="Hand" />
+                </Style>
+            </dxnav:TileNavPane.Resources>
+            <dxnav:TileNavPane.NavButtons>
+                <dxnav:NavButton Content="{Binding Movies, Source={StaticResource ResourceProvider}}" Tag="{StaticResource Movies}">
+                    <dxnav:TileNavItem Content="{Binding MyList, Source={StaticResource ResourceProvider}}" Command="{Binding CreateMyMovieListViewCommand}">
+                        <dxnav:TileNavSubItem Content="{Binding Import, Source={StaticResource ResourceProvider}}" Command="{Binding CreateImportViewCommand}" CommandParameter="Movie" />
+                        <dxnav:TileNavSubItem Content="{Binding RefreshAll, Source={StaticResource ResourceProvider}}" Command="{Binding RefreshAllCommand}" CommandParameter="Movie" />
+                    </dxnav:TileNavItem>
+                    <dxnav:TileNavItem Content="{Binding Genres, Source={StaticResource ResourceProvider}}" Command="{Binding CreateMovieGenreViewCommand}" />
+                    <dxnav:TileNavItem Content="{Binding Discover, Source={StaticResource ResourceProvider}}" Command="{Binding CreateMovieDiscoverViewCommand}" />
+                    <dxnav:TileNavItem Content="{Binding Popular, Source={StaticResource ResourceProvider}}" Command="{Binding CreatePopularMoviesViewCommand}" />
+                    <dxnav:TileNavItem Content="{Binding Upcoming, Source={StaticResource ResourceProvider}}" Command="{Binding CreateUpcomingMoviesViewCommand}" />
+                    <dxnav:TileNavItem Content="{Binding NowPlaying, Source={StaticResource ResourceProvider}}" Command="{Binding CreateNowPlayingMoviesViewCommand}" />
+                    <dxnav:TileNavItem Content="{Binding OscarWinners, Source={StaticResource ResourceProvider}}" Command="{Binding CreateOscarWinnersViewCommand}" />
+                    <dxnav:TileNavItem Content="{Binding IMDbTop250, Source={StaticResource ResourceProvider}}" Command="{Binding CreateIMDbTop250MoviesViewCommand}" />
+                </dxnav:NavButton>
+                <dxnav:NavButton Content="{Binding TVShows, Source={StaticResource ResourceProvider}}" Tag="{StaticResource TVShows}">
+                    <dxnav:TileNavItem Content="{Binding MyList, Source={StaticResource ResourceProvider}}" Command="{Binding CreateMyTvShowListViewCommand}">
+                        <dxnav:TileNavSubItem Content="{Binding Import, Source={StaticResource ResourceProvider}}" Command="{Binding CreateImportViewCommand}" CommandParameter="Tv" />
+                        <dxnav:TileNavSubItem Content="{Binding RefreshAll, Source={StaticResource ResourceProvider}}" Command="{Binding RefreshAllCommand}" CommandParameter="Tv" />
+                    </dxnav:TileNavItem>
+                    <dxnav:TileNavItem Content="{Binding Genres, Source={StaticResource ResourceProvider}}" Command="{Binding CreateTvShowGenreViewCommand}" />
+                    <dxnav:TileNavItem Content="{Binding Discover, Source={StaticResource ResourceProvider}}" Command="{Binding CreateTvShowDiscoverViewCommand}" />
+                    <dxnav:TileNavItem Content="{Binding Popular, Source={StaticResource ResourceProvider}}" Command="{Binding CreatePopularTvShowsViewCommand}" />
+                    <dxnav:TileNavItem Content="{Binding AiringToday, Source={StaticResource ResourceProvider}}" Command="{Binding CreateAiringTodayTvShowsViewCommand}" />
+                    <dxnav:TileNavItem Content="{Binding AiringThisWeek, Source={StaticResource ResourceProvider}}" Command="{Binding CreateOnTheAirTvShowsViewCommand}" />
+                    <dxnav:TileNavItem Content="{Binding IMDbTop250, Source={StaticResource ResourceProvider}}" Command="{Binding CreateIMDbTop250TvShowsViewCommand}" />
+                </dxnav:NavButton>
+                <dxnav:NavButton Content="{Binding People, Source={StaticResource ResourceProvider}}" Tag="{StaticResource People}">
+                    <dxnav:TileNavItem Content="{Binding MyList, Source={StaticResource ResourceProvider}}" Command="{Binding CreateMyPersonListViewCommand}">
+                        <dxnav:TileNavSubItem Content="{Binding Import, Source={StaticResource ResourceProvider}}" Command="{Binding CreateImportViewCommand}" CommandParameter="Person" />
+                        <dxnav:TileNavSubItem Content="{Binding RefreshAll, Source={StaticResource ResourceProvider}}" Command="{Binding RefreshAllCommand}" CommandParameter="Person" />
+                    </dxnav:TileNavItem>
+                    <dxnav:TileNavItem Content="{Binding Popular, Source={StaticResource ResourceProvider}}" Command="{Binding CreatePopularPeopleViewCommand}" />
+                </dxnav:NavButton>
+                <dxnav:NavButton HorizontalAlignment="Right" Command="{Binding ShowBackgroundOperationsCommand}"
+                                 Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={dxmvvm:BooleanToVisibilityConverter}}">
+                    <dxnav:NavButton.ContentTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="0,0,10, 0" VerticalAlignment="Center" Text="{Binding Loading, Source={StaticResource ResourceProvider}}" />
+                                <controls:RingControl Width="30" Height="30" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </dxnav:NavButton.ContentTemplate>
+                </dxnav:NavButton>
+                <dxnav:NavButton x:Name="SearchBox" HorizontalAlignment="Right">
+                    <dxnav:NavButton.ContentTemplate>
+                        <DataTemplate>
+                            <controls:SearchBoxControl Width="300" SearchCommand="{Binding DataContext.SearchCommand, Source={x:Reference SearchBox}}"
+                                                       EmptySearchText="{Binding MultiSearch, Source={StaticResource ResourceProvider}}" />
+                        </DataTemplate>
+                    </dxnav:NavButton.ContentTemplate>
+                </dxnav:NavButton>
+                <dxnav:NavButton x:Name="LanguageButton" HorizontalAlignment="Right" ItemsSource="{Binding Languages}" Content="{Binding Languages.CurrentItem.NativeName}" Tag="{StaticResource Translate}">
+                    <dxnav:NavButton.ItemTemplate>
+                        <DataTemplate>
+                            <dxnav:TileNavItem Content="{Binding NativeName}" CommandParameter="{Binding Name}"
+                                               Command="{Binding DataContext.ChangeLanguageCommand, Source={x:Reference LanguageButton}}" />
+                        </DataTemplate>
+                    </dxnav:NavButton.ItemTemplate>
+                </dxnav:NavButton>
+                <dxnav:NavButton x:Name="ThemeButton" HorizontalAlignment="Right" ItemsSource="{Binding Themes}" Tag="{StaticResource Theme}"
+                                 Content="{Binding Themes.CurrentItem}" ContentTemplate="{StaticResource ThemeButtonTemplate}">
+                    <dxnav:NavButton.ItemTemplate>
+                        <DataTemplate>
+                            <dxnav:TileNavItem Content="{Binding}" ContentTemplate="{StaticResource ThemeButtonTemplate}"
+                                               CommandParameter="{Binding Name}" Background="{Binding Category}" Command="{Binding DataContext.ChangeThemeCommand, Source={x:Reference ThemeButton}}" />
+                        </DataTemplate>
+                    </dxnav:NavButton.ItemTemplate>
+                </dxnav:NavButton>
+            </dxnav:TileNavPane.NavButtons>
+        </dxnav:TileNavPane>
+        <dxnav:OfficeNavigationBar x:Name="NavigationBar" DockPanel.Dock="Top" HorizontalAlignment="Center" Background="Transparent" AllowItemDragDrop="True"
+                                   ItemsSource="{Binding Documents}" SelectedItem="{Binding Documents.CurrentDocument, Mode=TwoWay}">
+            <dxmvvm:Interaction.Behaviors>
+                <resources:MiddleClickCloseBehavior />
+            </dxmvvm:Interaction.Behaviors>
+            <dxnav:OfficeNavigationBar.Resources>
+                <Style TargetType="dxnav:NavigationBarItem">
+                    <Setter Property="Cursor" Value="Hand" />
+                    <Setter Property="Foreground" Value="{StaticResource SecondaryText}" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="dxnav:NavigationBarItem">
+                                <Border x:Name="Border" Padding="10,3,0,3" BorderBrush="{dxi:ThemeResource {dxt:PaletteBrushThemeKey ResourceKey=Focused}}">
+                                    <ContentPresenter />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Foreground" Value="{StaticResource PrimaryText}" />
+                                        <Setter TargetName="Border" Property="BorderThickness" Value="0,0,0,3" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </dxnav:OfficeNavigationBar.Resources>
+            <dxnav:OfficeNavigationBar.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="3,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontWeight="Medium">
+                                <dxmvvm:Interaction.Behaviors>
+                                    <dxmvvm:FunctionBindingBehavior Source="{Binding Header}" Function="Invoke" Property="Text" Arg1="{Binding Language, Source={x:Static settings:Settings.Default}}" />
+                                </dxmvvm:Interaction.Behaviors>
+                            </TextBlock>
+                            <Button Margin="3,0,0,5" Content="{StaticResource Close}" Command="{Binding CloseCommand}" Style="{StaticResource MiniToolButton}" />
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </dxnav:OfficeNavigationBar.ItemTemplate>
+        </dxnav:OfficeNavigationBar>
+        <dxwui:PageView Padding="0" PageHeadersAlignment="Bottom" Margin="0,10,0,-52" ItemsSource="{Binding Items, ElementName=NavigationBar}" SelectedItem="{Binding SelectedItem, ElementName=NavigationBar}">
+            <dxwui:PageView.Resources>
+                <DataTemplate x:Key="SearchViewTemplate">
+                    <view:SearchView />
+                </DataTemplate>
+                <DataTemplate x:Key="MovieGenreViewTemplate">
+                    <view:MovieGenreView />
+                </DataTemplate>
+                <DataTemplate x:Key="MovieDiscoverViewTemplate">
+                    <view:MovieDiscoverView />
+                </DataTemplate>
+                <DataTemplate x:Key="MyMovieListViewTemplate">
+                    <view:MyMovieListView />
+                </DataTemplate>
+                <DataTemplate x:Key="MyPersonListViewTemplate">
+                    <view:MyPersonListView />
+                </DataTemplate>
+                <DataTemplate x:Key="MyTvShowListViewTemplate">
+                    <view:MyTvShowListView />
+                </DataTemplate>
+                <DataTemplate x:Key="MovieSingleViewTemplate">
+                    <view:MovieSingleView />
+                </DataTemplate>
+                <DataTemplate x:Key="TvShowSingleViewTemplate">
+                    <view:TvShowSingleView />
+                </DataTemplate>
+                <DataTemplate x:Key="TvShowGenreViewTemplate">
+                    <view:TvShowGenreView />
+                </DataTemplate>
+                <DataTemplate x:Key="TvShowDiscoverViewTemplate">
+                    <view:TvShowDiscoverView />
+                </DataTemplate>
+                <DataTemplate x:Key="MovieCollectionViewTemplate">
+                    <view:MovieCollectionView />
+                </DataTemplate>
+                <DataTemplate x:Key="TvShowSeasonViewTemplate">
+                    <view:TvShowSeasonView />
+                </DataTemplate>
+                <DataTemplate x:Key="PersonSingleViewTemplate">
+                    <view:PersonSingleView />
+                </DataTemplate>
+            </dxwui:PageView.Resources>
+            <dxwui:PageView.Background>
+                <VisualBrush Stretch="None">
+                    <VisualBrush.Visual>
+                        <Image Source="/Assets/Logo/Logo.png" Visibility="{Binding Documents.Count, Converter={dxmvvm:NumericToVisibilityConverter Inverse=True}}" />
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </dxwui:PageView.Background>
+            <dxwui:PageView.ContentTemplateSelector>
+                <DXDataTemplateSelector>
+                    <DXDataTemplateTrigger Binding="{Binding DocumentType}" Value="SearchView" Template="{StaticResource SearchViewTemplate}" />
+                    <DXDataTemplateTrigger Binding="{Binding DocumentType}" Value="MyMovieListView" Template="{StaticResource MyMovieListViewTemplate}" />
+                    <DXDataTemplateTrigger Binding="{Binding DocumentType}" Value="MyPersonListView" Template="{StaticResource MyPersonListViewTemplate}" />
+                    <DXDataTemplateTrigger Binding="{Binding DocumentType}" Value="MyTvShowListView" Template="{StaticResource MyTvShowListViewTemplate}" />
+                    <DXDataTemplateTrigger Binding="{Binding DocumentType}" Value="MovieSingleView" Template="{StaticResource MovieSingleViewTemplate}" />
+                    <DXDataTemplateTrigger Binding="{Binding DocumentType}" Value="TvShowSingleView" Template="{StaticResource TvShowSingleViewTemplate}" />
+                    <DXDataTemplateTrigger Binding="{Binding DocumentType}" Value="PersonSingleView" Template="{StaticResource PersonSingleViewTemplate}" />
+                    <DXDataTemplateTrigger Binding="{Binding DocumentType}" Value="MovieGenreView" Template="{StaticResource MovieGenreViewTemplate}" />
+                    <DXDataTemplateTrigger Binding="{Binding DocumentType}" Value="TvShowGenreView" Template="{StaticResource TvShowGenreViewTemplate}" />
+                    <DXDataTemplateTrigger Binding="{Binding DocumentType}" Value="MovieDiscoverView" Template="{StaticResource MovieDiscoverViewTemplate}" />
+                    <DXDataTemplateTrigger Binding="{Binding DocumentType}" Value="TvShowDiscoverView" Template="{StaticResource TvShowDiscoverViewTemplate}" />
+                    <DXDataTemplateTrigger Binding="{Binding DocumentType}" Value="MovieCollectionView" Template="{StaticResource MovieCollectionViewTemplate}" />
+                    <DXDataTemplateTrigger Binding="{Binding DocumentType}" Value="TvShowSeasonView" Template="{StaticResource TvShowSeasonViewTemplate}" />
+                </DXDataTemplateSelector>
+            </dxwui:PageView.ContentTemplateSelector>
+        </dxwui:PageView>
+    </DockPanel>
+
+</dx:ThemedWindow>

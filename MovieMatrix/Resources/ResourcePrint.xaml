@@ -1,0 +1,132 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing"
+                    xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
+                    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:resources="clr-namespace:MovieMatrix.Resources">
+
+    <dx:BoolToObjectConverter x:Key="BoolToTextConverter" 
+                              TrueValue="{Binding Yes, Source={StaticResource ResourceProvider}}" 
+                              FalseValue="{Binding No, Source={StaticResource ResourceProvider}}" />
+    <Style x:Key="PrintColumnHeaderStyle" TargetType="dxe:BaseEdit" BasedOn="{StaticResource {dxgt:TableViewThemeKey ResourceKey=DefaultPrintStyleBase}}">
+        <Setter Property="Background" Value="#FF03A9F4" />
+        <Setter Property="BorderBrush" Value="White" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="#FFFFFFFF" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+    </Style>
+    <Style x:Key="PrintCellStyle" TargetType="dxe:BaseEdit" BasedOn="{StaticResource {dxgt:TableViewThemeKey ResourceKey=DefaultPrintStyleBase}}">
+        <Setter Property="Background" Value="{Binding Path=RowData.EvenRow, Converter={dxmvvm:BooleanToObjectConverter TrueValue=#FFFFFFFF, FalseValue=#FFF9E4BE}}" />
+        <Setter Property="BorderBrush" Value="White" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <dxg:PrintGroupPositionToBorderConverter x:Key="PrintGroupPositionToBorderConverter" />
+    <Style x:Key="PrintGroupRowStyle" TargetType="dxe:BaseEdit" BasedOn="{StaticResource {dxgt:TableViewThemeKey ResourceKey=DefaultPrintStyleBase}}">
+        <Setter Property="Background" Value="#FFFF9800" />
+        <Setter Property="BorderBrush" Value="White" />
+        <Setter Property="BorderThickness" Value="{Binding Converter={StaticResource PrintGroupPositionToBorderConverter}}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="#FFFFFFFF" />
+    </Style>
+    <Style x:Key="PrintTotalSummaryStyle" BasedOn="{StaticResource PrintColumnHeaderStyle}" TargetType="dxe:BaseEdit">
+        <Setter Property="BorderBrush" Value="White" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <Style x:Key="PrintTextEditStyle" TargetType="dxe:TextEdit">
+        <Setter Property="IsPrintingMode" Value="True" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="AllowUpdateTextBlockWhenPrinting" Value="False" />
+        <Style.Triggers>
+            <Trigger Property="EditValue" Value="{x:Null}">
+                <Setter Property="Height" Value="0" />
+                <Setter Property="Margin" Value="0" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="PrintCheckEditStyle" TargetType="dxe:CheckEdit" BasedOn="{StaticResource PrintCellStyle}">
+        <Style.Setters>
+            <Setter Property="dxp:ExportSettings.TargetType" Value="Text" />
+            <Setter Property="dxp:TextExportSettings.Text" Value="{Binding Path=Value, Converter={StaticResource BoolToTextConverter}}" />
+            <Setter Property="dxp:TextExportSettings.FontFamily" Value="{Binding Path=FontFamily, RelativeSource={RelativeSource Mode=Self}}" />
+            <Setter Property="dxp:TextExportSettings.FontSize" Value="{Binding Path=FontSize, RelativeSource={RelativeSource Mode=Self}}" />
+            <Setter Property="dxp:TextExportSettings.HorizontalAlignment" Value="Center" />
+            <Setter Property="dxp:TextExportSettings.VerticalAlignment" Value="Center" />
+        </Style.Setters>
+    </Style>
+    <DataTemplate x:Key="PrintMovieCardTemplate">
+        <StackPanel Margin="0,0,10,10">
+            <StackPanel dxp:ExportSettings.TargetType="Panel" dxp:ExportSettings.BorderColor="#FF989898" dxp:ExportSettings.BorderThickness="1,1,1,0">
+                <dxe:TextEdit Width="330" Height="30" FontSize="13" FontWeight="Bold" Style="{StaticResource PrintTextEditStyle}"
+                              EditValue="{Binding Row, Converter={resources:MediaTranslationConverter}, ConverterParameter=Title}" />
+            </StackPanel>
+            <DockPanel Width="350" Height="278" HorizontalAlignment="Left" dxp:ExportSettings.TargetType="Panel" dxp:ExportSettings.BorderColor="#FF989898" dxp:ExportSettings.BorderThickness="1">
+                <dxe:ImageEdit Width="185" Height="278" DockPanel.Dock="Left" IsPrintingMode="True" resources:ImageAssist.Source="{DXBinding '`w185` + Row.Item.PosterPath'}" />
+                <DockPanel Margin="10,5" DockPanel.Dock="Right" VerticalAlignment="Top">
+                    <dxe:TextEdit Margin="0,0,0,5" DockPanel.Dock="Top" FontWeight="Bold" Style="{StaticResource PrintTextEditStyle}" EditValue="{Binding Row.Item.GenreIds, Converter={resources:GenreIdToStringConverter}}" />
+                    <dxe:TextEdit Margin="0,0,0,5" DockPanel.Dock="Top" FontWeight="Bold" Style="{StaticResource PrintTextEditStyle}" EditValue="{Binding Row.Item.ReleaseDate}" DisplayFormatString="{}{0:dd MMMM, yyyy}" />
+                    <dxe:TextEdit Margin="0,0,0,5" Foreground="#FF606060" Style="{StaticResource PrintTextEditStyle}"
+                                  EditValue="{Binding Row, Converter={resources:MediaTranslationConverter}, ConverterParameter=Overview}" />
+                </DockPanel>
+            </DockPanel>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="PrintPersonCardTemplate">
+        <StackPanel Margin="0,0,10,10">
+            <StackPanel dxp:ExportSettings.TargetType="Panel" dxp:ExportSettings.BorderColor="#FF989898" dxp:ExportSettings.BorderThickness="1,1,1,0">
+                <dxe:TextEdit Width="330" Height="30" FontSize="13" FontWeight="Bold" EditValue="{Binding Row.Item.Name}" Style="{StaticResource PrintTextEditStyle}" />
+            </StackPanel>
+            <DockPanel Width="350" Height="278" HorizontalAlignment="Left" dxp:ExportSettings.TargetType="Panel" dxp:ExportSettings.BorderColor="#FF989898" dxp:ExportSettings.BorderThickness="1">
+                <dxe:ImageEdit Width="185" Height="278" DockPanel.Dock="Left" IsPrintingMode="True" resources:ImageAssist.Source="{DXBinding '`w185` + Row.Item.ProfilePath'}" />
+                <DockPanel Margin="10,5" DockPanel.Dock="Right" VerticalAlignment="Top">                    
+                    <ItemsControl DockPanel.Dock="Top" ItemsSource="{Binding Row.Item.KnownFor}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <dxe:TextEdit FontWeight="Bold" Style="{StaticResource PrintTextEditStyle}">
+                                        <dxe:TextEdit.EditValue>
+                                            <PriorityBinding>
+                                                <Binding Path="Title" />
+                                                <Binding Path="Name" />
+                                            </PriorityBinding>
+                                        </dxe:TextEdit.EditValue>
+                                    </dxe:TextEdit>
+                                    <dxe:TextEdit Style="{StaticResource PrintTextEditStyle}" DisplayFormatString="{}{0:dd MMMM, yyyy}">
+                                        <dxe:TextEdit.EditValue>
+                                            <PriorityBinding>
+                                                <Binding Path="ReleaseDate" />
+                                                <Binding Path="FirstAirDate" />
+                                            </PriorityBinding>
+                                        </dxe:TextEdit.EditValue>
+                                    </dxe:TextEdit>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </DockPanel>
+            </DockPanel>
+        </StackPanel>
+    </DataTemplate>     
+     <DataTemplate x:Key="PrintTvShowCardTemplate">
+        <StackPanel Margin="0,0,10,10">
+            <StackPanel dxp:ExportSettings.TargetType="Panel" dxp:ExportSettings.BorderColor="#FF989898" dxp:ExportSettings.BorderThickness="1,1,1,0">
+                <dxe:TextEdit Width="330" Height="30" FontSize="13" FontWeight="Bold" Style="{StaticResource PrintTextEditStyle}"
+                              EditValue="{Binding Row, Converter={resources:MediaTranslationConverter}, ConverterParameter=Name}" />
+            </StackPanel>
+            <DockPanel Width="350" Height="278" HorizontalAlignment="Left" dxp:ExportSettings.TargetType="Panel" dxp:ExportSettings.BorderColor="#FF989898" dxp:ExportSettings.BorderThickness="1">
+                <dxe:ImageEdit Width="185" Height="278" DockPanel.Dock="Left" IsPrintingMode="True" resources:ImageAssist.Source="{DXBinding '`w185` + Row.Item.PosterPath'}" />
+                <DockPanel Margin="10,5" DockPanel.Dock="Right" VerticalAlignment="Top">
+                    <dxe:TextEdit Margin="0,0,0,5" DockPanel.Dock="Top" FontWeight="Bold" Style="{StaticResource PrintTextEditStyle}" EditValue="{Binding Row.Item.GenreIds, Converter={resources:GenreIdToStringConverter}}" />
+                    <dxe:TextEdit Margin="0,0,0,5" DockPanel.Dock="Top" FontWeight="Bold" Style="{StaticResource PrintTextEditStyle}" EditValue="{Binding Row.Item.FirstAirDate}" DisplayFormatString="{}{0:dd MMMM, yyyy}" />
+                    <dxe:TextEdit Margin="0,0,0,5" Foreground="#FF606060" Style="{StaticResource PrintTextEditStyle}"
+                                  EditValue="{Binding Row, Converter={resources:MediaTranslationConverter}, ConverterParameter=Overview}" />
+                </DockPanel>
+            </DockPanel>
+        </StackPanel>
+    </DataTemplate>
+
+</ResourceDictionary>

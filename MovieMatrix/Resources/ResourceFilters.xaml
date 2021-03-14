@@ -1,0 +1,91 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:dxfui="http://schemas.devexpress.com/winfx/2008/xaml/core/filteringui"
+                    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:helper="clr-namespace:MovieMatrix.Helper"
+                    xmlns:resources="clr-namespace:MovieMatrix.Resources">
+
+    <DataTemplate x:Key="MovieFilterEditorTemplate">
+        <dxfui:FilterEditorControl>
+            <dxfui:FilterEditorControl.Resources>
+                <Style TargetType="dxe:ComboBoxEdit">
+                    <Setter Property="MinWidth" Value="100" />
+                    <Setter Property="AutoComplete" Value="True" />
+                    <Setter Property="ImmediatePopup" Value="True" />
+                    <Setter Property="FilterCondition" Value="Contains" />
+                    <Setter Property="IncrementalFiltering" Value="True" />
+                </Style>
+                <DataTemplate x:Key="RatingTemplate">
+                    <dxe:RatingEdit ItemsCount="10" Precision="Exact" EditValue="{Binding Value, Converter={resources:RatingToDecimalConverter}}" />
+                </DataTemplate>
+                <DataTemplate x:Key="Movie_GenreIdsFilterTemplate">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Path=Movie_GenreIds, Source={x:Static helper:FilterHelper.UniqueValues}}" Text="{Binding Value}" />
+                </DataTemplate>
+                <DataTemplate x:Key="Movie_DirectorFilterTemplate">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Path=Movie_Director, Source={x:Static helper:FilterHelper.UniqueValues}}" Text="{Binding Value}" />
+                </DataTemplate>
+                <DataTemplate x:Key="Movie_WriterFilterTemplate">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Path=Movie_Writer, Source={x:Static helper:FilterHelper.UniqueValues}}" Text="{Binding Value}" />
+                </DataTemplate>
+                <DataTemplate x:Key="Movie_StarringFilterTemplate">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Path=Movie_Starring, Source={x:Static helper:FilterHelper.UniqueValues}}" Text="{Binding Value}" />
+                </DataTemplate>
+                <DataTemplate x:Key="Movie_CompanyFilterTemplate">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Path=Movie_Company, Source={x:Static helper:FilterHelper.UniqueValues}}" Text="{Binding Value}" />
+                </DataTemplate>
+                <DataTemplate x:Key="Movie_CountryFilterTemplate">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Path=Movie_Country, Source={x:Static helper:FilterHelper.UniqueValues}}" Text="{Binding Value}" />
+                </DataTemplate>
+                <DataTemplate x:Key="Movie_KeywordsFilterTemplate">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Path=Movie_Keywords, Source={x:Static helper:FilterHelper.UniqueValues}}" Text="{Binding Value}" />
+                </DataTemplate>
+            </dxfui:FilterEditorControl.Resources>
+            <dxmvvm:Interaction.Behaviors>
+                <resources:FilterEditorBehavior MediaType="Movie" />
+            </dxmvvm:Interaction.Behaviors>
+        </dxfui:FilterEditorControl>
+    </DataTemplate>
+
+    <DataTemplate x:Key="TvShowFilterEditorTemplate">
+        <dxfui:FilterEditorControl>
+            <dxfui:FilterEditorControl.Resources>
+                <Style TargetType="dxe:ComboBoxEdit">
+                    <Setter Property="MinWidth" Value="100" />
+                    <Setter Property="AutoComplete" Value="True" />
+                    <Setter Property="ImmediatePopup" Value="True" />
+                    <Setter Property="FilterCondition" Value="Contains" />
+                    <Setter Property="IncrementalFiltering" Value="True" />
+                </Style>
+                <DataTemplate x:Key="RatingTemplate">
+                    <dxe:RatingEdit ItemsCount="10" Precision="Exact" EditValue="{Binding Value, Converter={resources:RatingToDecimalConverter}}" />
+                </DataTemplate>
+                <DataTemplate x:Key="Tv_GenreIdsFilterTemplate">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Path=Tv_GenreIds, Source={x:Static helper:FilterHelper.UniqueValues}}" Text="{Binding Value}" />
+                </DataTemplate>
+                <DataTemplate x:Key="Tv_CreatorFilterTemplate">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Path=Tv_Creator, Source={x:Static helper:FilterHelper.UniqueValues}}" Text="{Binding Value}" />
+                </DataTemplate>
+                <DataTemplate x:Key="Tv_NetworkFilterTemplate">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Path=Tv_Network, Source={x:Static helper:FilterHelper.UniqueValues}}" Text="{Binding Value}" />
+                </DataTemplate>
+                <DataTemplate x:Key="Tv_StarringFilterTemplate">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Path=Tv_Starring, Source={x:Static helper:FilterHelper.UniqueValues}}" Text="{Binding Value}" />
+                </DataTemplate>
+                <DataTemplate x:Key="Tv_CompanyFilterTemplate">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Path=Tv_Company, Source={x:Static helper:FilterHelper.UniqueValues}}" Text="{Binding Value}" />
+                </DataTemplate>
+                <DataTemplate x:Key="Tv_CountryFilterTemplate">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Path=Tv_Country, Source={x:Static helper:FilterHelper.UniqueValues}}" Text="{Binding Value}" />
+                </DataTemplate>
+                <DataTemplate x:Key="Tv_KeywordsFilterTemplate">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Path=Tv_Keywords, Source={x:Static helper:FilterHelper.UniqueValues}}" Text="{Binding Value}" />
+                </DataTemplate>
+            </dxfui:FilterEditorControl.Resources>
+            <dxmvvm:Interaction.Behaviors>
+                <resources:FilterEditorBehavior MediaType="Tv" />
+            </dxmvvm:Interaction.Behaviors>
+        </dxfui:FilterEditorControl>
+    </DataTemplate>
+
+</ResourceDictionary>

@@ -1,0 +1,547 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AF4DD3AF-FA8D-4A4D-A92E-6959C51CFC88}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MovieMatrix</RootNamespace>
+    <AssemblyName>MovieMatrix</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Assets\Logo\Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Xpf.Controls.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.Desktop.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Dialogs.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Docking.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Layout.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Printing.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Ribbon.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v20.2.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Mvvm.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.VS2017Dark.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ExcelDataReader">
+      <HintPath>..\..\..\Library\ExcelDataReader\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet">
+      <HintPath>..\..\..\Library\ExcelDataReader\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Drawing">
+      <HintPath>..\..\..\Library\Microsoft.Expression.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Library\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SubtitleDownloader, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Library\SubtitleDownloader.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\..\..\Library\MaterialDesign\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="TMDbLib">
+      <HintPath>..\..\..\Library\TMDbLib.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common.cs" />
+    <Compile Include="Controls\CardViewControl.xaml.cs">
+      <DependentUpon>CardViewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExpanderControl.xaml.cs">
+      <DependentUpon>ExpanderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FileBrowserControl.xaml.cs">
+      <DependentUpon>FileBrowserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FlagsControl.xaml.cs">
+      <DependentUpon>FlagsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LanguageLookupEdit.xaml.cs">
+      <DependentUpon>LanguageLookupEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RadialProgressBar.xaml.cs">
+      <DependentUpon>RadialProgressBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RatingsControl.xaml.cs">
+      <DependentUpon>RatingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RingControl.xaml.cs">
+      <DependentUpon>RingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SearchBoxControl.xaml.cs">
+      <DependentUpon>SearchBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SocialIconsControl.xaml.cs">
+      <DependentUpon>SocialIconsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TileSelectorControl.xaml.cs">
+      <DependentUpon>TileSelectorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TokenComboBoxEdit.xaml.cs">
+      <DependentUpon>TokenComboBoxEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\FileDialogEdit.cs" />
+    <Compile Include="Editors\OpenFileDialogEdit.cs" />
+    <Compile Include="Editors\OpenFolderDialogEdit.cs" />
+    <Compile Include="Editors\SaveFileDialogEdit.cs" />
+    <Compile Include="Helper\ExcelHelper.cs" />
+    <Compile Include="Helper\ExportHelper.cs" />
+    <Compile Include="Helper\DataHelper.cs" />
+    <Compile Include="Helper\FilterHelper.cs" />
+    <Compile Include="Model\DocumentCollection.cs" />
+    <Compile Include="Model\MediaFileInfo.cs" />
+    <Compile Include="Resources\Attached.cs" />
+    <Compile Include="Resources\Behaviors.cs" />
+    <Compile Include="Resources\Converters.cs" />
+    <Compile Include="Resources\ResourceProvider.cs" />
+    <Compile Include="Model\BackgroundOperation.cs" />
+    <Compile Include="Services.cs" />
+    <Compile Include="Themes.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\DialogViewModel.cs" />
+    <Compile Include="ViewModel\DocumentViewModel.cs" />
+    <Compile Include="ViewModel\ImportViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MessageViewModel.cs" />
+    <Compile Include="ViewModel\PagedDocumentViewModel.cs" />
+    <Compile Include="ViewModel\SubtitleSearchViewModel.cs" />
+    <Compile Include="View\BackgroundOperationsView.xaml.cs">
+      <DependentUpon>BackgroundOperationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ImportView.xaml.cs">
+      <DependentUpon>ImportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MessageView.xaml.cs">
+      <DependentUpon>MessageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MovieCollectionView.xaml.cs">
+      <DependentUpon>MovieCollectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MovieDiscoverView.xaml.cs">
+      <DependentUpon>MovieDiscoverView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ImageGalleryView.xaml.cs">
+      <DependentUpon>ImageGalleryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MovieGenreView.xaml.cs">
+      <DependentUpon>MovieGenreView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MovieSingleView.xaml.cs">
+      <DependentUpon>MovieSingleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyMovieListView.xaml.cs">
+      <DependentUpon>MyMovieListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyPersonListView.xaml.cs">
+      <DependentUpon>MyPersonListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyTvShowListView.xaml.cs">
+      <DependentUpon>MyTvShowListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PersonSingleView.xaml.cs">
+      <DependentUpon>PersonSingleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SearchView.xaml.cs">
+      <DependentUpon>SearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SplashView.xaml.cs">
+      <DependentUpon>SplashView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SubtitleSearchView.xaml.cs">
+      <DependentUpon>SubtitleSearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TvShowDiscoverView.xaml.cs">
+      <DependentUpon>TvShowDiscoverView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TvShowGenreView.xaml.cs">
+      <DependentUpon>TvShowGenreView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TvShowSeasonView.xaml.cs">
+      <DependentUpon>TvShowSeasonView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TvShowSingleView.xaml.cs">
+      <DependentUpon>TvShowSingleView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Program.cs" />
+    <Compile Include="View\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Controls\CardViewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ExpanderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FileBrowserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FlagsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LanguageLookupEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\RadialProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\RatingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\RingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SearchBoxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SocialIconsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TileSelectorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TokenComboBoxEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ResourceColors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ResourceControls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ResourceDataTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ResourceFilters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ResourceFontIcons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ResourceGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ResourcePrint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BackgroundOperationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ImportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MessageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MovieCollectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MovieDiscoverView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ImageGalleryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MovieGenreView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MovieSingleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MyMovieListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MyPersonListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MyTvShowListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PersonSingleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SplashView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SubtitleSearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TvShowDiscoverView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TvShowGenreView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TvShowSeasonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TvShowSingleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.tr.resx" />
+    <Resource Include="Assets\Font\MatrixCodeNFI.ttf" />
+    <Resource Include="Assets\Font\MaterialDesign.ttf" />
+    <EmbeddedResource Include="Assets\Data\AutoSuggestData.zip" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MovieStore\MovieStore.csproj">
+      <Project>{ce361ac6-f510-4624-bb14-8a5acf1b9ff9}</Project>
+      <Name>MovieStore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Genre\Movie\Family.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Genre\Movie\Action.jpg" />
+    <Resource Include="Assets\Genre\Movie\Adventure.jpg" />
+    <Resource Include="Assets\Genre\Movie\Animation.jpg" />
+    <Resource Include="Assets\Genre\Movie\Comedy.jpg" />
+    <Resource Include="Assets\Genre\Movie\Crime.jpg" />
+    <Resource Include="Assets\Genre\Movie\Documentary.jpg" />
+    <Resource Include="Assets\Genre\Movie\Drama.jpg" />
+    <Resource Include="Assets\Genre\Movie\Fantasy.jpg" />
+    <Resource Include="Assets\Genre\Movie\History.jpg" />
+    <Resource Include="Assets\Genre\Movie\Horror.jpg" />
+    <Resource Include="Assets\Genre\Movie\Music.jpg" />
+    <Resource Include="Assets\Genre\Movie\Mystery.jpg" />
+    <Resource Include="Assets\Genre\Movie\Romance.jpg" />
+    <Resource Include="Assets\Genre\Movie\Science_Fiction.jpg" />
+    <Resource Include="Assets\Genre\Movie\Thriller.jpg" />
+    <Resource Include="Assets\Genre\Movie\TV_Movie.jpg" />
+    <Resource Include="Assets\Genre\Movie\War.jpg" />
+    <Resource Include="Assets\Genre\Movie\Western.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Genre\Tv\Action_Adventure.jpg" />
+    <Resource Include="Assets\Genre\Tv\Animation.jpg" />
+    <Resource Include="Assets\Genre\Tv\Comedy.jpg" />
+    <Resource Include="Assets\Genre\Tv\Crime.jpg" />
+    <Resource Include="Assets\Genre\Tv\Documentary.jpg" />
+    <Resource Include="Assets\Genre\Tv\Drama.jpg" />
+    <Resource Include="Assets\Genre\Tv\Family.jpg" />
+    <Resource Include="Assets\Genre\Tv\Kids.jpg" />
+    <Resource Include="Assets\Genre\Tv\Mystery.jpg" />
+    <Resource Include="Assets\Genre\Tv\News.jpg" />
+    <Resource Include="Assets\Genre\Tv\Reality.jpg" />
+    <Resource Include="Assets\Genre\Tv\Sci_Fi_Fantasy.jpg" />
+    <Resource Include="Assets\Genre\Tv\Soap.jpg" />
+    <Resource Include="Assets\Genre\Tv\Talk.jpg" />
+    <Resource Include="Assets\Genre\Tv\War_Politics.jpg" />
+    <Resource Include="Assets\Genre\Tv\Western.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\IMDb.png" />
+    <Resource Include="Assets\Icon\TMDb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\Facebook.png" />
+    <Resource Include="Assets\Icon\Instagram.png" />
+    <Resource Include="Assets\Icon\Twitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\User.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\Expand16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\Close16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Genre\Movie\AllGenres.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Genre\Tv\AllGenres.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Logo\Logo.ico" />
+    <Resource Include="Assets\Logo\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\Folder.png" />
+    <Resource Include="Assets\Icon\Image.png" />
+    <Resource Include="Assets\Icon\Video.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Release (
+   copy /y "$(TargetDir)MovieMatrix.exe" "$(SolutionDir)Build\MovieMatrix"
+   copy /y "$(TargetDir)MovieMatrix.exe.config" "$(SolutionDir)Build\MovieMatrix"   
+   copy /y "$(TargetDir)MovieStore.dll" "$(SolutionDir)Build\MovieMatrix\Library"
+   copy /y "$(TargetDir)tr\MovieMatrix.resources.dll" "$(SolutionDir)Build\MovieMatrix\TR"
+   powershell Compress-Archive -DestinationPath "$(SolutionDir)Build\MovieMatrix.zip" -Path "$(SolutionDir)Build\MovieMatrix"
+   move /y "$(SolutionDir)Build\MovieMatrix.zip" "$(SolutionDir)Setup\Build"
+)</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

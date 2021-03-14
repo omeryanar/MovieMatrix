@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="MovieMatrix.View.MessageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             MinWidth="500" MinHeight="200">
+
+    <UserControl.Resources>
+        <dxmvvm:ObjectToObjectConverter x:Key="MessageTypeToIconConverter">
+            <dxmvvm:MapItem Source="Error" Target="{StaticResource Error}" />
+            <dxmvvm:MapItem Source="Warning" Target="{StaticResource Warning}" />
+            <dxmvvm:MapItem Source="Information" Target="{StaticResource Information}" />
+        </dxmvvm:ObjectToObjectConverter>
+        <dxmvvm:ObjectToObjectConverter x:Key="MessageTypeToColorConverter">
+            <dxmvvm:MapItem Source="Error" Target="{StaticResource Red}" />
+            <dxmvvm:MapItem Source="Warning" Target="{StaticResource Yellow}" />
+            <dxmvvm:MapItem Source="Information" Target="{StaticResource Blue}" />
+        </dxmvvm:ObjectToObjectConverter>
+    </UserControl.Resources>
+
+    <dxlc:LayoutControl Padding="10">
+        <dxlc:LayoutGroup View="Tabs">
+            <dxlc:LayoutGroup Header="{Binding Title}">
+                <TextBlock VerticalAlignment="Center" Width="100" FontSize="96" Style="{StaticResource IconText}" 
+                           Text="{Binding MessageType, Converter={StaticResource MessageTypeToIconConverter}}"
+                           Foreground="{Binding MessageType, Converter={StaticResource MessageTypeToColorConverter}}"/>
+                <dxe:TextEdit Padding="10" HorizontalAlignment="Stretch" IsReadOnly="True" TextWrapping="Wrap" Text="{Binding Content}" VerticalScrollBarVisibility="Auto" />
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Header="{Binding Details, Source={StaticResource ResourceProvider}}" Visibility="{Binding Details, Converter={dxmvvm:StringToVisibilityConverter}}">
+                <dxe:TextEdit Padding="10" HorizontalAlignment="Stretch" IsReadOnly="True" TextWrapping="Wrap" Text="{Binding Details}" VerticalScrollBarVisibility="Auto" />
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>
+    </dxlc:LayoutControl>
+
+</UserControl>

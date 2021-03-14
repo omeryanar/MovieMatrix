@@ -1,0 +1,235 @@
+﻿<UserControl x:Class="MovieMatrix.View.MyTvShowListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:settings="clr-namespace:MovieMatrix.Properties"
+             xmlns:resources="clr-namespace:MovieMatrix.Resources">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/ResourceFilters.xaml" />
+                <ResourceDictionary Source="/Resources/ResourceGrid.xaml" />
+                <ResourceDictionary Source="/Resources/ResourcePrint.xaml" />
+                <ResourceDictionary>
+                    <StackPanel x:Key="ViewTypes" Orientation="Horizontal">
+                        <ToggleButton x:Name="Master" BorderThickness="0" Padding="2" Checked="{DXEvent '$settings:Settings.Default.TvShowView = `ListView`'}"
+                                      IsChecked="{DXBinding '$settings:Settings.Default.TvShowView == `ListView`'}"
+                                      ToolTip="{Binding ListView, Source={StaticResource ResourceProvider}}">
+                            <TextBlock FontSize="24" Text="{StaticResource List}" Style="{StaticResource IconText}" />
+                        </ToggleButton>
+                        <ToggleButton BorderThickness="0" Padding="2" Checked="{DXEvent '$settings:Settings.Default.TvShowView = `CardView`'}"                                      
+                                      IsChecked="{Binding IsChecked, Source={x:Reference Master}, Converter={dxmvvm:BooleanNegationConverter}}"
+                                      ToolTip="{Binding CardView, Source={StaticResource ResourceProvider}}">
+                            <TextBlock FontSize="24" Text="{StaticResource Card}" Style="{StaticResource IconText}" />
+                        </ToggleButton>
+                    </StackPanel>
+                    <dxg:TableView x:Key="ListView" AllowConditionalFormattingMenu="True" AllowScrollAnimation="True" ShowFocusedRectangle="False" ShowFixedTotalSummary="True" IncrementalSearchMode="Enabled"
+                                   NavigationStyle="Row" AutoWidth="True" BestFitMode="VisibleRows" AllowEditing="False" AllowCascadeUpdate="True"
+                                   FilterEditorShowOperandTypeIcon="True" FilterEditorTemplate="{StaticResource TvShowFilterEditorTemplate}"
+                                   AllowMergedGrouping="True" ShowGroupedColumns="True" AllowDrop="True" ShowSelectionRectangle="True" Header="{StaticResource ViewTypes}"
+                                   PrintColumnHeaderStyle="{StaticResource PrintColumnHeaderStyle}" PrintGroupRowStyle="{StaticResource PrintGroupRowStyle}" PrintCellStyle="{StaticResource PrintCellStyle}"
+                                   PrintTotalSummaryStyle="{StaticResource PrintTotalSummaryStyle}" PrintFixedTotalSummaryStyle="{StaticResource PrintTotalSummaryStyle}">
+                        <dxmvvm:Interaction.Behaviors>
+                            <resources:DefaultLayoutBehavior />
+                            <resources:FilterPopupBehavior MediaType="Tv" />
+                        </dxmvvm:Interaction.Behaviors>
+                    </dxg:TableView>
+                    <dxg:CardView x:Key="CardView" FixedSize="310" AllowCardResizing="False" CardLayout="Rows" ShowCardExpandButton="False" SearchColumns="Item.Name" Header="{StaticResource ViewTypes}"
+                                  SeparatorThickness="0" WheelScrollLines="1" FilterEditorShowOperandTypeIcon="True" FilterEditorTemplate="{StaticResource TvShowFilterEditorTemplate}"
+                                  CardTemplate="{StaticResource TvShowCardTemplate}" CardHeaderTemplate="{StaticResource TvShowCardHeaderTemplate}"
+                                  PrintAutoCardWidth="True" PrintMaximumCardColumns="3" PrintCardTemplate="{StaticResource PrintTvShowCardTemplate}">
+                        <dxmvvm:Interaction.Behaviors>
+                            <resources:DefaultLayoutBehavior />
+                            <resources:FilterPopupBehavior MediaType="Tv" />
+                        </dxmvvm:Interaction.Behaviors>
+                    </dxg:CardView>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <dx:LoadingDecorator>
+        <dxg:GridControl SelectionMode="Row" ItemsSource="{Binding Parameter}">
+
+            <dxmvvm:Interaction.Behaviors>
+                <dxmvvm:KeyToCommand KeyGesture="Enter" Command="{Binding ParentViewModel.CreateTvShowContainerViewCommand}"
+                                     CommandParameter="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=dxg:GridControl}}" />
+                <dxmvvm:KeyToCommand KeyGesture="Delete" Command="{Binding ParentViewModel.RemoveItemsFromRepositoryCommand}"
+                                     CommandParameter="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType=dxg:GridControl}}" />
+                <dxmvvm:EventToCommand EventName="MouseDoubleClick" Command="{Binding ParentViewModel.CreateTvShowContainerViewCommand}">
+                    <dxmvvm:EventToCommand.EventArgsConverter>
+                        <dx:EventArgsToDataRowConverter />
+                    </dxmvvm:EventToCommand.EventArgsConverter>
+                </dxmvvm:EventToCommand>
+                <resources:IntervalGroupBehavior />
+                <resources:RestoreLayoutBehavior RestoreKey="MyTvShowListView" />
+            </dxmvvm:Interaction.Behaviors>
+
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn VisibleIndex="0" FieldName="Item.Name" GroupInterval="Alphabetical" Header="{Binding Name, Source={StaticResource ResourceProvider}}">
+                    <dxg:GridColumn.Binding>
+                        <MultiBinding Converter="{resources:MediaTranslationConverter}" ConverterParameter="Name">
+                            <Binding />
+                            <Binding Path="Language" Source="{x:Static settings:Settings.Default}" />
+                        </MultiBinding>
+                    </dxg:GridColumn.Binding>
+                </dxg:GridColumn>
+                <dxg:GridColumn VisibleIndex="1" FieldName="Item.GenreIds" SortMode="Custom" Header="{Binding Genre, Source={StaticResource ResourceProvider}}">
+                    <dxg:GridColumn.Binding>
+                        <MultiBinding Converter="{resources:GenreIdToStringConverter}">
+                            <Binding Path="Item.GenreIds" />
+                            <Binding Path="Language" Source="{x:Static settings:Settings.Default}" />
+                        </MultiBinding>
+                    </dxg:GridColumn.Binding>
+                </dxg:GridColumn>
+                <dxg:GridColumn VisibleIndex="2" FieldName="Creator" Header="{Binding Creator, Source={StaticResource ResourceProvider}}" />
+                <dxg:GridColumn VisibleIndex="3" FieldName="Item.FirstAirDate" Header="{Binding FirstAirDate, Source={StaticResource ResourceProvider}}" GroupInterval="DateYear" />
+                <dxg:GridColumn VisibleIndex="4" FieldName="Seen" Width="50" Header="{Binding Seen, Source={StaticResource ResourceProvider}}" PrintCellStyle="{StaticResource PrintCheckEditStyle}" />
+                <dxg:GridColumn VisibleIndex="5" FieldName="Favorite" Width="50" Header="{Binding Favorite, Source={StaticResource ResourceProvider}}" PrintCellStyle="{StaticResource PrintCheckEditStyle}" />
+                <dxg:GridColumn VisibleIndex="6" FieldName="Watchlist" Width="50" Header="{Binding Watchlist, Source={StaticResource ResourceProvider}}" PrintCellStyle="{StaticResource PrintCheckEditStyle}" />
+                <dxg:GridColumn VisibleIndex="7" FieldName="ImdbRating" SortMode="Custom" FilterPopupMode="Custom" Header="{Binding IMDbRating, Source={StaticResource ResourceProvider}}">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <dxe:ProgressBarEdit Name="PART_Editor" Maximum="10" ContentDisplayMode="Value" DisplayFormatString="0.0" />
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                    <dxg:GridColumn.CustomColumnFilterPopupTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="10">
+                                <TextBlock Margin="0,0,0,10" Text="{Binding MinimumRating, Source={StaticResource ResourceProvider}}" />
+                                <dxe:RatingEdit ItemsCount="10" Precision="Exact" Value="{Binding CustomColumnFilter, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}, 
+                                    ConverterParameter=ImdbRating, Converter={resources:RatingToCriteriaOperatorConverter}}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </dxg:GridColumn.CustomColumnFilterPopupTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn VisibleIndex="8" FieldName="Item.VoteAverage" SortMode="Custom" FilterPopupMode="Custom" Header="{Binding TMDBRating, Source={StaticResource ResourceProvider}}">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <dxe:ProgressBarEdit Name="PART_Editor" Maximum="10" ContentDisplayMode="Value" DisplayFormatString="0.0" />
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                    <dxg:GridColumn.CustomColumnFilterPopupTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="10">
+                                <TextBlock Margin="0,0,0,10" Text="{Binding MinimumRating, Source={StaticResource ResourceProvider}}" />
+                                <dxe:RatingEdit ItemsCount="10" Precision="Exact" Value="{Binding CustomColumnFilter, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}, 
+                                    ConverterParameter=Item.VoteAverage, Converter={resources:RatingToCriteriaOperatorConverter}}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </dxg:GridColumn.CustomColumnFilterPopupTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn VisibleIndex="9" FieldName="PersonalRating" SortMode="Custom" FilterPopupMode="Custom" Header="{Binding PersonalRating, Source={StaticResource ResourceProvider}}">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <dxe:ProgressBarEdit Name="PART_Editor" Maximum="10" ContentDisplayMode="Value" DisplayFormatString="0.0" />
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                    <dxg:GridColumn.CustomColumnFilterPopupTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="10">
+                                <TextBlock Margin="0,0,0,10" Text="{Binding MinimumRating, Source={StaticResource ResourceProvider}}" />
+                                <dxe:RatingEdit ItemsCount="10" Precision="Half" Value="{Binding CustomColumnFilter, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent},
+                                    ConverterParameter=PersonalRating, Converter={resources:RatingToCriteriaOperatorConverter}}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </dxg:GridColumn.CustomColumnFilterPopupTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn Visible="False" FieldName="Item.OriginalName" Header="{Binding OriginalName, Source={StaticResource ResourceProvider}}" />
+                <dxg:GridColumn Visible="False" FieldName="Item.OriginalLanguage" Header="{Binding OriginalLanguage, Source={StaticResource ResourceProvider}}"
+                                EditSettings="{dxe:TextSettings DisplayTextConverter={resources:LanguageConverter}}" />
+                <dxg:GridColumn Visible="False" FieldName="Item.LastAirDate" Header="{Binding LastAirDate, Source={StaticResource ResourceProvider}}" GroupInterval="DateYear" />
+                <dxg:GridColumn Visible="False" FieldName="Item.NumberOfSeasons" Header="{Binding NumberOfSeasons, Source={StaticResource ResourceProvider}}" />
+                <dxg:GridColumn Visible="False" FieldName="Item.NumberOfEpisodes" Header="{Binding NumberOfEpisodes, Source={StaticResource ResourceProvider}}" />
+                <dxg:GridColumn Visible="False" FieldName="Starring" Header="{Binding Starring, Source={StaticResource ResourceProvider}}" />
+                <dxg:GridColumn Visible="False" FieldName="Country" Header="{Binding Country, Source={StaticResource ResourceProvider}}" />
+                <dxg:GridColumn Visible="False" FieldName="Network" Header="{Binding Network, Source={StaticResource ResourceProvider}}" />
+                <dxg:GridColumn Visible="False" FieldName="Company" Header="{Binding Company, Source={StaticResource ResourceProvider}}" />
+                <dxg:GridColumn Visible="False" FieldName="Keywords" Header="{Binding Keywords, Source={StaticResource ResourceProvider}}" />
+                <dxg:GridColumn Visible="False" FieldName="Item.Overview" Header="{Binding Overview, Source={StaticResource ResourceProvider}}">
+                    <dxg:GridColumn.Binding>
+                        <MultiBinding Converter="{resources:MediaTranslationConverter}" ConverterParameter="Overview">
+                            <Binding />
+                            <Binding Path="Language" Source="{x:Static settings:Settings.Default}" />
+                        </MultiBinding>
+                    </dxg:GridColumn.Binding>
+                </dxg:GridColumn>
+                <dxg:GridColumn Visible="False" FieldName="Runtime" Header="{Binding Runtime, Source={StaticResource ResourceProvider}}"
+                                EditSettings="{dxe:TextSettings DisplayTextConverter={resources:RuntimeConverter}}" /> 
+                <dxg:GridColumn Visible="False" FieldName="ImdbId" Header="{Binding IMDb, Source={StaticResource ResourceProvider}}">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <dxe:HyperlinkEdit Name="PART_Editor" AllowAutoNavigate="True" NavigationUrl="{Binding Row.ImdbLink}" />
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn Visible="False" FieldName="Votes" Header="{Binding IMDbVotes, Source={StaticResource ResourceProvider}}"
+                                EditSettings="{dxe:TextSettings DisplayFormat='#,#'}">
+                </dxg:GridColumn>
+                <dxg:GridColumn Visible="False" FieldName="TopRating" Header="{Binding IMDbTopRating, Source={StaticResource ResourceProvider}}" />
+                <dxg:GridColumn Visible="False" FieldName="Item.Id" Header="{Binding TMDB, Source={StaticResource ResourceProvider}}">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <dxe:HyperlinkEdit Name="PART_Editor" AllowAutoNavigate="True" NavigationUrl="{Binding Row.TmdbLink}" />
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn Visible="False" FieldName="Item.VoteCount" Header="{Binding TMDBVotes, Source={StaticResource ResourceProvider}}"
+                                EditSettings="{dxe:TextSettings DisplayFormat='#,#'}">
+                </dxg:GridColumn>
+                <dxg:GridColumn Visible="False" FieldName="LocalPath" Header="{Binding LocalFolder, Source={StaticResource ResourceProvider}}">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <dxe:HyperlinkEdit Name="PART_Editor" AllowAutoNavigate="True" NavigationUrl="{Binding Row.LocalPath}" />
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn Visible="False" FieldName="DateAdded" Header="{Binding DateAdded, Source={StaticResource ResourceProvider}}" />
+                <dxg:GridColumn Visible="False" FieldName="DateUpdated" Header="{Binding DateUpdated, Source={StaticResource ResourceProvider}}" />
+            </dxg:GridControl.Columns>
+
+            <dxb:BarManager.DXContextMenu>
+                <dxb:PopupMenu GlyphSize="Medium">
+                    <dxb:BarButtonItem Content="{Binding MoreInfo, Source={StaticResource ResourceProvider}}" Command="{Binding ParentViewModel.CreateTvShowContainerViewCommand}"
+                                       CommandParameter="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=dxg:GridControl}}"
+                                       MediumGlyph="{Binding Source={StaticResource More}, Converter={resources:FontToGlyphConverter}}"
+                                       IsVisible="{Binding CommandParameter, RelativeSource={RelativeSource Self}, Converter={dxmvvm:ObjectToBooleanConverter}}" />
+                    <dxb:BarButtonItem Content="{Binding Refresh, Source={StaticResource ResourceProvider}}" Command="{Binding ParentViewModel.UpdateItemsCommand}"
+                                       CommandParameter="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType=dxg:GridControl}}"
+                                       MediumGlyph="{Binding Source={StaticResource Refresh}, Converter={resources:FontToGlyphConverter}}"
+                                       IsVisible="{Binding CommandParameter, RelativeSource={RelativeSource Self}, Converter={dxmvvm:ObjectToBooleanConverter}}" />
+                    <dxb:BarButtonItem Content="{Binding Remove, Source={StaticResource ResourceProvider}}" Command="{Binding ParentViewModel.RemoveItemsFromRepositoryCommand}"
+                                       CommandParameter="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType=dxg:GridControl}}"
+                                       MediumGlyph="{Binding Source={StaticResource Remove}, Converter={resources:FontToGlyphConverter}}"
+                                       IsVisible="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" />
+                </dxb:PopupMenu>
+            </dxb:BarManager.DXContextMenu>
+
+            <dxg:GridControl.TotalSummary>
+                <dxg:GridSummaryItem FieldName="Item.Name" SummaryType="Count" Alignment="Left" DisplayFormat="{Binding Total, Source={StaticResource ResourceProvider}}" />
+            </dxg:GridControl.TotalSummary>
+
+            <dxg:GridControl.GroupSummary>
+                <dxg:GridSummaryItem FieldName="Item.Name" SummaryType="Count" Alignment="Left" DisplayFormat="{Binding Total, Source={StaticResource ResourceProvider}}" />
+            </dxg:GridControl.GroupSummary>
+
+            <dxg:GridControl.View>
+                <Binding Path="TvShowView" Source="{x:Static settings:Settings.Default}">
+                    <Binding.Converter>
+                        <dxmvvm:ObjectToObjectConverter DefaultTarget="{StaticResource ListView}">
+                            <dxmvvm:MapItem Source="ListView" Target="{StaticResource ListView}" />
+                            <dxmvvm:MapItem Source="CardView" Target="{StaticResource CardView}" />
+                        </dxmvvm:ObjectToObjectConverter>
+                    </Binding.Converter>
+                </Binding>
+            </dxg:GridControl.View>
+
+        </dxg:GridControl>
+    </dx:LoadingDecorator>
+
+</UserControl>

@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="MovieMatrix.Controls.FlagsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"             
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:resources="clr-namespace:MovieMatrix.Resources">
+
+    <UserControl.Resources>
+        <Style x:Key="AddRemoveButton" TargetType="Button" BasedOn="{StaticResource CircularButton}">
+            <Setter Property="Visibility" Value="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={dxmvvm:BooleanToVisibilityConverter}}" />
+            <Style.Triggers>
+                <Trigger Property="Visibility" Value="Visible">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="FlagButton" TargetType="ToggleButton" BasedOn="{StaticResource CircularButton}">
+            <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
+            <Setter Property="Command" Value="{Binding UpdateRepositoryCommand}" />
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Foreground" Value="{Binding Tag, RelativeSource={RelativeSource Self}}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <dxmvvm:ObjectToObjectConverter x:Key="IsPersonConverter" DefaultTarget="Collapsed">
+            <dxmvvm:MapItem Source="Person" Target="Visible" />
+        </dxmvvm:ObjectToObjectConverter>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Horizontal" resources:MarginAssist.Margin="0,0,30,0">
+        <Button Content="{StaticResource Plus}" Style="{StaticResource AddRemoveButton}" ToolTip="{Binding AddYourList, Source={StaticResource ResourceProvider}}"
+                Command="{Binding AddToRepositoryCommand}">
+        </Button>
+        <Button Content="{StaticResource Check}" Style="{StaticResource AddRemoveButton}" ToolTip="{Binding InYourList, Source={StaticResource ResourceProvider}}"
+                x:Name="CheckButton" Command="{DXCommand CanExecute='CanUpdateRepository()', Execute='@e(Flyout).IsOpen=true'}">            
+        </Button>
+        <dxe:FlyoutControl x:Name="Flyout" PlacementTarget="{Binding ElementName=CheckButton}">
+            <dxe:FlyoutControl.Settings>
+                <dxe:FlyoutSettings ShowIndicator="True" />
+            </dxe:FlyoutControl.Settings>
+            <StackPanel>
+                <Button Content="{Binding Refresh, Source={StaticResource ResourceProvider}}" Style="{StaticResource FlatButton}"
+                        Tag="{StaticResource Refresh}" Command="{Binding UpdateItemCommand}" />
+                <Button Content="{Binding RemoveMyList, Source={StaticResource ResourceProvider}}" Style="{StaticResource FlatButton}" Tag="{StaticResource Remove}">
+                    <dxmvvm:Interaction.Behaviors>
+                        <dxmvvm:ConfirmationBehavior MessageText="{Binding RemoveConfirm, Source={StaticResource ResourceProvider}}"
+                                                     MessageTitle="{Binding Remove, Source={StaticResource ResourceProvider}}"
+                                                     MessageIcon="Question" MessageDefaultResult="No" Command="{Binding RemoveFromRepositoryCommand}" />
+                    </dxmvvm:Interaction.Behaviors>
+                </Button>
+            </StackPanel>
+        </dxe:FlyoutControl>
+        <ToggleButton Content="{StaticResource Watchlist}" IsChecked="{Binding Parameter.Watchlist}" Style="{StaticResource FlagButton}" Tag="{StaticResource Blue}"
+                      Visibility="{Binding Parameter.Watchlist, Mode=OneWay, FallbackValue=Collapsed, Converter={resources:ObjectToVisibilityConverter}}">
+            <ToggleButton.ToolTip>
+                <ToolTip>
+                    <StackPanel>
+                        <TextBlock Text="{Binding AddWatchlist, Source={StaticResource ResourceProvider}}" />
+                        <TextBlock Text="{Binding AddYourListToChange, Source={StaticResource ResourceProvider}, StringFormat='({0})'}"
+                                   Visibility="{Binding PlacementTarget.IsEnabled, RelativeSource={RelativeSource AncestorType=ToolTip}, Converter={dxmvvm:BooleanToVisibilityConverter Inverse=True}}" />
+                    </StackPanel>
+                </ToolTip>
+            </ToggleButton.ToolTip>
+        </ToggleButton>
+        <ToggleButton Content="{StaticResource Favorite}" IsChecked="{Binding Parameter.Favorite}" Style="{StaticResource FlagButton}" Tag="{StaticResource Red}">
+            <ToggleButton.ToolTip>
+                <ToolTip>
+                    <StackPanel>
+                        <TextBlock Text="{Binding MarkFavorite, Source={StaticResource ResourceProvider}}" />
+                        <TextBlock Text="{Binding AddYourListToChange, Source={StaticResource ResourceProvider}, StringFormat='({0})'}"
+                                   Visibility="{Binding PlacementTarget.IsEnabled, RelativeSource={RelativeSource AncestorType=ToolTip}, Converter={dxmvvm:BooleanToVisibilityConverter Inverse=True}}" />
+                    </StackPanel>
+                </ToolTip>
+            </ToggleButton.ToolTip>
+        </ToggleButton>
+        <ToggleButton Content="{StaticResource Seen}" IsChecked="{Binding Parameter.Seen}" Style="{StaticResource FlagButton}" Tag="{StaticResource Green}"
+                      Visibility="{Binding Parameter.Seen, Mode=OneWay, FallbackValue=Collapsed, Converter={resources:ObjectToVisibilityConverter}}">
+            <ToggleButton.ToolTip>
+                <ToolTip>
+                    <StackPanel>
+                        <TextBlock Text="{Binding MarkSeen, Source={StaticResource ResourceProvider}}" />
+                        <TextBlock Text="{Binding AddYourListToChange, Source={StaticResource ResourceProvider}, StringFormat='({0})'}"
+                                   Visibility="{Binding PlacementTarget.IsEnabled, RelativeSource={RelativeSource AncestorType=ToolTip}, Converter={dxmvvm:BooleanToVisibilityConverter Inverse=True}}" />
+                    </StackPanel>
+                </ToolTip>
+            </ToggleButton.ToolTip>            
+        </ToggleButton>
+        <Button Style="{StaticResource CircularButton}" Content="{StaticResource Play}"
+                ToolTip="{Binding PlayTrailer, Source={StaticResource ResourceProvider}}"
+                Command="{Binding PlayYoutubeVideoCommand}" CommandParameter="{Binding Parameter.TrailerLink}"
+                Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={dxmvvm:BooleanToVisibilityConverter}}" />
+        <Button Style="{StaticResource IconButton}" Command="{Binding OpenExternalApplicationCommand}" CommandParameter="{Binding Parameter.ImdbLink}"
+                ToolTip="IMDb" Visibility="{Binding Parameter.Item.MediaType, Converter={StaticResource IsPersonConverter}}">
+            <Image Height="32" Source="/Assets/Icon/IMDb.png" />
+        </Button>
+        <Button Style="{StaticResource IconButton}" Command="{Binding OpenExternalApplicationCommand}" CommandParameter="{Binding Parameter.TmdbLink}"
+                ToolTip="TMDb" Visibility="{Binding Parameter.Item.MediaType, Converter={StaticResource IsPersonConverter}}">
+            <Image Height="32" Source="/Assets/Icon/TMDb.png" />
+        </Button>
+    </StackPanel>
+    
+</UserControl>

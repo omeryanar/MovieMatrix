@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MovieMatrix.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Language" Type="System.String" Scope="User">
+      <Value Profile="(Default)">en</Value>
+    </Setting>
+    <Setting Name="ThemeName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">VS2017Dark</Value>
+    </Setting>
+    <Setting Name="DatabaseName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MovieStore.db</Value>
+    </Setting>
+    <Setting Name="MovieView" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ListView</Value>
+    </Setting>
+    <Setting Name="TvShowView" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ListView</Value>
+    </Setting>
+    <Setting Name="PersonView" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ListView</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

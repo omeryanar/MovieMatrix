@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="MovieMatrix.Controls.SocialIconsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:resources="clr-namespace:MovieMatrix.Resources">
+
+    <StackPanel Orientation="Horizontal" resources:MarginAssist.Margin="0,0,10,0">
+        <Button Style="{StaticResource IconButton}" Command="{Binding OpenExternalApplicationCommand}" CommandParameter="{Binding Parameter.FacebookLink}"
+                ToolTip="Facebook" Visibility="{Binding Parameter.Item.ExternalIds.FacebookId, Converter={dxmvvm:StringToVisibilityConverter}}">
+            <Image Width="32" Height="32" Source="/Assets/Icon/Facebook.png" />
+        </Button>
+        <Button Margin="10,0" Style="{StaticResource IconButton}" Command="{Binding OpenExternalApplicationCommand}" CommandParameter="{Binding Parameter.TwitterLink}"
+                ToolTip="Twitter" Visibility="{Binding Parameter.Item.ExternalIds.TwitterId, Converter={dxmvvm:StringToVisibilityConverter}}">
+            <Image Width="32" Height="32" Source="/Assets/Icon/Twitter.png" />
+        </Button>
+        <Button Style="{StaticResource IconButton}" Command="{Binding OpenExternalApplicationCommand}" CommandParameter="{Binding Parameter.InstagramLink}"
+                ToolTip="Instagram" Visibility="{Binding Parameter.Item.ExternalIds.InstagramId, Converter={dxmvvm:StringToVisibilityConverter}}">
+            <Image Width="32" Height="32" Source="/Assets/Icon/Instagram.png" />
+        </Button>
+    </StackPanel>
+</UserControl>

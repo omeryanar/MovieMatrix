@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Setup.Pages.WelcomePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:properties="clr-namespace:Setup.Properties">
+
+    <mui:StackPanel MarginBetweenChildren="10">
+        <TextBlock Style="{StaticResource Heading1}">
+            <Run Text="{x:Static properties:Resources.Install}" />
+            <Run Text="{Binding ApplicationTitle}" />
+        </TextBlock>
+        <TextBlock Style="{StaticResource Heading2}">
+            <Run Text="{x:Static properties:Resources.InstallWizard}" />
+            <Run Text="{Binding ApplicationTitle}" />
+        </TextBlock>
+        <Image Source="/Assets/Logo.png" Width="640" Height="160" mui:StackPanel.Fill="Fill" />
+        <TextBlock Text="{x:Static properties:Resources.ClickNext}" Style="{StaticResource Emphasis}" />
+    </mui:StackPanel>
+    
+</UserControl>

@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Setup.Pages.SettingsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:properties="clr-namespace:Setup.Properties">
+
+    <mui:StackPanel MarginBetweenChildren="10">
+        <TextBlock Text="{x:Static properties:Resources.Settings}" Style="{StaticResource Heading1}" />
+        <StackPanel Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center" Width="100" Text="{x:Static properties:Resources.InstallLocation}" />
+            <TextBox Margin="20,0,0,0" Width="500" VerticalContentAlignment="Center" IsReadOnly="True" Foreground="Silver" Text="{Binding SetupLocation}" />
+            <Button Height="25" Padding="5,-10,5,0" FontSize="20" Content="..." Command="{Binding SelectLocationCommand}" />
+        </StackPanel>
+        <StackPanel Margin="120,0,0,0"  Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center" Text="{x:Static properties:Resources.SpaceRequired}" />
+            <TextBlock Margin="20,0,0,0" Width="200" Text="{Binding SpaceRequired, StringFormat='{}{0:#,#} MB'}" />
+        </StackPanel>
+        <StackPanel Margin="120,0,0,0" Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center" Text="{x:Static properties:Resources.SpaceAvailable}" />
+            <TextBlock Margin="20,0,0,0" Width="200" Text="{Binding SpaceAvailable, StringFormat='{}{0:#,#} MB'}" />
+        </StackPanel>
+        <CheckBox Content="{x:Static properties:Resources.CreateShortcut}" IsChecked="{Binding CreateShortcut, UpdateSourceTrigger=PropertyChanged}" />
+    </mui:StackPanel>
+</UserControl>

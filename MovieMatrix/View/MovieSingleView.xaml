@@ -1,0 +1,130 @@
+﻿<UserControl x:Class="MovieMatrix.View.MovieSingleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:editors="clr-namespace:MovieMatrix.Editors"
+             xmlns:controls="clr-namespace:MovieMatrix.Controls"             
+             xmlns:settings="clr-namespace:MovieMatrix.Properties"
+             xmlns:resources="clr-namespace:MovieMatrix.Resources">
+
+    <dx:LoadingDecorator>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel HorizontalAlignment="Center" Width="850" DataContext="{Binding Parameter}">
+                <DockPanel>
+                    <dxe:ImageEdit DockPanel.Dock="Left" VerticalAlignment="Top" Width="300" Height="450"
+                                   Tag="{Binding Item}" resources:ImageAssist.Source="{DXBinding '`w300` + Item.PosterPath'}" />
+                    <StackPanel DockPanel.Dock="Right" resources:MarginAssist.BottomLeftMargin="15">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="450" Style="{StaticResource HeadlineTextBlock}">
+                                <dxmvvm:Interaction.Behaviors>
+                                    <dxmvvm:FunctionBindingBehavior Function="GetTitle" Property="Text" Arg1="{Binding Language, Source={x:Static settings:Settings.Default}}" />
+                                </dxmvvm:Interaction.Behaviors>                                
+                            </TextBlock>
+                            <TextBlock Margin="10,0" Text="{Binding Item.ReleaseDate, StringFormat=({0:yyyy})}" Style="{StaticResource HeadlineTextBlock}" Foreground="{StaticResource SecondaryText}" />
+                        </StackPanel>
+                        <ItemsControl ItemsSource="{Binding Item.GenreIds}" Style="{StaticResource MiniCardsForMovieGenre}" />
+                        <controls:FlagsControl DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                        <controls:RatingsControl DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                        <StackPanel>
+                            <TextBlock Text="{Binding Overview, Source={StaticResource ResourceProvider}}" Style="{StaticResource TitleTextBlock}" />
+                            <TextBlock Style="{StaticResource Body2TextBlock}">
+                                <dxmvvm:Interaction.Behaviors>
+                                    <dxmvvm:FunctionBindingBehavior Function="GetOverview" Property="Text" Arg1="{Binding Language, Source={x:Static settings:Settings.Default}}" />
+                                </dxmvvm:Interaction.Behaviors>
+                            </TextBlock>
+                        </StackPanel>                        
+                        <StackPanel>
+                            <TextBlock Margin="0,0,0,5" Text="{Binding FeaturedCrew, Source={StaticResource ResourceProvider}}" Style="{StaticResource TitleTextBlock}" />
+                            <ItemsControl ItemsSource="{Binding FeaturedCrew}" Style="{StaticResource MiniCardsForFeaturedCrew}" />
+                        </StackPanel>                        
+                    </StackPanel>                    
+                </DockPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Width="640">
+                        <controls:ExpanderControl Header="{Binding Starring, Source={StaticResource ResourceProvider}}" IsChecked="True">
+                            <ListBox ItemsSource="{Binding FeaturedCast}" ItemTemplate="{StaticResource MovieCreditsTemplate}" Style="{StaticResource HorizontalItems}" />
+                        </controls:ExpanderControl>
+                        <controls:ExpanderControl Header="{Binding FullCast, Source={StaticResource ResourceProvider}}">
+                            <ListBox ItemsSource="{Binding FullCast}" ItemTemplate="{StaticResource MovieCreditsTemplate}" Style="{StaticResource HorizontalItems}" />
+                        </controls:ExpanderControl>
+                        <controls:ExpanderControl Header="{Binding FullCrew, Source={StaticResource ResourceProvider}}">
+                            <ListBox ItemsSource="{Binding FullCrew}" ItemTemplate="{StaticResource MovieCreditsTemplate}" Style="{StaticResource HorizontalItems}" />
+                        </controls:ExpanderControl>
+                        <controls:ExpanderControl Header="{Binding Posters, Source={StaticResource ResourceProvider}}">
+                            <ListBox ItemsSource="{Binding Item.Images.Posters}" ItemTemplate="{StaticResource PosterTemplate}" Style="{StaticResource HorizontalItems}" />
+                        </controls:ExpanderControl>
+                        <controls:ExpanderControl Header="{Binding Backdrops, Source={StaticResource ResourceProvider}}">
+                            <ListBox ItemsSource="{Binding Item.Images.Backdrops}" ItemTemplate="{StaticResource BackdropTemplate}" Style="{StaticResource HorizontalItems}" />
+                        </controls:ExpanderControl>
+                        <controls:ExpanderControl Header="{Binding Videos, Source={StaticResource ResourceProvider}}">
+                            <ListBox ItemsSource="{Binding Item.Videos.Results}" ItemTemplate="{StaticResource VideoTemplate}" Style="{StaticResource HorizontalItems}" />
+                        </controls:ExpanderControl>
+                        <controls:ExpanderControl Header="{Binding LocalFiles, Source={StaticResource ResourceProvider}}">
+                            <StackPanel resources:MarginAssist.TopLeftMargin="10">
+                                <editors:OpenFolderDialogEdit EditValue="{Binding LocalPath, UpdateSourceTrigger=PropertyChanged}"
+                                                              FileOKCommand="{Binding DataContext.UpdateRepositoryCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                                <controls:FileBrowserControl Height="200" ItemsSource="{Binding LocalPath, Converter={resources:PathToFileListConverter}}" />
+                                <Button HorizontalAlignment="Right" Height="30" Content="{Binding SearchSubtitles, Source={StaticResource ResourceProvider}}"
+                                        CommandParameter="{Binding}" Command="{DXBinding '@a($Window).DataContext.OpenSubtitleSearchCommand'}" />
+                            </StackPanel>
+                        </controls:ExpanderControl>
+                    </StackPanel>
+                    <Separator Margin="10,0" BorderBrush="Gray" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                    <StackPanel Width="190" resources:MarginAssist.Margin="0,0,0,20">
+                        <Button HorizontalAlignment="Left" Height="26" Style="{StaticResource ImdbButton}">
+                            <TextBlock VerticalAlignment="Top" Margin="0,0,5,0" FontSize="13" FontWeight="Medium" Text="{Binding TopRating, StringFormat='#{0}'}" />
+                        </Button>
+                        <StackPanel Visibility="{Binding Item.Status, Converter={dxmvvm:StringToVisibilityConverter}}">
+                            <TextBlock Text="{Binding Status, Source={StaticResource ResourceProvider}}" Style="{StaticResource SubheadingTextBlock}" />
+                            <TextBlock Text="{Binding Item.Status, Converter={resources:ResourceStringConverter}}" Style="{StaticResource Body2TextBlock}" />
+                        </StackPanel>
+                        <StackPanel Visibility="{Binding Item.BelongsToCollection, Converter={resources:ObjectToVisibilityConverter}}">
+                            <TextBlock Text="{Binding Partof, Source={StaticResource ResourceProvider}}" Style="{StaticResource SubheadingTextBlock}" />
+                            <dxe:HyperlinkEdit FontWeight="Regular" Text="{Binding Item.BelongsToCollection.Name}" CommandParameter="{Binding Item.BelongsToCollection}"
+                                               Command="{DXBinding '@a($Window).DataContext.CreateMovieCollectionViewCommand'}" />
+                        </StackPanel>
+                        <StackPanel Visibility="{Binding Item.OriginalLanguage, Converter={dxmvvm:StringToVisibilityConverter}}">
+                            <TextBlock Text="{Binding OriginalLanguage, Source={StaticResource ResourceProvider}}" Style="{StaticResource SubheadingTextBlock}" />
+                            <TextBlock Text="{Binding Item.OriginalLanguage, Converter={resources:LanguageConverter}}" Style="{StaticResource Body2TextBlock}" />
+                        </StackPanel>
+                        <StackPanel Visibility="{Binding Item.OriginalTitle, Converter={dxmvvm:StringToVisibilityConverter}}">
+                            <TextBlock Text="{Binding OriginalTitle, Source={StaticResource ResourceProvider}}" Style="{StaticResource SubheadingTextBlock}" />
+                            <TextBlock Text="{Binding Item.OriginalTitle}" Style="{StaticResource Body2TextBlock}" />
+                        </StackPanel>
+                        <StackPanel Visibility="{Binding Item.Runtime, Converter={dxmvvm:NumericToVisibilityConverter}}">
+                            <TextBlock Text="{Binding Runtime, Source={StaticResource ResourceProvider}}" Style="{StaticResource SubheadingTextBlock}" />
+                            <TextBlock Text="{Binding Item.Runtime, Converter={resources:RuntimeConverter}}" Style="{StaticResource Body2TextBlock}" />
+                        </StackPanel>
+                        <StackPanel Visibility="{Binding Item.Budget, Converter={dxmvvm:NumericToVisibilityConverter}}">
+                            <TextBlock Text="{Binding Budget, Source={StaticResource ResourceProvider}}" Style="{StaticResource SubheadingTextBlock}" />
+                            <TextBlock Text="{Binding Item.Budget, StringFormat='$ {0:#,#}'}" Style="{StaticResource Body2TextBlock}" />
+                        </StackPanel>
+                        <StackPanel Visibility="{Binding Item.Revenue, Converter={dxmvvm:NumericToVisibilityConverter}}">
+                            <TextBlock Text="{Binding Revenue, Source={StaticResource ResourceProvider}}" Style="{StaticResource SubheadingTextBlock}" />
+                            <TextBlock Text="{Binding Item.Revenue, StringFormat='$ {0:#,#}'}" Style="{StaticResource Body2TextBlock}" />
+                        </StackPanel>                        
+                        <StackPanel Visibility="{Binding Item.Tagline, Converter={dxmvvm:StringToVisibilityConverter}}">
+                            <TextBlock Text="{Binding Tagline, Source={StaticResource ResourceProvider}}" Style="{StaticResource SubheadingTextBlock}" />
+                            <TextBlock Text="{Binding Item.Tagline}" Style="{StaticResource Body2TextBlock}" />
+                        </StackPanel>
+                        <StackPanel Visibility="{Binding Country, Converter={dxmvvm:StringToVisibilityConverter}}">
+                            <TextBlock Text="{Binding ProductionCountries, Source={StaticResource ResourceProvider}}" Style="{StaticResource SubheadingTextBlock}" />
+                            <TextBlock Text="{Binding Country}" Style="{StaticResource Body2TextBlock}" />
+                        </StackPanel>
+                        <StackPanel Visibility="{Binding Item.ProductionCompanies, Converter={resources:CollectionToVisibilityConverter}}">
+                            <TextBlock Margin="0,0,0,5" Text="{Binding ProductionCompanies, Source={StaticResource ResourceProvider}}" Style="{StaticResource SubheadingTextBlock}" />
+                            <ItemsControl ItemsSource="{Binding Item.ProductionCompanies}" Style="{StaticResource MiniCardsForMovieNames}" />
+                        </StackPanel>
+                        <StackPanel Visibility="{Binding Item.Keywords.Keywords, Converter={resources:CollectionToVisibilityConverter}}">
+                            <TextBlock Margin="0,0,0,5" Text="{Binding Keywords, Source={StaticResource ResourceProvider}}" Style="{StaticResource SubheadingTextBlock}" />
+                            <ItemsControl ItemsSource="{Binding Item.Keywords.Keywords}" Style="{StaticResource MiniCardsForMovieNames}" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </dx:LoadingDecorator>
+
+</UserControl>

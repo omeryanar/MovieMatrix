@@ -1,0 +1,226 @@
+﻿<UserControl x:Class="MovieMatrix.View.MovieDiscoverView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:common="clr-namespace:MovieMatrix"
+             xmlns:helper="clr-namespace:MovieMatrix.Helper"
+             xmlns:controls="clr-namespace:MovieMatrix.Controls"
+             xmlns:resources="clr-namespace:MovieMatrix.Resources">
+
+    <UserControl.Resources>
+        <Style TargetType="dxe:DateEdit">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="MaskUseAsDisplayFormat" Value="True" />
+            <Setter Property="StyleSettings">
+                <Setter.Value>
+                    <dxe:DateEditPickerStyleSettings />
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="controls:TokenComboBoxEdit">
+            <Setter Property="MinWidth" Value="200" />
+        </Style>
+        <Style x:Key="ComboBox" TargetType="dxe:ComboBoxEdit">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="IsTextEditable" Value="False" />
+        </Style>
+        <Style x:Key="SearchComboBox" TargetType="dxe:ComboBoxEdit" BasedOn="{StaticResource ComboBox}">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="SelectedIndex" Value="0" />
+            <Setter Property="AutoComplete" Value="True" />
+            <Setter Property="ImmediatePopup" Value="True" />
+            <Setter Property="IncrementalFiltering" Value="True" />
+            <Setter Property="ApplyItemTemplateToSelectedItem" Value="True" />
+            <Setter Property="ItemTemplate" Value="{StaticResource EnumItemTemplate}" />
+        </Style>
+        <Style x:Key="GroupBox" TargetType="dxlc:LayoutGroup">
+            <Setter Property="View" Value="GroupBox" />
+            <Setter Property="IsCollapsible" Value="True" />
+            <Setter Property="Orientation" Value="Vertical" />
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock FontSize="15" FontWeight="Medium" Margin="0,2" Text="{Binding}" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="GroupBoxStyle">
+                <Setter.Value>
+                    <Style TargetType="dxlc:GroupBox">
+                        <Setter Property="Padding" Value="5,5,0,10" />
+                        <Setter Property="BorderThickness" Value="0" />
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <dx:LoadingDecorator>
+        <DockPanel>
+            <dxlc:LayoutControl DockPanel.Dock="Left" Padding="0" ItemSpace="10" Orientation="Vertical" resources:ClearValueAssist.IsRoot="True">
+                <dxlc:LayoutGroup Style="{StaticResource GroupBox}" Header="{Binding Genre, Source={StaticResource ResourceProvider}}">
+                    <dxlc:LayoutItem Label="{Binding Include, Source={StaticResource ResourceProvider}}">
+                        <dxlc:LayoutGroup>
+                            <dxe:ComboBoxEdit x:Name="IncludeGenreSelector" Style="{StaticResource SearchComboBox}">
+                                <dxmvvm:Interaction.Behaviors>
+                                    <dxmvvm:EnumItemsSourceBehavior EnumType="{x:Type common:CombineFilter}" />
+                                </dxmvvm:Interaction.Behaviors>
+                            </dxe:ComboBoxEdit>
+                            <controls:TokenComboBoxEdit Mode="MovieGenre" Command="{DXCommand 'Parameter.IncludeWithAllOfGenre(@parameter)'}" EditValue="{Binding Tag, ElementName=IncludeGenreSelector}"
+                                                        Visibility="{Binding SelectedIndex, ElementName=IncludeGenreSelector, Converter={dxmvvm:NumericToVisibilityConverter Inverse=True}}" />
+                            <controls:TokenComboBoxEdit Mode="MovieGenre" Command="{DXCommand 'Parameter.IncludeWithAnyOfGenre(@parameter)'}" EditValue="{Binding Tag, ElementName=IncludeGenreSelector}"
+                                                        Visibility="{Binding SelectedIndex, ElementName=IncludeGenreSelector, Converter={dxmvvm:NumericToVisibilityConverter}}" />
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{Binding Exclude, Source={StaticResource ResourceProvider}}">
+                        <dxlc:LayoutGroup>
+                            <dxe:ComboBoxEdit x:Name="ExcludeGenreSelector" Style="{StaticResource SearchComboBox}">
+                                <dxmvvm:Interaction.Behaviors>
+                                    <dxmvvm:EnumItemsSourceBehavior EnumType="{x:Type common:CombineFilter}" />
+                                </dxmvvm:Interaction.Behaviors>
+                            </dxe:ComboBoxEdit>
+                            <controls:TokenComboBoxEdit Mode="MovieGenre" Command="{DXCommand 'Parameter.ExcludeWithAllOfGenre(@parameter)'}" EditValue="{Binding Tag, ElementName=ExcludeGenreSelector}"
+                                                        Visibility="{Binding SelectedIndex, ElementName=ExcludeGenreSelector, Converter={dxmvvm:NumericToVisibilityConverter Inverse=True}}" />
+                            <controls:TokenComboBoxEdit Mode="MovieGenre" Command="{DXCommand 'Parameter.ExcludeWithAnyOfGenre(@parameter)'}" EditValue="{Binding Tag, ElementName=ExcludeGenreSelector}"
+                                                        Visibility="{Binding SelectedIndex, ElementName=ExcludeGenreSelector, Converter={dxmvvm:NumericToVisibilityConverter}}" />
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Style="{StaticResource GroupBox}" Header="{Binding Keywords, Source={StaticResource ResourceProvider}}">
+                    <dxlc:LayoutItem Label="{Binding Include, Source={StaticResource ResourceProvider}}">
+                        <dxlc:LayoutGroup>
+                            <dxe:ComboBoxEdit x:Name="IncludeKeywordSelector" Style="{StaticResource SearchComboBox}">
+                                <dxmvvm:Interaction.Behaviors>
+                                    <dxmvvm:EnumItemsSourceBehavior EnumType="{x:Type common:CombineFilter}" />
+                                </dxmvvm:Interaction.Behaviors>
+                            </dxe:ComboBoxEdit>
+                            <controls:TokenComboBoxEdit Mode="Keyword" Command="{DXCommand 'Parameter.IncludeWithAllOfKeyword(@parameter)'}" EditValue="{Binding Tag, ElementName=IncludeKeywordSelector}"
+                                                        Visibility="{Binding SelectedIndex, ElementName=IncludeKeywordSelector, Converter={dxmvvm:NumericToVisibilityConverter Inverse=True}}" />
+                            <controls:TokenComboBoxEdit Mode="Keyword" Command="{DXCommand 'Parameter.IncludeWithAnyOfKeyword(@parameter)'}" EditValue="{Binding Tag, ElementName=IncludeKeywordSelector}"
+                                                        Visibility="{Binding SelectedIndex, ElementName=IncludeKeywordSelector, Converter={dxmvvm:NumericToVisibilityConverter}}" />
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{Binding Exclude, Source={StaticResource ResourceProvider}}">
+                        <dxlc:LayoutGroup>
+                            <dxe:ComboBoxEdit x:Name="ExcludeKeywordSelector" Style="{StaticResource SearchComboBox}">
+                                <dxmvvm:Interaction.Behaviors>
+                                    <dxmvvm:EnumItemsSourceBehavior EnumType="{x:Type common:CombineFilter}" />
+                                </dxmvvm:Interaction.Behaviors>
+                            </dxe:ComboBoxEdit>
+                            <controls:TokenComboBoxEdit Mode="Keyword" Command="{DXCommand 'Parameter.ExcludeWithAllOfKeyword(@parameter)'}" EditValue="{Binding Tag, ElementName=ExcludeKeywordSelector}"
+                                                        Visibility="{Binding SelectedIndex, ElementName=ExcludeKeywordSelector, Converter={dxmvvm:NumericToVisibilityConverter Inverse=True}}" />
+                            <controls:TokenComboBoxEdit Mode="Keyword" Command="{DXCommand 'Parameter.ExcludeWithAnyOfKeyword(@parameter)'}" EditValue="{Binding Tag, ElementName=ExcludeKeywordSelector}"
+                                                        Visibility="{Binding SelectedIndex, ElementName=ExcludeKeywordSelector, Converter={dxmvvm:NumericToVisibilityConverter}}" />
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Style="{StaticResource GroupBox}" Header="{Binding PeopleCompanies, Source={StaticResource ResourceProvider}}">
+                    <dxlc:LayoutItem Label="{Binding People, Source={StaticResource ResourceProvider}}">
+                        <dxlc:LayoutGroup>
+                            <dxe:ComboBoxEdit x:Name="PersonSelector" Style="{StaticResource SearchComboBox}">
+                                <dxmvvm:Interaction.Behaviors>
+                                    <dxmvvm:EnumItemsSourceBehavior EnumType="{x:Type common:CombineFilter}" />
+                                </dxmvvm:Interaction.Behaviors>
+                            </dxe:ComboBoxEdit>
+                            <controls:TokenComboBoxEdit Mode="Person" Command="{DXCommand 'Parameter.IncludeWithAllOfPeople(@parameter)'}" EditValue="{Binding Tag, ElementName=PersonSelector}"
+                                                        Visibility="{Binding SelectedIndex, ElementName=PersonSelector, Converter={dxmvvm:NumericToVisibilityConverter Inverse=True}}" />
+                            <controls:TokenComboBoxEdit Mode="Person" Command="{DXCommand 'Parameter.IncludeWithAnyOfPeople(@parameter)'}" EditValue="{Binding Tag, ElementName=PersonSelector}"
+                                                        Visibility="{Binding SelectedIndex, ElementName=PersonSelector, Converter={dxmvvm:NumericToVisibilityConverter}}" />
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{Binding Companies, Source={StaticResource ResourceProvider}}">
+                        <dxlc:LayoutGroup>
+                            <dxe:ComboBoxEdit x:Name="CompanySelector" Style="{StaticResource SearchComboBox}">
+                                <dxmvvm:Interaction.Behaviors>
+                                    <dxmvvm:EnumItemsSourceBehavior EnumType="{x:Type common:CombineFilter}" />
+                                </dxmvvm:Interaction.Behaviors>
+                            </dxe:ComboBoxEdit>
+                            <controls:TokenComboBoxEdit Mode="Company" Command="{DXCommand 'Parameter.IncludeWithAllOfCompany(@parameter)'}" EditValue="{Binding Tag, ElementName=CompanySelector}"
+                                                        Visibility="{Binding SelectedIndex, ElementName=CompanySelector, Converter={dxmvvm:NumericToVisibilityConverter Inverse=True}}" />
+                            <controls:TokenComboBoxEdit Mode="Company" Command="{DXCommand 'Parameter.IncludeWithAnyOfCompany(@parameter)'}" EditValue="{Binding Tag, ElementName=CompanySelector}"
+                                                        Visibility="{Binding SelectedIndex, ElementName=CompanySelector, Converter={dxmvvm:NumericToVisibilityConverter}}" />
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Style="{StaticResource GroupBox}" ItemSpace="20" Header="{Binding TMDB, Source={StaticResource ResourceProvider}}">
+                    <dxlc:LayoutItem Label="{Binding Rating, Source={StaticResource ResourceProvider}}">
+                        <dxe:TrackBarEdit TickItemDisplayMode="TickAndText" TickFrequency="1" Minimum="0" Maximum="10" Margin="0,0,10,0"
+                                          EditValueChanged="{DXEvent 'Parameter.WhereVoteAverageIsAtLeast(@s.SelectionStart);Parameter.WhereVoteAverageIsAtMost(@s.SelectionEnd)'}">
+                            <dxe:TrackBarEdit.StyleSettings>
+                                <dxe:TrackBarRangeStyleSettings />
+                            </dxe:TrackBarEdit.StyleSettings>
+                        </dxe:TrackBarEdit>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{Binding Votes, Source={StaticResource ResourceProvider}}">
+                        <dxe:TrackBarEdit TickItemDisplayMode="TickAndText" TickFrequency="250" Minimum="0" Maximum="1000" Margin="0,0,10,0"
+                                          EditValueChanged="{DXEvent 'Parameter.WhereVoteCountIsAtLeast((int)@s.Value)'}">
+                        </dxe:TrackBarEdit>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{Binding Runtime, Source={StaticResource ResourceProvider}}">
+                        <dxe:TrackBarEdit TickItemDisplayMode="TickAndText" TickFrequency="60" Minimum="0" Maximum="360" Margin="0,0,10,0"
+                                          EditValueChanged="{DXEvent 'Parameter.WhereRuntimeIsAtLeast((int)@s.SelectionStart);Parameter.WhereRuntimeIsAtMost((int)@s.SelectionEnd)'}">
+                            <dxe:TrackBarEdit.StyleSettings>
+                                <dxe:TrackBarRangeStyleSettings />
+                            </dxe:TrackBarEdit.StyleSettings>
+                        </dxe:TrackBarEdit>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Style="{StaticResource GroupBox}" Header="{Binding Other, Source={StaticResource ResourceProvider}}">
+                    <dxlc:LayoutGroup Orientation="Vertical">
+                        <dxlc:LayoutItem Label="{Binding OriginalLanguage, Source={StaticResource ResourceProvider}}">
+                            <controls:LanguageLookupEdit Height="30" FontSize="15" EditValueChanged="{DXEvent 'Parameter.WhereOriginalLanguageIs(@s.EditValue)'}" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="{Binding Certification, Source={StaticResource ResourceProvider}}">
+                            <dxe:ComboBoxEdit AllowNullInput="True" Style="{StaticResource ComboBox}" ItemsSource="{x:Static helper:CertificationHelper.MovieCertifications}"
+                                              EditValueChanged="{DXEvent 'Parameter.WhereCertificationIs(@s.EditValue.CountryCode, @s.EditValue.CertificationCode)'}" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="{Binding ReleaseDate, Source={StaticResource ResourceProvider}}">
+                            <dxlc:LayoutGroup>
+                                <dxe:ComboBoxEdit x:Name="ReleaseDateSelector" Style="{StaticResource SearchComboBox}">
+                                    <dxmvvm:Interaction.Behaviors>
+                                        <dxmvvm:EnumItemsSourceBehavior EnumType="{x:Type common:YearFilter}" />
+                                    </dxmvvm:Interaction.Behaviors>
+                                </dxe:ComboBoxEdit>
+                                <dxe:DateEdit Mask="yyyy" EditValueChanged="{DXEvent 'Parameter.WherePrimaryReleaseDateIsInYear(@args.NewValue.Year)'}"
+                                              Visibility="{Binding SelectedIndex, ElementName=ReleaseDateSelector, Converter={dxmvvm:NumericToVisibilityConverter Inverse=True}}" />
+                                <dxlc:LayoutGroup Visibility="{Binding SelectedIndex, ElementName=ReleaseDateSelector, Converter={dxmvvm:NumericToVisibilityConverter}}">
+                                    <dxe:DateEdit Mask="d" EditValueChanged="{DXEvent 'Parameter.WherePrimaryReleaseDateIsAfter(@args.NewValue)'}" />
+                                    <dxe:DateEdit Mask="d" EditValueChanged="{DXEvent 'Parameter.WherePrimaryReleaseDateIsBefore(@args.NewValue)'}" />
+                                </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Right">
+                    <dxlc:LayoutItem Label="{Binding SortBy, Source={StaticResource ResourceProvider}}">
+                        <dxe:ComboBoxEdit Style="{StaticResource SearchComboBox}" Width="130" HorizontalAlignment="Right" EditValueChanged="{DXEvent 'Parameter.OrderBy(@s.EditValue.ToString())'}">
+                            <dxmvvm:Interaction.Behaviors>
+                                <dxmvvm:EnumItemsSourceBehavior EnumType="{x:Type common:MovieSort}" />
+                            </dxmvvm:Interaction.Behaviors>
+                        </dxe:ComboBoxEdit>                        
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup>
+                        <Button Height="30" MinWidth="100" Command="{Binding RefreshCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="18" VerticalAlignment="Center" Margin="0,0,5,0" Text="{StaticResource Search}" Style="{StaticResource IconText}" />
+                                <TextBlock FontSize="15" VerticalAlignment="Center" Text="{Binding Search, Source={StaticResource ResourceProvider}}" />
+                            </StackPanel>
+                        </Button>
+                        <Button Height="30" MinWidth="100" resources:ClearValueAssist.IsClearButton="True">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="18" VerticalAlignment="Center" Margin="0,0,5,0" Text="{StaticResource Clear}" Style="{StaticResource IconText}" />
+                                <TextBlock FontSize="15" VerticalAlignment="Center" Text="{Binding Clear, Source={StaticResource ResourceProvider}}" />
+                            </StackPanel>
+                        </Button>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutControl>
+            <controls:CardViewControl Margin="10,0,0,0" ItemsSource="{Binding PageSource}" />
+        </DockPanel>
+    </dx:LoadingDecorator>
+
+</UserControl>

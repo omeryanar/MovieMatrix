@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxwuit="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/themekeys">    
+
+    <SolidColorBrush x:Key="Red" Color="#F44336" />
+    <SolidColorBrush x:Key="Blue" Color="#2196F3" />
+    <SolidColorBrush x:Key="Green" Color="#64DD17" />
+    <SolidColorBrush x:Key="Yellow" Color="#FFEB3B" />
+
+    <SolidColorBrush x:Key="PrimaryText" Color="#E3E3E3" />
+    <SolidColorBrush x:Key="SecondaryText" Color="#949494" />
+
+    <SolidColorBrush x:Key="{dxwuit:TileNavPaneElementsThemeKey ResourceKey=TileNavPaneFlyoutBackground, IsThemeIndependent=True}" Color="#404040" />
+
+</ResourceDictionary>

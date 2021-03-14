@@ -1,0 +1,1057 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Awards" xml:space="preserve">
+    <value>Awards</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="Collection" xml:space="preserve">
+    <value>Collection</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Director" xml:space="preserve">
+    <value>Director</value>
+    <comment>Job</comment>
+  </data>
+  <data name="ExportOptions" xml:space="preserve">
+    <value>Export Options</value>
+  </data>
+  <data name="Favorite" xml:space="preserve">
+    <value>Favorite</value>
+  </data>
+  <data name="Genre" xml:space="preserve">
+    <value>Genre</value>
+  </data>
+  <data name="IMDbTop250" xml:space="preserve">
+    <value>IMDb Top 250</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NowPlaying" xml:space="preserve">
+    <value>Now Playing</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OscarWinners" xml:space="preserve">
+    <value>Oscar Winners</value>
+  </data>
+  <data name="ReleaseDate" xml:space="preserve">
+    <value>Release Date</value>
+  </data>
+  <data name="Seen" xml:space="preserve">
+    <value>Seen</value>
+  </data>
+  <data name="Starring" xml:space="preserve">
+    <value>Starring</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Upcoming" xml:space="preserve">
+    <value>Upcoming</value>
+  </data>
+  <data name="Watchlist" xml:space="preserve">
+    <value>Watchlist</value>
+  </data>
+  <data name="Writer" xml:space="preserve">
+    <value>Writer</value>
+    <comment>Job</comment>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Adventure" xml:space="preserve">
+    <value>Adventure</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Animation" xml:space="preserve">
+    <value>Animation</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Comedy" xml:space="preserve">
+    <value>Comedy</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Crime" xml:space="preserve">
+    <value>Crime</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Documentary" xml:space="preserve">
+    <value>Documentary</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Drama" xml:space="preserve">
+    <value>Drama</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Family" xml:space="preserve">
+    <value>Family</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Fantasy" xml:space="preserve">
+    <value>Fantasy</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Horror" xml:space="preserve">
+    <value>Horror</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Music" xml:space="preserve">
+    <value>Music</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Mystery" xml:space="preserve">
+    <value>Mystery</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Romance" xml:space="preserve">
+    <value>Romance</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Science_Fiction" xml:space="preserve">
+    <value>Science Fiction</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Thriller" xml:space="preserve">
+    <value>Thriller</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="TV_Movie" xml:space="preserve">
+    <value>TV Movie</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="War" xml:space="preserve">
+    <value>War</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Western" xml:space="preserve">
+    <value>Western</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total: {0}</value>
+  </data>
+  <data name="Action_Adventure" xml:space="preserve">
+    <value>Action &amp; Adventure</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Kids" xml:space="preserve">
+    <value>Kids</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>News</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Reality" xml:space="preserve">
+    <value>Reality</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Sci_Fi_Fantasy" xml:space="preserve">
+    <value>Sci-Fi &amp; Fantasy</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Soap" xml:space="preserve">
+    <value>Soap</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Talk" xml:space="preserve">
+    <value>Talk</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="War_Politics" xml:space="preserve">
+    <value>War &amp; Politics</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Movies" xml:space="preserve">
+    <value>Movies</value>
+  </data>
+  <data name="MultiSearch" xml:space="preserve">
+    <value>Search Movies &amp; TV Shows &amp; People</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>People</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="TVShows" xml:space="preserve">
+    <value>TV Shows</value>
+  </data>
+  <data name="AiringThisWeek" xml:space="preserve">
+    <value>Airing This Week</value>
+  </data>
+  <data name="AiringToday" xml:space="preserve">
+    <value>Airing Today</value>
+  </data>
+  <data name="IMDbTop250Movies" xml:space="preserve">
+    <value>IMDb Top 250 Movies</value>
+  </data>
+  <data name="MyList" xml:space="preserve">
+    <value>My List</value>
+  </data>
+  <data name="MyMovieList" xml:space="preserve">
+    <value>My Movie List</value>
+  </data>
+  <data name="MyPeopleList" xml:space="preserve">
+    <value>My People List</value>
+  </data>
+  <data name="MyTVShowList" xml:space="preserve">
+    <value>My TV Show List</value>
+  </data>
+  <data name="NowPlayingMovies" xml:space="preserve">
+    <value>Now Playing Movies</value>
+  </data>
+  <data name="OscarWinningMovies" xml:space="preserve">
+    <value>Oscar Winning Movies</value>
+  </data>
+  <data name="Popular" xml:space="preserve">
+    <value>Popular</value>
+  </data>
+  <data name="PopularPeople" xml:space="preserve">
+    <value>Popular People</value>
+  </data>
+  <data name="PopularTVShows" xml:space="preserve">
+    <value>Popular TV Shows</value>
+  </data>
+  <data name="TVShowsAiringThisWeek" xml:space="preserve">
+    <value>TV Shows Airing This Week</value>
+  </data>
+  <data name="TVShowsAiringToday" xml:space="preserve">
+    <value>TV Shows Airing Today</value>
+  </data>
+  <data name="UpcomingMovies" xml:space="preserve">
+    <value>Upcoming Movies</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
+    <comment>Gender</comment>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Male</value>
+    <comment>Gender</comment>
+  </data>
+  <data name="KnownFor" xml:space="preserve">
+    <value>Known For</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Unknown</value>
+    <comment>Gender</comment>
+  </data>
+  <data name="FirstAirDate" xml:space="preserve">
+    <value>First Air Date</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="MoreInfo" xml:space="preserve">
+    <value>More Info</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="FeaturedCast" xml:space="preserve">
+    <value>Featured Cast</value>
+  </data>
+  <data name="FeaturedCrew" xml:space="preserve">
+    <value>Featured Crew</value>
+  </data>
+  <data name="Tagline" xml:space="preserve">
+    <value>Tagline</value>
+  </data>
+  <data name="FullCast" xml:space="preserve">
+    <value>Full Cast</value>
+  </data>
+  <data name="FullCrew" xml:space="preserve">
+    <value>Full Crew</value>
+  </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>Keywords</value>
+  </data>
+  <data name="Budget" xml:space="preserve">
+    <value>Budget</value>
+  </data>
+  <data name="Revenue" xml:space="preserve">
+    <value>Revenue</value>
+  </data>
+  <data name="Runtime" xml:space="preserve">
+    <value>Runtime</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>hr.</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>min.</value>
+  </data>
+  <data name="Backdrops" xml:space="preserve">
+    <value>Backdrops</value>
+  </data>
+  <data name="Posters" xml:space="preserve">
+    <value>Posters</value>
+  </data>
+  <data name="Videos" xml:space="preserve">
+    <value>Videos</value>
+  </data>
+  <data name="ProductionCountries" xml:space="preserve">
+    <value>Production Countries</value>
+  </data>
+  <data name="ProductionCompanies" xml:space="preserve">
+    <value>Production Companies</value>
+  </data>
+  <data name="Partof" xml:space="preserve">
+    <value>Part of</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+  <data name="PersonalRating" xml:space="preserve">
+    <value>Personal Rating</value>
+  </data>
+  <data name="Votes" xml:space="preserve">
+    <value>Votes</value>
+  </data>
+  <data name="AddYourList" xml:space="preserve">
+    <value>Add to Your List</value>
+  </data>
+  <data name="AddWatchlist" xml:space="preserve">
+    <value>Add to Watchlist</value>
+  </data>
+  <data name="MarkFavorite" xml:space="preserve">
+    <value>Mark as Favorite</value>
+  </data>
+  <data name="MarkSeen" xml:space="preserve">
+    <value>Mark as Seen</value>
+  </data>
+  <data name="PlayTrailer" xml:space="preserve">
+    <value>Play Trailer</value>
+  </data>
+  <data name="AddYourListToChange" xml:space="preserve">
+    <value>Add to Your List first to change!</value>
+  </data>
+  <data name="RemoveMyList" xml:space="preserve">
+    <value>Remove from My List</value>
+  </data>
+  <data name="InYourList" xml:space="preserve">
+    <value>In Your List</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="RemoveConfirm" xml:space="preserve">
+    <value>Do you want to remove it from your list?</value>
+  </data>
+  <data name="Networks" xml:space="preserve">
+    <value>Networks</value>
+  </data>
+  <data name="Biography" xml:space="preserve">
+    <value>Biography</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>Birthday</value>
+  </data>
+  <data name="Deathday" xml:space="preserve">
+    <value>Deathday</value>
+  </data>
+  <data name="PlaceOfBirth" xml:space="preserve">
+    <value>Place of Birth</value>
+  </data>
+  <data name="Profiles" xml:space="preserve">
+    <value>Profiles</value>
+  </data>
+  <data name="OriginalSize" xml:space="preserve">
+    <value>Original Size</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="LoadingOperations" xml:space="preserve">
+    <value>Loading Operations</value>
+  </data>
+  <data name="DiscoverMovies" xml:space="preserve">
+    <value>Discover Movies</value>
+  </data>
+  <data name="Discover" xml:space="preserve">
+    <value>Discover</value>
+  </data>
+  <data name="Exclude" xml:space="preserve">
+    <value>Exclude</value>
+  </data>
+  <data name="Include" xml:space="preserve">
+    <value>Include</value>
+  </data>
+  <data name="FirstAirDateDesc" xml:space="preserve">
+    <value>First Air Date 🠇</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="PopularityDesc" xml:space="preserve">
+    <value>Popularity 🠇</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="ReleaseDateDesc" xml:space="preserve">
+    <value>Release Date 🠇</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="RevenueDesc" xml:space="preserve">
+    <value>Revenue 🠇</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="SortBy" xml:space="preserve">
+    <value>Sort By</value>
+  </data>
+  <data name="Popularity" xml:space="preserve">
+    <value>Popularity</value>
+  </data>
+  <data name="Genres" xml:space="preserve">
+    <value>Genres</value>
+  </data>
+  <data name="AllOf" xml:space="preserve">
+    <value>All of</value>
+  </data>
+  <data name="AnyOf" xml:space="preserve">
+    <value>Any of</value>
+  </data>
+  <data name="Companies" xml:space="preserve">
+    <value>Companies</value>
+  </data>
+  <data name="GreaterThan" xml:space="preserve">
+    <value>Greater than</value>
+  </data>
+  <data name="IsInYear" xml:space="preserve">
+    <value>Is in year</value>
+  </data>
+  <data name="LessThan" xml:space="preserve">
+    <value>Less than</value>
+  </data>
+  <data name="OriginalLanguage" xml:space="preserve">
+    <value>Original Language</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="IsBetween" xml:space="preserve">
+    <value>Is Between</value>
+  </data>
+  <data name="Certification" xml:space="preserve">
+    <value>Certification</value>
+  </data>
+  <data name="FirstAirDateAsc" xml:space="preserve">
+    <value>First Air Date 🠅</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="PopularityAsc" xml:space="preserve">
+    <value>Popularity 🠅</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="ReleaseDateAsc" xml:space="preserve">
+    <value>Release Date 🠅</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="RevenueAsc" xml:space="preserve">
+    <value>Revenue 🠅</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="NetworksCompanies" xml:space="preserve">
+    <value>Networks &amp; Companies</value>
+  </data>
+  <data name="PeopleCompanies" xml:space="preserve">
+    <value>People &amp; Companies</value>
+  </data>
+  <data name="DiscoverTvShows" xml:space="preserve">
+    <value>Discover TV Shows</value>
+  </data>
+  <data name="MovieGenres" xml:space="preserve">
+    <value>Movie Genres</value>
+  </data>
+  <data name="TvShowGenres" xml:space="preserve">
+    <value>TV Show Genres</value>
+  </data>
+  <data name="AllGenres" xml:space="preserve">
+    <value>All Genres</value>
+    <comment>Genre</comment>
+  </data>
+  <data name="OriginalTitle" xml:space="preserve">
+    <value>Original Title</value>
+  </data>
+  <data name="Seasons" xml:space="preserve">
+    <value>Seasons</value>
+  </data>
+  <data name="IMDbRating" xml:space="preserve">
+    <value>IMDb Rating</value>
+  </data>
+  <data name="DateAdded" xml:space="preserve">
+    <value>Date Added</value>
+  </data>
+  <data name="DateUpdated" xml:space="preserve">
+    <value>Date Updated</value>
+  </data>
+  <data name="IMDb" xml:space="preserve">
+    <value>IMDb</value>
+  </data>
+  <data name="TMDB" xml:space="preserve">
+    <value>TMDB</value>
+  </data>
+  <data name="GroupPanelDragText" xml:space="preserve">
+    <value>Drag a column header here to group by that column</value>
+  </data>
+  <data name="TMDBRating" xml:space="preserve">
+    <value>TMDB Rating</value>
+  </data>
+  <data name="IMDbVotes" xml:space="preserve">
+    <value>IMDb Votes</value>
+  </data>
+  <data name="TMDBVotes" xml:space="preserve">
+    <value>TMDB Votes</value>
+  </data>
+  <data name="IMDbTopRating" xml:space="preserve">
+    <value>IMDb Top Rating</value>
+  </data>
+  <data name="ShowColumnChooser" xml:space="preserve">
+    <value>Show Column Chooser</value>
+  </data>
+  <data name="FilterEditor" xml:space="preserve">
+    <value>Filter Editor</value>
+  </data>
+  <data name="PrintPreview" xml:space="preserve">
+    <value>Print Preview</value>
+  </data>
+  <data name="ViewTotals" xml:space="preserve">
+    <value>View Totals</value>
+  </data>
+  <data name="HideColumnChooser" xml:space="preserve">
+    <value>Hide Column Chooser</value>
+  </data>
+  <data name="CardView" xml:space="preserve">
+    <value>Card View</value>
+  </data>
+  <data name="ListView" xml:space="preserve">
+    <value>List View</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Creator</value>
+    <comment>Job</comment>
+  </data>
+  <data name="Network" xml:space="preserve">
+    <value>Network</value>
+  </data>
+  <data name="LastAirDate" xml:space="preserve">
+    <value>Last Air Date</value>
+  </data>
+  <data name="NumberOfEpisodes" xml:space="preserve">
+    <value>Number of Episodes</value>
+  </data>
+  <data name="NumberOfSeasons" xml:space="preserve">
+    <value>Number of Seasons</value>
+  </data>
+  <data name="OriginalName" xml:space="preserve">
+    <value>Original Name</value>
+  </data>
+  <data name="MinimumRating" xml:space="preserve">
+    <value>Minimum Rating</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>Age</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Blue</value>
+    <comment>Themes</comment>
+  </data>
+  <data name="Cyan" xml:space="preserve">
+    <value>Cyan</value>
+    <comment>Themes</comment>
+  </data>
+  <data name="DeepPurple" xml:space="preserve">
+    <value>Deep Purple</value>
+    <comment>Themes</comment>
+  </data>
+  <data name="Indigo" xml:space="preserve">
+    <value>Indigo</value>
+    <comment>Themes</comment>
+  </data>
+  <data name="LightBlue" xml:space="preserve">
+    <value>Light Blue</value>
+    <comment>Themes</comment>
+  </data>
+  <data name="Orange" xml:space="preserve">
+    <value>Orange</value>
+    <comment>Themes</comment>
+  </data>
+  <data name="Pink" xml:space="preserve">
+    <value>Pink</value>
+    <comment>Themes</comment>
+  </data>
+  <data name="Purple" xml:space="preserve">
+    <value>Purple</value>
+    <comment>Themes</comment>
+  </data>
+  <data name="Acting" xml:space="preserve">
+    <value>Acting</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Art" xml:space="preserve">
+    <value>Art</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Camera" xml:space="preserve">
+    <value>Camera</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Characters" xml:space="preserve">
+    <value>Characters</value>
+    <comment>Job</comment>
+  </data>
+  <data name="Crew" xml:space="preserve">
+    <value>Crew</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Directing" xml:space="preserve">
+    <value>Directing</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Editing" xml:space="preserve">
+    <value>Editing</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Lighting" xml:space="preserve">
+    <value>Lighting</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Novel" xml:space="preserve">
+    <value>Novel</value>
+    <comment>Job</comment>
+  </data>
+  <data name="Production" xml:space="preserve">
+    <value>Production</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Screenplay" xml:space="preserve">
+    <value>Screenplay</value>
+    <comment>Job</comment>
+  </data>
+  <data name="Screenstory" xml:space="preserve">
+    <value>Screenstory</value>
+    <comment>Job</comment>
+  </data>
+  <data name="Sound" xml:space="preserve">
+    <value>Sound</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Story" xml:space="preserve">
+    <value>Story</value>
+    <comment>Job</comment>
+  </data>
+  <data name="Writing" xml:space="preserve">
+    <value>Writing</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Episodes" xml:space="preserve">
+    <value>Episodes</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="GuestStars" xml:space="preserve">
+    <value>Guest Stars</value>
+  </data>
+  <data name="PopularMovies" xml:space="preserve">
+    <value>Popular Movies</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="ImportWizard" xml:space="preserve">
+    <value>Import Wizard</value>
+  </data>
+  <data name="ImportWizardHelp" xml:space="preserve">
+    <value>This wizard takes you through to the steps required to import movies, tv shows or people from a folder or Excel file. To continue, select data type and folder/file path and click Next.</value>
+  </data>
+  <data name="UseParentFolderNames" xml:space="preserve">
+    <value>Use Parent Folder Names</value>
+  </data>
+  <data name="UseFileNames" xml:space="preserve">
+    <value>Use Video / Image File Names</value>
+  </data>
+  <data name="DataType" xml:space="preserve">
+    <value>Data Type</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="FilePath" xml:space="preserve">
+    <value>File Path</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="SelectColumns" xml:space="preserve">
+    <value>Select Columns</value>
+  </data>
+  <data name="SelectColumnsHelp" xml:space="preserve">
+    <value>Select which column in the file corresponds to what information and click Next. The 'Name' column will be used while searching and must be selected. It may contain names (e.g The Godfather, Marlon Brando) or IMDb identifiers (e.g tt0068646, nm0000008).</value>
+  </data>
+  <data name="SelectYouWantToAdd" xml:space="preserve">
+    <value>Select items you want to add</value>
+  </data>
+  <data name="SelectYouWantToAddHelp" xml:space="preserve">
+    <value>The search results are shown at right-most. Select items you want to add to your list and click Next. You can change them if there are more than one result.</value>
+  </data>
+  <data name="SearchResults" xml:space="preserve">
+    <value>Search Results</value>
+  </data>
+  <data name="WizardComplete" xml:space="preserve">
+    <value>Completing the wizard</value>
+  </data>
+  <data name="WizardCompleteHelp" xml:space="preserve">
+    <value>You have successfully completed the wizard. Click 'Finish' to add items below to your list.</value>
+  </data>
+  <data name="CheckNames" xml:space="preserve">
+    <value>Check Names</value>
+  </data>
+  <data name="CheckNamesHelp" xml:space="preserve">
+    <value>The file and directory names in the folder are listed below. The 'Name' column will be used while searching, you can correct the wrong ones.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorOccured" xml:space="preserve">
+    <value>An application error occured !</value>
+  </data>
+  <data name="LocalFiles" xml:space="preserve">
+    <value>Local Files</value>
+  </data>
+  <data name="SearchSubtitles" xml:space="preserve">
+    <value>Search Subtitles</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Episode" xml:space="preserve">
+    <value>Episode</value>
+  </data>
+  <data name="SearchByFile" xml:space="preserve">
+    <value>Search By File</value>
+  </data>
+  <data name="SearchByImdbId" xml:space="preserve">
+    <value>SearchBy IMDb Id</value>
+  </data>
+  <data name="SearchByName" xml:space="preserve">
+    <value>Search By Name</value>
+  </data>
+  <data name="Season" xml:space="preserve">
+    <value>Season</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="RefreshAll" xml:space="preserve">
+    <value>Refresh All</value>
+  </data>
+  <data name="RefreshAllConfirm" xml:space="preserve">
+    <value>Do you want to refresh all items in your list?</value>
+  </data>
+  <data name="DefaultView" xml:space="preserve">
+    <value>Default View</value>
+  </data>
+  <data name="ColumnChooser" xml:space="preserve">
+    <value>Column Chooser</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="ImageGallery" xml:space="preserve">
+    <value>Image Gallery</value>
+  </data>
+  <data name="EnglishName" xml:space="preserve">
+    <value>English Name</value>
+  </data>
+  <data name="NativeName" xml:space="preserve">
+    <value>Native Name</value>
+  </data>
+  <data name="ParentFolder" xml:space="preserve">
+    <value>Parent Folder</value>
+  </data>
+  <data name="LocalFolder" xml:space="preserve">
+    <value>Local Folder</value>
+  </data>
+  <data name="ExcelFile" xml:space="preserve">
+    <value>Excel File</value>
+  </data>
+  <data name="RefreshSelectedConfirm" xml:space="preserve">
+    <value>Do you want to refresh selected items in your list?</value>
+  </data>
+  <data name="RemoveSelectedConfirm" xml:space="preserve">
+    <value>Do you want to remove the selected items from your list?</value>
+  </data>
+  <data name="IMDbTop250TVShows" xml:space="preserve">
+    <value>IMDb Top 250 TV Shows</value>
+  </data>
+  <data name="Aquarius" xml:space="preserve">
+    <value>Aquarius</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Aries" xml:space="preserve">
+    <value>Aries</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Cancer" xml:space="preserve">
+    <value>Cancer</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Capricorn" xml:space="preserve">
+    <value>Capricorn</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Gemini" xml:space="preserve">
+    <value>Gemini</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Leo" xml:space="preserve">
+    <value>Leo</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Libra" xml:space="preserve">
+    <value>Libra</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Pisces" xml:space="preserve">
+    <value>Pisces</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Sagittarius" xml:space="preserve">
+    <value>Sagittarius</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Scorpio" xml:space="preserve">
+    <value>Scorpio</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Taurus" xml:space="preserve">
+    <value>Taurus</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Virgo" xml:space="preserve">
+    <value>Virgo</value>
+    <comment>Signs</comment>
+  </data>
+  <data name="Sign" xml:space="preserve">
+    <value>Sign</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="VoteAverageAsc" xml:space="preserve">
+    <value>TMDB Rating 🠅</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="VoteAverageDesc" xml:space="preserve">
+    <value>TMDB Rating 🠇</value>
+    <comment>Sort</comment>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>Canceled</value>
+    <comment>ProductionStatus</comment>
+  </data>
+  <data name="Ended" xml:space="preserve">
+    <value>Ended</value>
+    <comment>ProductionStatus</comment>
+  </data>
+  <data name="InProduction" xml:space="preserve">
+    <value>In Production</value>
+    <comment>ProductionStatus</comment>
+  </data>
+  <data name="Pilot" xml:space="preserve">
+    <value>Pilot</value>
+    <comment>ProductionStatus</comment>
+  </data>
+  <data name="Planned" xml:space="preserve">
+    <value>Planned</value>
+    <comment>ProductionStatus</comment>
+  </data>
+  <data name="ReturningSeries" xml:space="preserve">
+    <value>Returning Series</value>
+    <comment>ProductionStatus</comment>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="PostProduction" xml:space="preserve">
+    <value>Post Production</value>
+    <comment>ProductionStatus</comment>
+  </data>
+  <data name="Released" xml:space="preserve">
+    <value>Released</value>
+    <comment>ProductionStatus</comment>
+  </data>
+  <data name="Rumored" xml:space="preserve">
+    <value>Rumored</value>
+    <comment>ProductionStatus</comment>
+  </data>
+  <data name="MinimumVotes" xml:space="preserve">
+    <value>Minimum Votes</value>
+  </data>
+</root>

@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="MovieMatrix.View.MovieCollectionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:controls="clr-namespace:MovieMatrix.Controls"
+             xmlns:resources="clr-namespace:MovieMatrix.Resources">
+
+    <dx:LoadingDecorator>
+        <DockPanel Width="1280">
+            <Image DockPanel.Dock="Left" Width="500" Height="750" resources:ImageAssist.Source="{DXBinding '`w500` + Parameters.Collection.PosterPath'}"
+                   Visibility="{Binding Parameters.Collection.PosterPath, Converter={dxmvvm:StringToVisibilityConverter}}" />
+            <controls:CardViewControl ShowBorder="False" ItemsSource="{Binding Parameter}" />
+        </DockPanel>
+    </dx:LoadingDecorator>
+
+</UserControl>
