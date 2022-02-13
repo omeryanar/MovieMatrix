@@ -145,13 +145,13 @@ namespace MovieMatrix.Resources
 
         private static async void SourcePropertyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
-            BitmapImage bitmapImage = await GetImage(e.NewValue?.ToString());
+            BitmapSource bitmapImage = await GetImage(e.NewValue?.ToString());
             if (obj is UIElement element && e.NewValue?.ToString().EndsWith(".png") == true)
             {
                 if (bitmapImage.Palette != null)
                     element.Effect = new DropShadowEffect();
                 else
-                    element.Effect = new DropShadowEffect { ShadowDepth = 0, BlurRadius = 3, Color = Colors.White };
+                    element.Effect = new DropShadowEffect { ShadowDepth = 1, BlurRadius = 1, Color = Color.FromRgb(20, 20, 20) };
             }
 
             if (obj is Image image)
@@ -178,7 +178,7 @@ namespace MovieMatrix.Resources
                 try
                 {
                     bitmapImage.BeginInit();
-                    bitmapImage.StreamSource = stream;
+                    bitmapImage.StreamSource = stream;                    
                     bitmapImage.EndInit();
                 }
                 catch (Exception)
@@ -210,7 +210,7 @@ namespace MovieMatrix.Resources
 
         public static void IsRootPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (Convert.ToBoolean(e.NewValue) == true)
+            if (Convert.ToBoolean(e.NewValue))
                 Root = d;
         }
 
@@ -231,7 +231,7 @@ namespace MovieMatrix.Resources
 
         public static void IsClearButtonPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (Convert.ToBoolean(e.NewValue) == true)
+            if (Convert.ToBoolean(e.NewValue))
             {
                 if (d is Button button)
                 {

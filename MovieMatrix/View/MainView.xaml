@@ -24,6 +24,7 @@
         <dxmvvm:SaveFileDialogService />
         <dxmvvm:OpenFileDialogService />        
         <common:OpenFolderDialogService />
+        <common:WebBrowserService />
         <dx:DialogService DialogStyle="{StaticResource DialogWindowStyle}" />        
     </dxmvvm:Interaction.Behaviors>
 

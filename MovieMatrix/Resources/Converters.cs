@@ -394,8 +394,11 @@ namespace MovieMatrix.Resources
             using (DrawingContext drawingContext = visual.RenderOpen())
             {
                 Brush brush = new SolidColorBrush(Colors.White);
-                drawingContext.DrawText(new FormattedText(character, CultureInfo.InvariantCulture, FlowDirection.LeftToRight, FontTypeface, emSize, brush)
-                { TextAlignment = TextAlignment.Center }, new Point(0, 0));
+                DpiScale dpiSclae = VisualTreeHelper.GetDpi(visual);
+                FormattedText formattedText = new FormattedText(character, CultureInfo.InvariantCulture, FlowDirection.LeftToRight, FontTypeface, emSize, brush, dpiSclae.PixelsPerDip);
+                formattedText.TextAlignment = TextAlignment.Center;
+
+                drawingContext.DrawText(formattedText, new Point(0, 0));
             }
 
             return new DrawingImage(visual.Drawing);

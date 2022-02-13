@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing.Printing;
 using System.Dynamic;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using System.Windows.Shell;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.POCO;
@@ -34,6 +38,8 @@ namespace MovieMatrix.ViewModel
 
         public virtual ISelectFolderDialogService OpenFolderDialogService { get { return null; } }
 
+        public virtual IWebBrowserService WebBrowserService { get { return null; } }
+
         #endregion
 
         #region Properties
@@ -52,7 +58,9 @@ namespace MovieMatrix.ViewModel
 
         public const string SubtitleFilter = "Subtitle Files |*.srt;*.sub;*.smi;*.txt;*.ssa;*.ass;*.mpl";
 
-        public const string YoutubeVideoLink = "www.youtube.com/embed/{0}?autoplay=1";
+        public const string YoutubeVideoLink = "https://www.youtube.com/embed/{0}?autoplay=1";
+
+        public static readonly string InvalidFileNameChars = $"[{new String(Path.GetInvalidFileNameChars())}]";
 
         #endregion
 
@@ -155,7 +163,12 @@ namespace MovieMatrix.ViewModel
 
         public void PlayYoutubeVideo(string key)
         {
-            OpenExternalApplication(String.Format(YoutubeVideoLink, key));
+            string videoLink = String.Format(YoutubeVideoLink, key);
+
+            if (WebBrowserService.IsWebViewAvailable())
+                WebBrowserService.Display(videoLink);
+            else
+                OpenExternalApplication(videoLink);
         }
 
         public bool CanOpenExternalApplication(string path)
@@ -254,7 +267,7 @@ namespace MovieMatrix.ViewModel
 
         public void RemoveItemsFromRepository(IList<object> items)
         {
-            if (MessageBoxService.ShowMessage(Properties.Resources.RemoveSelectedConfirm, Properties.Resources.Remove, 
+            if (MessageBoxService.ShowMessage(Properties.Resources.RemoveSelectedConfirm, Properties.Resources.Remove,
                 MessageButton.YesNo, MessageIcon.Question, MessageResult.No) != MessageResult.Yes)
                 return;
 
@@ -340,14 +353,45 @@ namespace MovieMatrix.ViewModel
             }
         }
 
+        public bool CanOpenImageCarousel(IList images)
+        {
+            return images?.Count > 1;
+        }
+
+        public void OpenImageCarousel(IList images)
+        {
+            DialogViewModel viewModel = ViewModelSource.Create<DialogViewModel>();
+            viewModel.ParentViewModel = this;
+            viewModel.Parameter = images;
+            DialogService.ShowDialog(null, Properties.Resources.ImageGallery, "ImageCarouselView", viewModel);
+        }
+
         public void OpenImageGallery(object parameter)
         {
             DialogViewModel viewModel = ViewModelSource.Create<DialogViewModel>();
             viewModel.ResizeMode = ResizeMode.NoResize;
             viewModel.WindowStyle = WindowStyle.None;
+            viewModel.ParentViewModel = this;
             viewModel.Parameter = parameter;
 
             DialogService.ShowDialog(null, Properties.Resources.ImageGallery, "ImageGalleryView", viewModel);
+        }
+
+        public void SaveImage(BitmapImage image, object item)
+        {
+            SaveFileDialogService.Filter = "Image File (.jpg)|*.jpg";
+            SaveFileDialogService.DefaultFileName = Regex.Replace(item.ToString(), InvalidFileNameChars, "");
+
+            if (SaveFileDialogService.ShowDialog())
+            {
+                BitmapEncoder encoder = new JpegBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(image));
+
+                using (Stream stream = SaveFileDialogService.OpenFile())
+                {
+                    encoder.Save(stream);
+                }
+            }
         }
 
         public bool CanShowBackgroundOperations()
@@ -359,7 +403,7 @@ namespace MovieMatrix.ViewModel
         {
             DialogViewModel viewModel = ViewModelSource.Create<DialogViewModel>();
             viewModel.Parameter = BackgroundOperation.Operations;
-            
+
             DialogService.ShowDialog(MessageButton.OK, Properties.Resources.LoadingOperations, "BackgroundOperationsView", viewModel);
         }
 

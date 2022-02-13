@@ -5,7 +5,6 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using DevExpress.Xpf.Editors;
@@ -24,7 +23,7 @@ namespace MovieMatrix.Controls
             get { return (TokenMode)GetValue(ModeProperty); }
             set { SetValue(ModeProperty, value); }
         }
-        public static readonly DependencyProperty ModeProperty = 
+        public static readonly DependencyProperty ModeProperty =
             DependencyProperty.Register("Mode", typeof(TokenMode), typeof(TokenComboBoxEdit), new PropertyMetadata(TokenMode.Invalid, ModeChanged));
 
         public ICommand Command
@@ -42,10 +41,15 @@ namespace MovieMatrix.Controls
             EditValueChanged += (s, e) => { ExecuteCommand(); };
             IsVisibleChanged += (s, e) => { ExecuteCommand(); };
 
-            MouseLeftButtonUp += (s, e) => 
+            MouseLeftButtonUp += (s, e) =>
             {
                 Focus();
                 ShowPopup();
+            };
+
+            PopupClosed += (s, e) =>
+            {
+                DoValidate();
             };
         }
 
@@ -123,24 +127,24 @@ namespace MovieMatrix.Controls
         private async void ProcessNewToken(DependencyObject d, ProcessNewValueEventArgs e)
         {
             string query = e.DisplayText;
+
             if (String.IsNullOrEmpty(query))
                 return;
 
             switch (Mode)
             {
-                // TODO
                 case TokenMode.Person:
-                    List<SearchPerson> people = await App.Repository.SearchPersonAsync(query, Properties.Settings.Default.Language, 1, CancellationToken.None);
+                    List<SearchPerson> people = await App.Repository.SearchPersonAsync(query);
                     SearchPeople(people, query);
                     break;
 
                 case TokenMode.Keyword:
-                    List<SearchKeyword> keywords = await App.Repository.SearchKeywordAsync(query, 1, CancellationToken.None);
+                    List<SearchKeyword> keywords = await App.Repository.SearchKeywordAsync(query);
                     SearchKeywords(keywords, query);
                     break;
 
                 case TokenMode.Company:
-                    List<SearchCompany> companies = await App.Repository.SearchCompanyAsync(query, 1, CancellationToken.None);
+                    List<SearchCompany> companies = await App.Repository.SearchCompanyAsync(query);
                     SearchCompanies(companies, query);
                     break;
             }
@@ -253,7 +257,7 @@ namespace MovieMatrix.Controls
                     {
                         if (entry.Name == "Companies.txt")
                         {
-                            List<SearchCompany> companies = new List<SearchCompany>(); 
+                            List<SearchCompany> companies = new List<SearchCompany>();
                             using (StreamReader reader = new StreamReader(entry.Open()))
                             {
                                 string line = String.Empty;

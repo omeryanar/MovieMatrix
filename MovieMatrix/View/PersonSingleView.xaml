@@ -185,7 +185,12 @@
                     </dxg:GridControl>
                 </controls:ExpanderControl>
                 <controls:ExpanderControl Header="{Binding Profiles, Source={StaticResource ResourceProvider}}">
-                    <ListBox ItemsSource="{Binding Item.Images.Profiles}" ItemTemplate="{StaticResource PosterTemplate}" Style="{StaticResource HorizontalItems}" />
+                    <DockPanel>
+                        <Button DockPanel.Dock="Top" HorizontalAlignment="Left" Content="{Binding ViewAll, Source={StaticResource ResourceProvider}}"
+                                Style="{StaticResource FlatButton}" Tag="{StaticResource Carousel}"
+                                Command="{DXBinding '@a($Window).DataContext.OpenImageCarouselCommand'}" CommandParameter="{Binding Item.Images.Profiles}" />
+                        <ListBox ItemsSource="{Binding Item.Images.Profiles}" ItemTemplate="{StaticResource PosterTemplate}" Style="{StaticResource HorizontalItems}" />
+                    </DockPanel>
                 </controls:ExpanderControl>
                 <controls:ExpanderControl Header="{Binding LocalFiles, Source={StaticResource ResourceProvider}}">
                     <StackPanel resources:MarginAssist.TopLeftMargin="10">

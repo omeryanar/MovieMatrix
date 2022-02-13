@@ -2482,6 +2482,15 @@ namespace MovieMatrix.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View All.
+        /// </summary>
+        public static string ViewAll {
+            get {
+                return ResourceManager.GetString("ViewAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View Totals.
         /// </summary>
         public static string ViewTotals {

@@ -3,8 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
              xmlns:resources="clr-namespace:MovieMatrix.Resources"
              MinWidth="200" MinHeight="70">
+
+    <UserControl.InputBindings>
+        <KeyBinding Key="Esc" Command="{DXCommand Execute='@a($Window).Close()'}" />
+    </UserControl.InputBindings>
+
+    <dxmvvm:Interaction.Behaviors>
+        <dxmvvm:FocusBehavior />
+    </dxmvvm:Interaction.Behaviors>
 
     <dxe:ImageEdit RenderOptions.BitmapScalingMode="HighQuality" EditValueChanged="{DXEvent '@a($UserControl).SetWindowSize(@s.EditValue)'}">
         <resources:ImageAssist.Source>
@@ -19,8 +28,9 @@
             <ControlTemplate>
                 <StackPanel Orientation="Horizontal">
                     <dxe:ImageEditCopyToolButton ToolTip="{Binding Copy, Source={StaticResource ResourceProvider}}" />
-                    <dxe:ImageEditSaveToolButton ToolTip="{Binding Save, Source={StaticResource ResourceProvider}}" />
-                    <dxe:ImageEditToolButton ImageSource="/Assets/Icon/Close16.png" ToolTip="{Binding Close, Source={StaticResource ResourceProvider}}"
+                    <dxe:ImageEditToolButton ImageSource="{dx:SvgImageSource Uri='/Assets/Icon/Save.svg', Size='16,16'}" ToolTip="{Binding Save, Source={StaticResource ResourceProvider}}" 
+                                             Command="{DXCommand Execute='DataContext.SaveImage(Source, DataContext.Parameter)'}" />
+                    <dxe:ImageEditToolButton ImageSource="{dx:SvgImageSource Uri='/Assets/Icon/Close.svg', Size='16,16'}" ToolTip="{Binding Close, Source={StaticResource ResourceProvider}}"
                                              Command="{DXCommand Execute='@a($Window).Close()'}" />
                 </StackPanel>
             </ControlTemplate>

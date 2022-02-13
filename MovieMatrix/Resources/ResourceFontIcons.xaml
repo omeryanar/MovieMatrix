@@ -26,6 +26,7 @@
     <sys:String x:Key="Clear">&#xF1FE;</sys:String>
     <sys:String x:Key="Right">&#xF35F;</sys:String>
     <sys:String x:Key="Download">&#xF1DA;</sys:String>
+    <sys:String x:Key="Carousel">&#xF56C;</sys:String>
 
     <sys:String x:Key="Error">&#xF159;</sys:String>
     <sys:String x:Key="Warning">&#xF026;</sys:String>

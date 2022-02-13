@@ -13,7 +13,7 @@
              xmlns:model="clr-namespace:TMDbLib.Objects.General;assembly=TMDbLib">
 
     <UserControl.Resources>
-        <Style TargetType="dxlc:Tile" BasedOn="{StaticResource GenreTile}">            
+        <Style TargetType="dxlc:Tile" BasedOn="{StaticResource GenreTile}">
             <Setter Property="ContentTemplate">
                 <Setter.Value>
                     <DataTemplate>

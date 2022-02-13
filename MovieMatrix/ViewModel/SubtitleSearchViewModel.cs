@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using DevExpress.Mvvm;
+using MovieStore;
 using MovieStore.Container;
 using SubtitleDownloader;
 
@@ -27,7 +28,7 @@ namespace MovieMatrix.ViewModel
 
         public virtual string FilePath { get; set; }
 
-        public virtual bool ShowSeasonAndEpisodeNumber { get; set; }        
+        public virtual bool ShowSeasonAndEpisodeNumber { get; set; }
 
         public bool CanSearchByName()
         {
@@ -100,7 +101,19 @@ namespace MovieMatrix.ViewModel
 
             SaveFileDialogService.Filter = SubtitleFilter;
             if (SaveFileDialogService.ShowDialog(null, path, subtitle.SubtitleFileName))
-                await SubtitleClient.DownloadSubtitleToPath(path, subtitle, SaveFileDialogService.SafeFileName());
+            {
+                try
+                {
+                    await SubtitleClient.DownloadSubtitleToPath(SaveFileDialogService.File.DirectoryName, subtitle, SaveFileDialogService.SafeFileName());
+                }
+                catch (Exception e)
+                {
+                    Journal.WriteError(e);
+
+                    MessageViewModel viewModel = MessageViewModel.FromException(e);
+                    Messenger.Default.Send(viewModel);
+                }
+            }
         }
 
         public SubtitleSearchViewModel()

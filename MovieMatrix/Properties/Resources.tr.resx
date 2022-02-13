@@ -1004,6 +1004,9 @@
   <data name="Videos" xml:space="preserve">
     <value>Videolar</value>
   </data>
+  <data name="ViewAll" xml:space="preserve">
+    <value>Hepsini Göster</value>
+  </data>
   <data name="ViewTotals" xml:space="preserve">
     <value>Toplamları Görüntüle</value>
   </data>

@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="MovieMatrix.View.ImageCarouselView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:resources="clr-namespace:MovieMatrix.Resources"
+             Padding="5,0,5,5" MinWidth="1230" MinHeight="850">
+
+    <UserControl.Resources>        
+        <Style x:Key="VerticalItemContainerStyle" TargetType="ListBoxItem">
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Image Width="185" Height="278" resources:ImageAssist.Source="{DXBinding '`w185` + FilePath'}" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ItemsPanelTemplate x:Key="VerticalItemsPanelTemplate">
+            <VirtualizingStackPanel Orientation="Vertical" />
+        </ItemsPanelTemplate>
+        <Style x:Key="HorizontalItemContainerStyle" TargetType="ListBoxItem">
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Image Width="300" Height="169" resources:ImageAssist.Source="{DXBinding '`w300` + FilePath'}" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ItemsPanelTemplate x:Key="HorizontalItemsPanelTemplate">
+            <VirtualizingStackPanel Orientation="Horizontal" />
+        </ItemsPanelTemplate>
+    </UserControl.Resources>
+
+    <DockPanel>
+        <ListBox x:Name="ImageList" SelectedIndex="0" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding Parameter}">
+            <ListBox.Style>
+                <Style TargetType="ListBox">
+                    <Setter Property="DockPanel.Dock" Value="Left" />
+                    <Setter Property="ItemsPanel" Value="{StaticResource VerticalItemsPanelTemplate}" />
+                    <Setter Property="ItemContainerStyle" Value="{StaticResource VerticalItemContainerStyle}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{DXBinding 'Parameter[0].AspectRatio > 1'}" Value="True">
+                            <Setter Property="DockPanel.Dock" Value="Bottom" />
+                            <Setter Property="ItemsPanel" Value="{StaticResource HorizontalItemsPanelTemplate}" />
+                            <Setter Property="ItemContainerStyle" Value="{StaticResource HorizontalItemContainerStyle}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.Style>
+        </ListBox>
+        <dxe:ImageEdit Tag="{Binding SelectedItem, ElementName=ImageList}" resources:ImageAssist.Source="{Binding SelectedItem.FilePath, ElementName=ImageList}">
+            <dxe:ImageEdit.EmptyContentTemplate>
+                <ControlTemplate>
+                    <dx:WaitIndicator DeferedVisibility="True" Content="{Binding Loading, Source={StaticResource ResourceProvider}}" />
+                </ControlTemplate>
+            </dxe:ImageEdit.EmptyContentTemplate>
+        </dxe:ImageEdit>
+    </DockPanel>
+
+</UserControl>

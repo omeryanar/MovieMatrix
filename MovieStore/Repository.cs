@@ -83,7 +83,7 @@ namespace MovieStore
                         {
                             if (stream != null)
                             {
-                                using(MemoryStream memoryStream = new MemoryStream())
+                                using (MemoryStream memoryStream = new MemoryStream())
                                 {
                                     stream.CopyTo(memoryStream);
                                     if (memoryStream.Length > 0)
@@ -114,7 +114,7 @@ namespace MovieStore
             {
                 return null;
             }
-        }        
+        }
 
         #region Find
 
@@ -142,14 +142,14 @@ namespace MovieStore
 
                     results.AddRange(movies.Where(x => x.Title == query).OrderByDescending(x => x.Popularity).Union(movies.Where(x => x.Title != query).OrderByDescending(x => x.Popularity)));
                     break;
-                
+
                 case MediaType.Tv:
                     if (!searchByImdbId)
                         tvShows = await SearchTvShowAsync(query, language, 0, cancellationToken);
 
                     results.AddRange(tvShows.Where(x => x.Name == query).OrderByDescending(x => x.Popularity).Union(tvShows.Where(x => x.Name != query).OrderByDescending(x => x.Popularity)));
                     break;
-                
+
                 case MediaType.Person:
                     if (!searchByImdbId)
                         people = await SearchPersonAsync(query, language, 0, cancellationToken);
@@ -166,7 +166,7 @@ namespace MovieStore
         #region Search
 
         public async Task<List<ContainerBase>> SearchMultiAsync(string query, string language, int page, CancellationToken cancellationToken)
-        {            
+        {
             var tmdbResult = await TMDbClient.SearchMultiAsync(query: query, language: language, page: page, cancellationToken: cancellationToken);
             List<ContainerBase> result = new List<ContainerBase>(tmdbResult.TotalResults);
 
@@ -212,16 +212,23 @@ namespace MovieStore
             return tmdbResult.Results;
         }
 
-        public async Task<List<SearchKeyword>> SearchKeywordAsync(string query, int page, CancellationToken cancellationToken)
+        public async Task<List<SearchPerson>> SearchPersonAsync(string query)
         {
-            var tmdbResult = await TMDbClient.SearchKeywordAsync(query: query, page: page, cancellationToken: cancellationToken);
+            var tmdbResult = await TMDbClient.SearchPersonAsync(query);
 
             return tmdbResult.Results;
         }
 
-        public async Task<List<SearchCompany>> SearchCompanyAsync(string query, int page, CancellationToken cancellationToken)
+        public async Task<List<SearchKeyword>> SearchKeywordAsync(string query)
         {
-            var tmdbResult = await TMDbClient.SearchCompanyAsync(query: query, page: page, cancellationToken: cancellationToken);
+            var tmdbResult = await TMDbClient.SearchKeywordAsync(query);
+
+            return tmdbResult.Results;
+        }
+
+        public async Task<List<SearchCompany>> SearchCompanyAsync(string query)
+        {
+            var tmdbResult = await TMDbClient.SearchCompanyAsync(query);
 
             return tmdbResult.Results;
         }
@@ -449,7 +456,7 @@ namespace MovieStore
 
                     if (x.Result.Resource.OtherRanks?.Length > 0)
                         container.TopRating = x.Result.Resource.OtherRanks[0].Rank;
-                    
+
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext()).LogIfFaulted();
 
@@ -464,8 +471,10 @@ namespace MovieStore
 
             ImdbInfo imdbInfo = await ImdbHelper.GetImdbInfo(tmdbResult.ExternalIds.ImdbId);
             container.Votes = imdbInfo.Resource.RatingCount;
-            container.TopRating = imdbInfo.Resource.OtherRanks[0].Rank;
             container.ImdbRating = imdbInfo.Resource.Rating;
+
+            if (imdbInfo.Resource.OtherRanks?.Length > 0)
+                container.TopRating = imdbInfo.Resource.OtherRanks[0].Rank;
 
             TvShows.Update(container);
         }

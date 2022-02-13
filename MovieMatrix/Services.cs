@@ -5,14 +5,46 @@ using DevExpress.Mvvm;
 using DevExpress.Mvvm.UI;
 using DevExpress.Mvvm.UI.Native;
 using DevExpress.Xpf.Dialogs;
+using MovieMatrix.View;
 
 namespace MovieMatrix
 {
+    public interface IWebBrowserService
+    {
+        bool IsWebViewAvailable();
+        void Display(string uri);
+    }
+
+    public class WebBrowserService : ServiceBase, IWebBrowserService
+    {
+        public bool IsWebViewAvailable()
+        {
+            string browserVersion = WebBrowserView.GetAvailableBrowserVersionString();
+
+            return !String.IsNullOrEmpty(browserVersion);
+        }
+
+        public void Display(string uri)
+        {
+            WebBrowserView webBrowserView = new WebBrowserView { Uri = uri };
+            webBrowserView.Show();
+        }
+    }
+
+    public interface ISelectFolderDialogService
+    {
+        string Title { get; set; }
+
+        IFolderInfo Folder { get; }
+
+        bool ShowDialog(string initialFolder = null);
+    }
+
     public class OpenFolderDialogService : ServiceBase, ISelectFolderDialogService
     {
         public string Title { get; set; }
 
-        public IFolderInfo Folder { get; private set; }        
+        public IFolderInfo Folder { get; private set; }
 
         public bool ShowDialog(string initialFolder = null)
         {
@@ -24,12 +56,12 @@ namespace MovieMatrix
 
             if (Title != null)
                 dialog.SetTitle(Title);
-            
+
             if (initialFolder != null)
             {
                 NativeMethods.IShellItem directoryShellItem;
                 Guid riid = new Guid(NativeMethods.ShellItemGuid);
-                
+
                 if (NativeMethods.SHCreateItemFromParsingName(initialFolder, IntPtr.Zero, ref riid, out directoryShellItem) == NativeMethods.S_OK)
                     dialog.SetFolder(directoryShellItem);
             }
@@ -57,18 +89,9 @@ namespace MovieMatrix
                     }
                 }
             }
-            
+
             return false;
         }
-    }
-
-    public interface ISelectFolderDialogService
-    {
-        string Title { get; set; }
-
-        IFolderInfo Folder { get; }
-
-        bool ShowDialog(string initialFolder = null);
     }
 
     internal static class NativeMethods

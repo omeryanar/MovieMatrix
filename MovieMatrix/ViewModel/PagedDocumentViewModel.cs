@@ -18,7 +18,7 @@ namespace MovieMatrix.ViewModel
 
         public void Refresh()
         {
-            PageSource.PageIndex = 0;            
+            PageSource.PageIndex = 0;
             PageSource?.RefreshRows();
         }
 

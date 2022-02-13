@@ -7,8 +7,7 @@
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
                     xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
-                    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
-                    xmlns:resources="clr-namespace:MovieMatrix.Resources">
+                    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm">
 
     <!--Default-->
     <Style x:Key="{dxgt:GridCardThemeKey ResourceKey=HeaderPresenterStyle, IsThemeIndependent=True}" TargetType="{x:Type dxg:GridCardHeaderContentPresenter}">
@@ -32,6 +31,7 @@
         <Setter Property="NavigationUrl" Value="{Binding Text, RelativeSource={RelativeSource Self}}" />
     </Style>
     <Style TargetType="dxe:ImageEdit">
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
         <Setter Property="ShowLoadDialogOnClickMode" Value="Never" />
         <Setter Property="ShowBorder" Value="False" />
         <Setter Property="ShowMenu" Value="{Binding HasImage, RelativeSource={RelativeSource Self}}" />
@@ -47,12 +47,10 @@
                 <ControlTemplate>
                     <StackPanel Orientation="Horizontal">
                         <dxe:ImageEditCopyToolButton ToolTip="{Binding Copy, Source={StaticResource ResourceProvider}}" />
-                        <dxe:ImageEditSaveToolButton ToolTip="{Binding Save, Source={StaticResource ResourceProvider}}" />
-                        <dxe:ImageEditToolButton ImageSource="/Assets/Icon/Expand16.png" ToolTip="{Binding OriginalSize, Source={StaticResource ResourceProvider}}"
-                                                 Command="{DXCommand '@a($Window).DataContext.OpenImageGallery(@parameter)'}"
-                                                 CommandParameter="{Binding Tag, RelativeSource={RelativeSource AncestorType=dxe:ImageEdit}}"
-                                                 Visibility="{Binding Tag, RelativeSource={RelativeSource AncestorType=dxe:ImageEdit}, Converter={resources:ObjectToVisibilityConverter}}">
-                        </dxe:ImageEditToolButton>
+                        <dxe:ImageEditToolButton ImageSource="{dx:SvgImageSource Uri='/Assets/Icon/Save.svg', Size='16,16'}" ToolTip="{Binding Save, Source={StaticResource ResourceProvider}}"
+                                                 Command="{DXCommand Execute='@a($Window).DataContext.SaveImage(Source, Tag)'}" />
+                        <dxe:ImageEditToolButton ImageSource="{dx:SvgImageSource Uri='/Assets/Icon/Expand.svg', Size='16,16'}" ToolTip="{Binding OriginalSize, Source={StaticResource ResourceProvider}}"
+                                                 Command="{DXCommand '@a($Window).DataContext.OpenImageGallery(Tag)'}" />
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
@@ -172,7 +170,7 @@
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="Border" Height="30" MinWidth="30" Padding="5" CornerRadius="2">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock Margin="3,0" FontSize="16" FontFamily="/Assets/Font/#Material Design Icons"
+                            <TextBlock Margin="3,3,3,0" FontSize="18" FontFamily="/Assets/Font/#Material Design Icons"
                                        Text="{TemplateBinding Tag}" VerticalAlignment="Center" />
                             <ContentPresenter />
                         </StackPanel>

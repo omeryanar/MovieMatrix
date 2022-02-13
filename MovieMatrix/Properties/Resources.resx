@@ -1054,4 +1054,7 @@
   <data name="MinimumVotes" xml:space="preserve">
     <value>Minimum Votes</value>
   </data>
+  <data name="ViewAll" xml:space="preserve">
+    <value>View All</value>
+  </data>
 </root>

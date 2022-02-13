@@ -56,10 +56,20 @@
                             <ListBox ItemsSource="{Binding Item.Seasons}" ItemTemplate="{StaticResource TvShowSeasonsTemplate}" Style="{StaticResource HorizontalItems}" />
                         </controls:ExpanderControl>
                         <controls:ExpanderControl Header="{Binding Posters, Source={StaticResource ResourceProvider}}">
-                            <ListBox ItemsSource="{Binding Item.Images.Posters}" ItemTemplate="{StaticResource PosterTemplate}" Style="{StaticResource HorizontalItems}" />
+                            <DockPanel>
+                                <Button DockPanel.Dock="Top" HorizontalAlignment="Left" Content="{Binding ViewAll, Source={StaticResource ResourceProvider}}"
+                                        Style="{StaticResource FlatButton}" Tag="{StaticResource Carousel}"
+                                        Command="{DXBinding '@a($Window).DataContext.OpenImageCarouselCommand'}" CommandParameter="{Binding Item.Images.Posters}" />
+                                <ListBox ItemsSource="{Binding Item.Images.Posters}" ItemTemplate="{StaticResource PosterTemplate}" Style="{StaticResource HorizontalItems}" />
+                            </DockPanel>
                         </controls:ExpanderControl>
                         <controls:ExpanderControl Header="{Binding Backdrops, Source={StaticResource ResourceProvider}}">
-                            <ListBox ItemsSource="{Binding Item.Images.Backdrops}" ItemTemplate="{StaticResource BackdropTemplate}" Style="{StaticResource HorizontalItems}" />
+                            <DockPanel>
+                                <Button DockPanel.Dock="Top" HorizontalAlignment="Left" Content="{Binding ViewAll, Source={StaticResource ResourceProvider}}"
+                                        Style="{StaticResource FlatButton}" Tag="{StaticResource Carousel}"
+                                        Command="{DXBinding '@a($Window).DataContext.OpenImageCarouselCommand'}" CommandParameter="{Binding Item.Images.Backdrops}" />
+                                <ListBox ItemsSource="{Binding Item.Images.Backdrops}" ItemTemplate="{StaticResource BackdropTemplate}" Style="{StaticResource HorizontalItems}" />
+                            </DockPanel>
                         </controls:ExpanderControl>
                         <controls:ExpanderControl Header="{Binding Videos, Source={StaticResource ResourceProvider}}">
                             <ListBox ItemsSource="{Binding Item.Videos.Results}" ItemTemplate="{StaticResource VideoTemplate}" Style="{StaticResource HorizontalItems}" />

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading;
-using System.Windows.Markup;
 using DevExpress.Xpf.Core;
 using Microsoft.VisualBasic.ApplicationServices;
 using MovieMatrix.Properties;
@@ -37,13 +36,9 @@ namespace MovieMatrix
             Thread.CurrentThread.CurrentCulture = currentCulture;
             Thread.CurrentThread.CurrentUICulture = currentCulture;
 
-            // TODO
-            //System.Windows.FrameworkElement.LanguageProperty.OverrideMetadata(typeof(System.Windows.FrameworkElement),
-            //    new System.Windows.FrameworkPropertyMetadata(XmlLanguage.GetLanguage(currentCulture.IetfLanguageTag)));
-
             DXSplashScreen.Show<SplashView>();
 
-            application = new App();            
+            application = new App();
             application.InitializeComponent();
             application.Activated += (x, y) =>
             {

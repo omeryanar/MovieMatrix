@@ -64,7 +64,7 @@ namespace MovieMatrix.View
             {
                 if (BackgroundBrush == null)
                 {
-                    BackgroundBrush = new SolidColorBrush(Color.FromArgb(255, 28, 28, 28));
+                    BackgroundBrush = new SolidColorBrush(Color.FromArgb(255, 15, 15, 15));
                 }
             }
             else
@@ -127,7 +127,7 @@ namespace MovieMatrix.View
         {
             CanvasRect = new Rect(0, 0, MainCanvas.ActualWidth, MainCanvas.ActualHeight);
 
-            RenderTargetBitmap = new RenderTargetBitmap((int)CanvasRect.Width, (int)CanvasRect.Height, 96, 96, System.Windows.Media.PixelFormats.Pbgra32);
+            RenderTargetBitmap = new RenderTargetBitmap((int)CanvasRect.Width, (int)CanvasRect.Height, 96, 96, PixelFormats.Pbgra32);
             WriteableBitmap = new WriteableBitmap(RenderTargetBitmap);
             MainImage.Source = WriteableBitmap;
             MainCanvas.Measure(new Size(RenderTargetBitmap.Width, RenderTargetBitmap.Height));
@@ -171,11 +171,13 @@ namespace MovieMatrix.View
             }
             if (glyphIndices.Count > 0)
             {
+                float pixelsPerDip = (float)VisualTreeHelper.GetDpi(drawingVisual).PixelsPerDip;
                 GlyphRun glyphRun = new GlyphRun(
                                     GlyphTypeface,
                                     0,
                                     false,
                                     RenderingEmSize,
+                                    pixelsPerDip,
                                     glyphIndices,
                                     BaselineOrigin,
                                     advancedWidths,

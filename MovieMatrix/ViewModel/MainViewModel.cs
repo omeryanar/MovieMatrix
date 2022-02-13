@@ -113,7 +113,7 @@ namespace MovieMatrix.ViewModel
                 Documents.CurrentDocument = viewModel;
                 return true;
             }
-            
+
             return false;
         }
 
@@ -152,7 +152,7 @@ namespace MovieMatrix.ViewModel
         public void Search(string searchText)
         {
             PagedDocumentViewModel<ContainerBase> viewModel = ViewModelSource.Create<PagedDocumentViewModel<ContainerBase>>();
-            viewModel.FetchPage = async (x, y) => (await App.Repository.SearchMultiAsync(searchText, Settings.Default.Language, x, y));
+            viewModel.FetchPage = async (x, y) => await App.Repository.SearchMultiAsync(searchText, Settings.Default.Language, x, y);
             viewModel.Header = () => String.Format("{0}: {1}", Properties.Resources.Search, searchText);
             viewModel.DocumentType = "SearchView";
 
@@ -177,7 +177,7 @@ namespace MovieMatrix.ViewModel
                 return;
 
             PagedDocumentViewModel<MovieContainer> viewModel = ViewModelSource.Create<PagedDocumentViewModel<MovieContainer>>();
-            viewModel.FetchPage = async (x, y) => (await App.Repository.GetMoviePopularListAsync(Settings.Default.Language, x, y));
+            viewModel.FetchPage = async (x, y) => await App.Repository.GetMoviePopularListAsync(Settings.Default.Language, x, y);
             viewModel.Header = () => Properties.Resources.PopularMovies;
             viewModel.DocumentType = "SearchView";
 
@@ -190,7 +190,7 @@ namespace MovieMatrix.ViewModel
                 return;
 
             PagedDocumentViewModel<MovieContainer> viewModel = ViewModelSource.Create<PagedDocumentViewModel<MovieContainer>>();
-            viewModel.FetchPage = async (x, y) => (await App.Repository.GetMovieUpcomingListAsync(Settings.Default.Language, x, y));
+            viewModel.FetchPage = async (x, y) => await App.Repository.GetMovieUpcomingListAsync(Settings.Default.Language, x, y);
             viewModel.Header = () => Properties.Resources.UpcomingMovies;
             viewModel.DocumentType = "SearchView";
 
@@ -203,7 +203,7 @@ namespace MovieMatrix.ViewModel
                 return;
 
             PagedDocumentViewModel<MovieContainer> viewModel = ViewModelSource.Create<PagedDocumentViewModel<MovieContainer>>();
-            viewModel.FetchPage = async (x, y) => (await App.Repository.GetMovieNowPlayingListAsync(Settings.Default.Language, x, y));
+            viewModel.FetchPage = async (x, y) => await App.Repository.GetMovieNowPlayingListAsync(Settings.Default.Language, x, y);
             viewModel.Header = () => Properties.Resources.NowPlayingMovies;
             viewModel.DocumentType = "SearchView";
 
@@ -239,7 +239,7 @@ namespace MovieMatrix.ViewModel
 
             DiscoverMovie movie = App.Repository.DiscoverMovie();
             PagedDocumentViewModel<MovieContainer> viewModel = ViewModelSource.Create<PagedDocumentViewModel<MovieContainer>>();
-            viewModel.FetchPage = async (x, y) => (await App.Repository.DiscoverMovieAsync(movie, Settings.Default.Language, x, y));
+            viewModel.FetchPage = async (x, y) => await App.Repository.DiscoverMovieAsync(movie, Settings.Default.Language, x, y);
             viewModel.Header = () => Properties.Resources.DiscoverMovies;
             viewModel.DocumentType = "MovieDiscoverView";
             viewModel.Parameter = movie;
@@ -248,7 +248,7 @@ namespace MovieMatrix.ViewModel
         }
 
         public void CreateMovieGenreView(object parameter)
-        {            
+        {
             PagedDocumentViewModel<MovieContainer> viewModel = null;
             DiscoverMovie movie = null;
 
@@ -261,7 +261,7 @@ namespace MovieMatrix.ViewModel
             {
                 movie = App.Repository.DiscoverMovie();
                 viewModel = ViewModelSource.Create<PagedDocumentViewModel<MovieContainer>>();
-                viewModel.FetchPage = async (x, y) => (await App.Repository.DiscoverMovieAsync(movie, Settings.Default.Language, x, y));
+                viewModel.FetchPage = async (x, y) => await App.Repository.DiscoverMovieAsync(movie, Settings.Default.Language, x, y);
                 viewModel.Header = () => Properties.Resources.MovieGenres;
                 viewModel.DocumentType = "MovieGenreView";
                 viewModel.Parameter = movie;
@@ -358,7 +358,7 @@ namespace MovieMatrix.ViewModel
                 return;
 
             PagedDocumentViewModel<PersonContainer> viewModel = ViewModelSource.Create<PagedDocumentViewModel<PersonContainer>>();
-            viewModel.FetchPage = async (x, y) => (await App.Repository.GetPersonPopularAsync(Settings.Default.Language, x, y));
+            viewModel.FetchPage = async (x, y) => await App.Repository.GetPersonPopularAsync(Settings.Default.Language, x, y);
             viewModel.Header = () => Properties.Resources.PopularPeople;
             viewModel.DocumentType = "SearchView";
 
@@ -409,7 +409,7 @@ namespace MovieMatrix.ViewModel
                 return;
 
             PagedDocumentViewModel<TvShowContainer> viewModel = ViewModelSource.Create<PagedDocumentViewModel<TvShowContainer>>();
-            viewModel.FetchPage = async (x, y) => (await App.Repository.GetTvShowPopularAsync(Settings.Default.Language, x, y));
+            viewModel.FetchPage = async (x, y) => await App.Repository.GetTvShowPopularAsync(Settings.Default.Language, x, y);
             viewModel.Header = () => Properties.Resources.PopularTVShows;
             viewModel.DocumentType = "SearchView";
 
@@ -422,7 +422,7 @@ namespace MovieMatrix.ViewModel
                 return;
 
             PagedDocumentViewModel<TvShowContainer> viewModel = ViewModelSource.Create<PagedDocumentViewModel<TvShowContainer>>();
-            viewModel.FetchPage = async (x, y) => (await App.Repository.GetTvShowAiringTodayAsync(Settings.Default.Language, x, y));
+            viewModel.FetchPage = async (x, y) => await App.Repository.GetTvShowAiringTodayAsync(Settings.Default.Language, x, y);
             viewModel.Header = () => Properties.Resources.TVShowsAiringToday;
             viewModel.DocumentType = "SearchView";
 
@@ -435,7 +435,7 @@ namespace MovieMatrix.ViewModel
                 return;
 
             PagedDocumentViewModel<TvShowContainer> viewModel = ViewModelSource.Create<PagedDocumentViewModel<TvShowContainer>>();
-            viewModel.FetchPage = async (x, y) => (await App.Repository.GetTvShowOnTheAirAsync(Settings.Default.Language, x, y));
+            viewModel.FetchPage = async (x, y) => await App.Repository.GetTvShowOnTheAirAsync(Settings.Default.Language, x, y);
             viewModel.Header = () => Properties.Resources.TVShowsAiringThisWeek;
             viewModel.DocumentType = "SearchView";
 
@@ -449,7 +449,7 @@ namespace MovieMatrix.ViewModel
 
             DiscoverTv tvShow = App.Repository.DiscoverTvShow();
             PagedDocumentViewModel<TvShowContainer> viewModel = ViewModelSource.Create<PagedDocumentViewModel<TvShowContainer>>();
-            viewModel.FetchPage = async (x, y) => (await App.Repository.DiscoverTvShowAsync(tvShow, Settings.Default.Language, x, y));
+            viewModel.FetchPage = async (x, y) => await App.Repository.DiscoverTvShowAsync(tvShow, Settings.Default.Language, x, y);
             viewModel.Header = () => Properties.Resources.DiscoverTvShows;
             viewModel.DocumentType = "TvShowDiscoverView";
             viewModel.Parameter = tvShow;
@@ -469,7 +469,7 @@ namespace MovieMatrix.ViewModel
         }
 
         public void CreateTvShowGenreView(object parameter)
-        {            
+        {
             PagedDocumentViewModel<TvShowContainer> viewModel = null;
             DiscoverTv tvShow = null;
 
@@ -482,7 +482,7 @@ namespace MovieMatrix.ViewModel
             {
                 tvShow = App.Repository.DiscoverTvShow();
                 viewModel = ViewModelSource.Create<PagedDocumentViewModel<TvShowContainer>>();
-                viewModel.FetchPage = async (x, y) => (await App.Repository.DiscoverTvShowAsync(tvShow, Settings.Default.Language, x, y));
+                viewModel.FetchPage = async (x, y) => await App.Repository.DiscoverTvShowAsync(tvShow, Settings.Default.Language, x, y);
                 viewModel.Header = () => Properties.Resources.TvShowGenres;
                 viewModel.DocumentType = "TvShowGenreView";
                 viewModel.Parameter = tvShow;
@@ -554,7 +554,7 @@ namespace MovieMatrix.ViewModel
             CancellationTokenSource tokenSource = this.GetAsyncCommand(x => x.CreateTvShowSeasonView(tvSeason)).CancellationTokenSource;
             TvSeason season = await RunAsync(() => App.Repository.GetTvSeasonAsync(tvSeason.ShowId, tvSeason.SeasonNumber, Settings.Default.Language, tokenSource.Token));
             if (season != null)
-                CreateDocument(() => season.Name, documentType, season, documentId);
+                CreateDocument(() => String.Format("{0}: {1}", tvSeason.ShowName, season.Name), documentType, season, documentId);
         }
 
         #endregion
@@ -705,7 +705,7 @@ namespace MovieMatrix.ViewModel
                 BeginProgress();
                 IAsyncCommand command = this.GetAsyncCommand(x => x.RefreshAll(mediaType));
                 CancellationToken cancellationToken = command.CancellationTokenSource.Token;
-                BackgroundOperation.Register(Properties.Resources.ImportWizard, command.CancelCommand);
+                BackgroundOperation.Register(Properties.Resources.RefreshAll, command.CancelCommand);
 
                 switch (mediaType)
                 {

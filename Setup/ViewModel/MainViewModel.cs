@@ -230,6 +230,9 @@ namespace Setup.ViewModel
 
                     foreach (ZipArchiveEntry entry in archive.Entries)
                     {
+                        if (entry.FullName.EndsWith("\\"))
+                            continue;
+
                         await Task.Run(() =>
                         {
                             FileInfo fileInfo = new FileInfo(Path.Combine(SetupLocation, entry.FullName));
